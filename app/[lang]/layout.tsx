@@ -53,12 +53,37 @@ export default async function LangLayout({ children, params }: LayoutProps<"/[la
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
   const c = getContent(lang);
+
+  // Gestructureerde data: de persoon + de praktijk als lokale zorgverlener.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": ["Person", "MedicalBusiness"],
+    name: c.site.name,
+    jobTitle: "Klinisch psycholoog",
+    url: `https://lucasborghys-psycholoog.be/${lang}`,
+    telephone: "+32493020543",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Sint-Pietersnieuwstraat 97",
+      postalCode: "9000",
+      addressLocality: "Gent",
+      addressCountry: "BE",
+    },
+    areaServed: { "@type": "City", name: "Gent" },
+    availableLanguage: ["nl", "en"],
+    knowsLanguage: ["nl", "en"],
+  };
+
   return (
     <html
       lang={lang}
       className={`${sans.variable} ${serif.variable} ${mono.variable}`}
     >
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <div style={{ position: "relative", background: "var(--bg)" }}>
           <GrainOverlay />
           <SideRail text={c.site.rail} />
