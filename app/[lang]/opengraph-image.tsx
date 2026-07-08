@@ -3,7 +3,9 @@ import { getContent, hasLocale, LOCALES } from "../lib/locale";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Lucas Borghys · Klinisch psycholoog, Gent";
+// Taalneutraal (eigennaam + stad) zodat de alt in beide talen klopt; de
+// tekst ín het beeld wordt wél per taal gezet via c.site.role hieronder.
+export const alt = "Lucas Borghys · Gent";
 
 export function generateStaticParams() {
   return LOCALES.map((lang) => ({ lang }));
