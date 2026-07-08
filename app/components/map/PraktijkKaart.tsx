@@ -7,7 +7,15 @@
  *
  * Schaalt responsief via `viewBox` + `width:100%`; labels in JetBrains Mono.
  */
-export function PraktijkKaart({ className }: { className?: string }) {
+export function PraktijkKaart({
+  className,
+  pinLabel,
+  abbeyLabel,
+}: {
+  className?: string;
+  pinLabel: string;
+  abbeyLabel: string;
+}) {
   return (
     <svg
       viewBox="0 0 1200 600"
@@ -104,7 +112,7 @@ export function PraktijkKaart({ className }: { className?: string }) {
           Sint-Pietersplein
         </text>
         <text x="565" y="518" textAnchor="middle" className="map-street" fill="var(--mono-3)">
-          &amp; abdij
+          {abbeyLabel}
         </text>
       </g>
 
@@ -127,7 +135,7 @@ export function PraktijkKaart({ className }: { className?: string }) {
         <circle cx="600" cy="250" r="15" fill="none" stroke="var(--brass)" strokeWidth="1.6" />
         <circle cx="600" cy="250" r="7" fill="var(--brass)" />
         <text x="600" y="312" textAnchor="middle" className="map-pin-kicker" fill="var(--brass)">
-          De praktijk
+          {pinLabel}
         </text>
         <text x="600" y="338" textAnchor="middle" className="map-pin-addr" fill="var(--text)">
           Sint-Pietersnieuwstraat 97

@@ -46,7 +46,7 @@ export function LocatieKaart({ c }: { c: Content }) {
             overflow: "hidden",
           }}
         >
-          <PraktijkKaart />
+          <PraktijkKaart pinLabel={l.mapPin} abbeyLabel={l.mapAbdij} />
           <span className="map-corner" style={{ top: 14, left: 14, borderWidth: "1px 0 0 1px" }} />
           <span className="map-corner" style={{ top: 14, right: 14, borderWidth: "1px 1px 0 0" }} />
           <span className="map-corner" style={{ bottom: 14, left: 14, borderWidth: "0 0 1px 1px" }} />

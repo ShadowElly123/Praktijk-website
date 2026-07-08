@@ -107,6 +107,8 @@ export const content = {
       caption: "Naast de Boekentoren, in het hart van de studentenbuurt.",
       mapAria:
         "Gestileerde kaart van de omgeving van de praktijk: Sint-Pietersnieuwstraat 97 in Gent, naast de Boekentoren en het Sint-Pietersplein.",
+      mapPin: "De praktijk",
+      mapAbdij: "& abdij",
     },
     crisis:
       "In crisis: bel de Zelfmoordlijn 1813, of contacteer de huisarts van wacht.",
@@ -232,6 +234,8 @@ export const content = {
       caption: "Beside the Boekentoren, in the heart of the student quarter.",
       mapAria:
         "Stylised map of the practice surroundings: Sint-Pietersnieuwstraat 97 in Ghent, beside the Boekentoren and Sint-Pietersplein.",
+      mapPin: "The practice",
+      mapAbdij: "& abbey",
     },
     crisis: "In crisis: call the Suicide Line 1813, or contact the on-call GP.",
     footer: {
