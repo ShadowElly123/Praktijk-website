@@ -168,6 +168,53 @@ a {
 }
 
 /* ------------------------------------------------------------------
+   Locatiekaart — zelfgetekende SVG in de clair-obscur-taal. Labels in
+   JetBrains Mono; kleuren via de tokens zodat de kaart met de site meekleurt.
+------------------------------------------------------------------- */
+.map-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.map-street {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.map-pin-kicker {
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.map-pin-addr {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+}
+.map-corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 0 solid var(--line-4);
+  pointer-events: none;
+}
+@keyframes mapPulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.15;
+    transform: scale(1.35);
+  }
+}
+
+/* ------------------------------------------------------------------
    Contactformulier — velden in de bundle-stijl (transparant, onderlijn),
    met brass focus-onderlijn. Labels zijn visueel verborgen maar aanwezig
    voor screenreaders (a11y: niet placeholder-only).

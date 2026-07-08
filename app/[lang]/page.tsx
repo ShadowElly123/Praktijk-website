@@ -5,6 +5,7 @@ import { Verwelkoming } from "../components/sections/Verwelkoming";
 import { Werkwijze } from "../components/sections/Werkwijze";
 import { OverMij } from "../components/sections/OverMij";
 import { PraktischContact } from "../components/sections/PraktischContact";
+import { LocatieKaart } from "../components/sections/LocatieKaart";
 import { SiteFooter } from "../components/sections/SiteFooter";
 
 export default async function Home({ params }: PageProps<"/[lang]">) {
@@ -18,6 +19,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       <Werkwijze c={c} />
       <OverMij c={c} />
       <PraktischContact c={c} lang={lang as Locale} />
+      <LocatieKaart c={c} />
       <SiteFooter c={c} lang={lang as Locale} />
     </main>
   );
