@@ -23,6 +23,6 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Sla interne paden, statics en bestanden-met-extensie over.
-  matcher: ["/((?!_next|images|favicon.ico|.*\\.).*)"],
+  // Sla API-routes, interne paden, statics en bestanden-met-extensie over.
+  matcher: ["/((?!api|_next|images|favicon.ico|.*\\.).*)"],
 };
