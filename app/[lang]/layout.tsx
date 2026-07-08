@@ -3,6 +3,9 @@ import { notFound } from "next/navigation";
 import { Archivo, Spectral, JetBrains_Mono } from "next/font/google";
 import "../globals.css";
 import { getContent, hasLocale, LOCALES } from "../lib/locale";
+import { GrainOverlay } from "../components/chrome/GrainOverlay";
+import { SideRail } from "../components/chrome/SideRail";
+import { TopChrome } from "../components/chrome/TopChrome";
 
 const sans = Archivo({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 const serif = Spectral({
@@ -49,12 +52,20 @@ export async function generateMetadata({
 export default async function LangLayout({ children, params }: LayoutProps<"/[lang]">) {
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
+  const c = getContent(lang);
   return (
     <html
       lang={lang}
       className={`${sans.variable} ${serif.variable} ${mono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <div style={{ position: "relative", background: "var(--bg)" }}>
+          <GrainOverlay />
+          <SideRail text={c.site.rail} />
+          <TopChrome name={c.site.name} region={c.site.region} />
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
