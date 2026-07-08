@@ -17,6 +17,7 @@ export function TopChrome({ name, region }: { name: string; region: string }) {
 
   return (
     <div
+      className="top-chrome"
       style={{
         position: "sticky",
         top: 0,
@@ -25,7 +26,6 @@ export function TopChrome({ name, region }: { name: string; region: string }) {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "26px 40px",
         pointerEvents: "none",
       }}
     >
@@ -46,6 +46,7 @@ export function TopChrome({ name, region }: { name: string; region: string }) {
 
       <div style={{ display: "flex", alignItems: "center", gap: 18, pointerEvents: "auto" }}>
         <span
+          className="top-chrome__region"
           style={{
             fontFamily: "var(--font-mono), monospace",
             fontSize: 11,

@@ -93,6 +93,22 @@ a {
   }
 }
 
+/* ------------------------------------------------------------------
+   Top chrome — responsive. Ruime padding op desktop, compacter op mobiel
+   zodat de NL/EN-pil altijd bereikbaar blijft (niet weggeknepen).
+------------------------------------------------------------------- */
+.top-chrome {
+  padding: 26px 40px;
+}
+@media (max-width: 560px) {
+  .top-chrome {
+    padding: 18px 20px;
+  }
+  .top-chrome__region {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
