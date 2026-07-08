@@ -20,7 +20,11 @@ export function Reveal({
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
+    // Bewust setState in het effect: matchMedia bestaat niet tijdens SSR, dus
+    // de initiële state kan dit niet afleiden zonder hydration-mismatch. Bij
+    // reduced-motion tonen we meteen, zonder animatie of observer.
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setShown(true);
       return;
     }
