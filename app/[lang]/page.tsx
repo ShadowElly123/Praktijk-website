@@ -4,6 +4,7 @@ import { Hero } from "../components/sections/Hero";
 import { Verwelkoming } from "../components/sections/Verwelkoming";
 import { Werkwijze } from "../components/sections/Werkwijze";
 import { OverMij } from "../components/sections/OverMij";
+import { PraktischContact } from "../components/sections/PraktischContact";
 import { SiteFooter } from "../components/sections/SiteFooter";
 
 export default async function Home({ params }: PageProps<"/[lang]">) {
@@ -16,6 +17,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       <Verwelkoming c={c} />
       <Werkwijze c={c} />
       <OverMij c={c} />
+      <PraktischContact c={c} lang={lang as Locale} />
       <SiteFooter c={c} lang={lang as Locale} />
     </main>
   );
