@@ -7,6 +7,7 @@ export function SideRail({ text }: { text: string }) {
   return (
     <div
       aria-hidden
+      className="side-rail"
       style={{
         position: "sticky",
         top: 0,
@@ -14,7 +15,6 @@ export function SideRail({ text }: { text: string }) {
         marginBottom: "-100vh",
         zIndex: 90,
         pointerEvents: "none",
-        display: "flex",
         alignItems: "center",
       }}
     >

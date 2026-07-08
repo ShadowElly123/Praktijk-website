@@ -94,6 +94,80 @@ a {
 }
 
 /* ------------------------------------------------------------------
+   Secties — layout & responsive gedrag. Kleuren/typografie staan inline
+   per component (exact uit de bundle); hier enkel wat media-queries niet
+   inline kunnen: horizontale rail-padding en het stapelen van 2-koloms.
+------------------------------------------------------------------- */
+.sec-x {
+  padding-left: var(--rail);
+  padding-right: 40px;
+}
+.side-rail {
+  display: flex;
+}
+.split {
+  display: grid;
+  min-height: 100vh;
+}
+.split--werkwijze {
+  grid-template-columns: 1.05fr 1fr;
+}
+.split--about {
+  grid-template-columns: 1fr 1.05fr;
+}
+.split__media {
+  position: relative;
+  overflow: hidden;
+  min-height: 60vh;
+}
+.split__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.split__text--werkwijze {
+  padding: 16vh 6vw 16vh var(--rail);
+}
+.split__text--about {
+  padding: 16vh 6vw;
+}
+
+@media (max-width: 820px) {
+  /* Rail weglaten op smal scherm: voorkomt overlap met de tekst en declutter. */
+  .side-rail {
+    display: none;
+  }
+  .sec-x {
+    padding-left: 40px;
+    padding-right: 24px;
+  }
+  .split {
+    grid-template-columns: 1fr;
+  }
+  .split__media {
+    min-height: 46vh;
+  }
+  /* Beeld boven de tekst wanneer werkwijze stapelt (bij OverMij staat het beeld al eerst). */
+  .split--werkwijze .split__media {
+    order: -1;
+  }
+  .split__text--werkwijze,
+  .split__text--about {
+    padding: 12vh 40px;
+  }
+}
+@media (max-width: 480px) {
+  .sec-x {
+    padding-left: 28px;
+    padding-right: 20px;
+  }
+  .split__text--werkwijze,
+  .split__text--about {
+    padding: 10vh 28px;
+  }
+}
+
+/* ------------------------------------------------------------------
    Top chrome — responsive. Ruime padding op desktop, compacter op mobiel
    zodat de NL/EN-pil altijd bereikbaar blijft (niet weggeknepen).
 ------------------------------------------------------------------- */

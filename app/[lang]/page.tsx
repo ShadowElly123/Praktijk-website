@@ -1,36 +1,22 @@
 import { notFound } from "next/navigation";
-import { getContent, hasLocale } from "../lib/locale";
+import { getContent, hasLocale, type Locale } from "../lib/locale";
+import { Hero } from "../components/sections/Hero";
+import { Verwelkoming } from "../components/sections/Verwelkoming";
+import { Werkwijze } from "../components/sections/Werkwijze";
+import { OverMij } from "../components/sections/OverMij";
+import { SiteFooter } from "../components/sections/SiteFooter";
 
-// Voorlopige pagina — wordt in Fase 3/4 de volledige sectie-assemblage.
 export default async function Home({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
   const c = getContent(lang);
   return (
-    <main style={{ padding: "20vh 8vw", fontFamily: "var(--font-serif)" }}>
-      <h1
-        style={{
-          fontFamily: "var(--font-sans)",
-          color: "var(--title)",
-          fontSize: "clamp(52px,8vw,116px)",
-          lineHeight: 0.98,
-          margin: 0,
-        }}
-      >
-        {c.hero.titel}
-        <br />
-        <span
-          style={{
-            fontFamily: "var(--font-serif)",
-            fontStyle: "italic",
-            fontWeight: 300,
-            color: "var(--brass)",
-          }}
-        >
-          {c.hero.accent}
-        </span>
-      </h1>
-      <p style={{ color: "var(--muted)", maxWidth: 440, marginTop: 34 }}>{c.hero.sub}</p>
+    <main>
+      <Hero c={c} />
+      <Verwelkoming c={c} />
+      <Werkwijze c={c} />
+      <OverMij c={c} />
+      <SiteFooter c={c} lang={lang as Locale} />
     </main>
   );
 }
