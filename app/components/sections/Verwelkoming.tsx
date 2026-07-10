@@ -1,6 +1,6 @@
 import type { Content } from "../../lib/locale";
 import { Reveal } from "../Reveal";
-import { ScoreLine } from "../ScoreLine";
+import { SectionKicker } from "../SectionKicker";
 
 /**
  * Verwelkoming — de letterlijke kerntekst van Lucas, groot gezet in Spectral,
@@ -26,7 +26,7 @@ export function Verwelkoming({ c }: { c: Content }) {
     >
       <div style={{ position: "relative", maxWidth: 760 }}>
         <Reveal style={{ marginBottom: 40 }}>
-          <ScoreLine movement={v.movement} label={v.label} tempo={v.tempo} />
+          <SectionKicker label={v.label} />
         </Reveal>
         <Reveal delay={0.1}>
           <p

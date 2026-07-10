@@ -12,11 +12,7 @@
    - `werkwijze.themes` benoemt vragen rond geaardheid, gender en andersheid
      als thema's waar de praktijk ruimte voor maakt (PRD-conform: dit mag wél
      genoemd worden). Wat vermeden wordt is Lucas' eigen zelf-outing en
-     klinische labels (conform PRD: "zonder labels") — DEFINITIEVE
-     formulering te bevestigen met Lucas.
-   - Sectiekoppen zijn opgebouwd als "partituurlijn": elk deel heeft een
-     Romeins cijfer (`movement`) en een tempo-aanduiding (`tempo`), naar
-     Lucas' muzikale identiteit (piano als bureau, hoorn, pupiter).
+     klinische labels — DEFINITIEVE formulering te bevestigen met Lucas.
 ------------------------------------------------------------------- */
 
 export const content = {
@@ -39,29 +35,23 @@ export const content = {
       scroll: "Scroll",
     },
     verwelkoming: {
-      movement: "I",
-      tempo: "cantabile",
       label: "Verwelkoming",
       // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg.
       body: "Wees welkom, en vertel. Dat is de basis van waaruit we vertrekken en waarop we verder gaan. Ieder mens wordt vroeg of laat geconfronteerd met een worsteling, het leven voelt dan niet meer zo voorspelbaar of behapbaar aan en dit is voor velen een punt om de stap naar gesprekstherapie te zetten. Via het spreken proberen we vat te krijgen op die worsteling, proberen we woorden te vinden voor datgene dat voor onszelf nog geen duidelijkheid heeft, geen verhaal. Ik nodig je uit om samen te komen spreken over waar jij tegenaan botst en in hoeverre deze moeilijkheden betekenisvol zijn in jouw bredere levensverhaal. ",
       accent: "Elk verhaal, elke moeilijkheid is welkom.",
     },
     intermezzo: {
-      label: "intermezzo",
       quote:
         "Ruimte voor het unieke, voor warme andersheid, en om serieus genomen te worden in wat weegt.",
     },
     werkwijze: {
-      movement: "II",
-      tempo: "adagio",
       label: "Werkwijze",
-      ghost: "spreken",
       title: "Tijd en ruimte voor jouw verhaal.",
       body: "De gesprekken vertrekken vanuit een psychoanalytische houding: traag, associatief, aandachtig en zonder vooropgesteld protocol. Er is geen checklist die bepaalt wat belangrijk is. Dat ontdekken we samen, in het spreken zelf.",
       accent:
         "Zo ontstaat ruimte voor wat nog geen vorm had: het andere, en de opgekuiste chaos van een verhaal dat nog geschreven moet worden.",
       themesTitle: "Waar ik in het bijzonder ruimte voor maak",
-      // TE BEVESTIGEN MET LUCAS — impliciet, geen expliciete outing of klinische labels.
+      // TE BEVESTIGEN MET LUCAS.
       themes: [
         "Het unieke en het bijzondere, ook waar dat nog geen naam heeft.",
         "Vragen rond verlangen, lichaam, geaardheid en identiteit.",
@@ -69,8 +59,6 @@ export const content = {
       ],
     },
     overMij: {
-      movement: "III",
-      tempo: "tenuto",
       label: "Over mij",
       // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg.
       body: "Ik ben klinisch psycholoog en ik heb een passie voor en ervaring met gesprekstherapie. Zelf probeer ik mijn werk als therapeut te verfijnen door deel te nemen aan een therapieopleiding in de psychoanalyse en deel te nemen aan lezingen en opleidingsdagen.",
@@ -91,8 +79,6 @@ export const content = {
       ],
     },
     praktisch: {
-      movement: "IV",
-      tempo: "coda",
       label: "Praktisch & contact",
       talenLabel: "Talen",
       talenValue: "Nederlands & Engels",
@@ -121,15 +107,19 @@ export const content = {
         "Laat kort iets weten en ik neem contact met u op. Wat u hier deelt, blijft vertrouwelijk.",
     },
     form: {
-      naam: "Naam",
-      email: "E-mail",
-      bericht: "Bericht",
-      verstuur: "Verstuur",
+      onderwerp: "Onderwerp",
+      toelichting: "Toelichting",
+      toelichtingHint: "Kort volstaat. U hoeft nu nog niets uit te leggen.",
+      emailLabel: "E-mailadres",
+      telefoonLabel: "Telefoonnummer",
+      beschikbaarheid: "Weekbeschikbaarheden",
+      beschikbaarheidHint: "Bijv. weekdagen na 17u, of woensdagvoormiddag.",
+      verstuur: "Versturen",
       sending: "Versturen…",
       success:
         "Dank u. Uw bericht is verstuurd. Ik probeer binnen de dag te antwoorden.",
       error:
-        "Er ging iets mis bij het versturen. Belt u gerust, of probeer het later opnieuw.",
+        "Er ging iets mis bij het versturen. Belt u gerust, of probeer het later opnieuw:",
       privacyLink: "Privacybeleid",
       privacyNote:
         "Uw gegevens worden enkel gebruikt om uw vraag te beantwoorden en worden niet bewaard op de server. Geen tracking, geen advertentiecookies.",
@@ -171,7 +161,7 @@ export const content = {
       sections: [
         {
           h: "Welke gegevens",
-          p: "Enkel wat u zelf invult in het contactformulier: uw naam, e-mailadres en uw bericht. Er worden geen andere persoonsgegevens verzameld.",
+          p: "Enkel wat u zelf invult in het contactformulier: uw onderwerp, toelichting, e-mailadres en (optioneel) telefoonnummer en beschikbaarheden. Er worden geen andere persoonsgegevens verzameld.",
         },
         {
           h: "Doel",
@@ -213,22 +203,16 @@ export const content = {
       scroll: "Scroll",
     },
     verwelkoming: {
-      movement: "I",
-      tempo: "cantabile",
       label: "Welcome",
       body: "Be welcome, and speak. That is the ground we set out from and keep returning to. Sooner or later every person meets a struggle; life no longer feels predictable or manageable, and for many this is the moment to take the step toward talking therapy. Through speaking we try to get a hold on that struggle, to find words for what has no clarity yet, no story. I invite you to come and speak together about what you are up against, and how far these difficulties are meaningful within your broader life story. ",
       accent: "Every story, every difficulty is welcome.",
     },
     intermezzo: {
-      label: "intermezzo",
       quote:
         "Room for the singular, for a warm otherness, and to be taken seriously in what weighs.",
     },
     werkwijze: {
-      movement: "II",
-      tempo: "adagio",
       label: "Approach",
-      ghost: "speaking",
       title: "Time and room for your story.",
       body: "The conversations begin from a psychoanalytic stance: slow, associative, attentive and without a preset protocol. There is no checklist that decides what matters. We discover that together, in the speaking itself.",
       accent:
@@ -241,8 +225,6 @@ export const content = {
       ],
     },
     overMij: {
-      movement: "III",
-      tempo: "tenuto",
       label: "About",
       body: "I am a clinical psychologist with a passion for and experience in talking therapy. I keep refining my work as a therapist by taking part in a psychoanalytic training programme and by attending lectures and study days.",
       ervaring:
@@ -263,8 +245,6 @@ export const content = {
       ],
     },
     praktisch: {
-      movement: "IV",
-      tempo: "coda",
       label: "Practical & contact",
       talenLabel: "Languages",
       talenValue: "Dutch & English",
@@ -291,13 +271,17 @@ export const content = {
         "Leave a short note and I will get back to you. What you share here stays confidential.",
     },
     form: {
-      naam: "Name",
-      email: "Email",
-      bericht: "Message",
+      onderwerp: "Subject",
+      toelichting: "Message",
+      toelichtingHint: "A few lines are enough. No need to explain everything now.",
+      emailLabel: "Email address",
+      telefoonLabel: "Phone number",
+      beschikbaarheid: "Weekly availability",
+      beschikbaarheidHint: "E.g. weekdays after 5pm, or Wednesday mornings.",
       verstuur: "Send",
       sending: "Sending…",
       success: "Thank you. Your message has been sent. I try to reply within the day.",
-      error: "Something went wrong sending this. Feel free to call, or try again later.",
+      error: "Something went wrong sending this. Feel free to call, or try again later:",
       privacyLink: "Privacy policy",
       privacyNote:
         "Your details are used only to answer your question and are not stored on the server. No tracking, no advertising cookies.",
@@ -339,7 +323,7 @@ export const content = {
       sections: [
         {
           h: "Which data",
-          p: "Only what you enter yourself in the contact form: your name, email address and your message. No other personal data is collected.",
+          p: "Only what you enter yourself in the contact form: your subject, message, email address and (optionally) phone number and availability. No other personal data is collected.",
         },
         {
           h: "Purpose",

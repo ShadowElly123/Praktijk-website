@@ -1,12 +1,13 @@
 import Image from "next/image";
 import type { Content } from "../../lib/locale";
 import { Reveal } from "../Reveal";
-import { ScoreLine } from "../ScoreLine";
+import { SectionKicker } from "../SectionKicker";
 
 /**
- * Over mij — 2-koloms: links een sticky, geboxte foto (aspect 4/5) van Lucas
- * met italic caption eronder, rechts ScoreLine-kop, body, ervaring (italic,
- * gedempt), een blok "Titels & erkenning" en daaronder een apart blok
+ * Over mij — 2-koloms: links een sticky foto (aspect 4/5) van Lucas die met een
+ * feather-masker aan alle zijden zacht in de donkere achtergrond opgaat (geen
+ * harde rand), met italic caption eronder; rechts de kop, body, ervaring
+ * (italic, gedempt), een blok "Titels & erkenning" en daaronder een apart blok
  * "Registratie" (visum/erkennings-/ondernemingsnummer, tabular-nums).
  * Stapelt op mobiel.
  */
@@ -31,8 +32,15 @@ export function OverMij({ c }: { c: Content }) {
               aspectRatio: "4 / 5",
               width: "100%",
               maxWidth: 440,
-              overflow: "hidden",
-              border: "1px solid var(--line-3)",
+              // Feather-masker: het beeld vervaagt aan alle vier de zijden naar
+              // transparant, zodat het naadloos in de donkere achtergrond opgaat
+              // in plaats van een hoekig kader te vormen.
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%)",
+              WebkitMaskComposite: "source-in",
+              maskImage:
+                "linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%)",
+              maskComposite: "intersect",
             }}
           >
             <Image
@@ -65,7 +73,7 @@ export function OverMij({ c }: { c: Content }) {
 
       <div className="split__text split__text--about">
         <Reveal style={{ marginBottom: 28 }}>
-          <ScoreLine movement={o.movement} label={o.label} tempo={o.tempo} />
+          <SectionKicker label={o.label} />
         </Reveal>
         <Reveal delay={0.08}>
           <p

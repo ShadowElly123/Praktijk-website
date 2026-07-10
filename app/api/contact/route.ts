@@ -20,9 +20,11 @@ export const runtime = "nodejs";
 ------------------------------------------------------------------- */
 
 type Payload = {
-  naam?: string;
+  onderwerp?: string;
+  toelichting?: string;
   email?: string;
-  bericht?: string;
+  telefoon?: string;
+  beschikbaarheid?: string;
   company?: string; // honeypot
 };
 
@@ -45,11 +47,13 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, delivered: false });
   }
 
-  const naam = (data.naam ?? "").trim();
+  const onderwerp = (data.onderwerp ?? "").trim();
+  const toelichting = (data.toelichting ?? "").trim();
   const email = (data.email ?? "").trim();
-  const bericht = (data.bericht ?? "").trim();
+  const telefoon = (data.telefoon ?? "").trim();
+  const beschikbaarheid = (data.beschikbaarheid ?? "").trim();
 
-  if (!naam || !email || !bericht) {
+  if (!onderwerp || !toelichting || !email) {
     return NextResponse.json({ ok: false, error: "missing_fields" }, { status: 422 });
   }
   if (!EMAIL_RE.test(email)) {
@@ -57,8 +61,16 @@ export async function POST(req: Request) {
   }
 
   const to = process.env.CONTACT_TO ?? "praktijkadres-staat-in-env";
-  const subject = `Website · nieuw bericht van ${naam}`;
-  const lines = [`Naam: ${naam}`, `E-mailadres: ${email}`, "", "Bericht:", bericht];
+  const subject = `Website · nieuwe aanvraag: ${onderwerp}`;
+  const lines = [
+    `Onderwerp: ${onderwerp}`,
+    `E-mailadres: ${email}`,
+    `Telefoonnummer: ${telefoon || "(niet opgegeven)"}`,
+    `Weekbeschikbaarheden: ${beschikbaarheid || "(niet opgegeven)"}`,
+    "",
+    "Toelichting:",
+    toelichting,
+  ];
   const text = lines.join("\n");
   const html = `<div style="font-family:Georgia,serif;line-height:1.6">${lines
     .map((l) => (l === "" ? "<br>" : `<p style="margin:0 0 6px">${escapeHtml(l)}</p>`))

@@ -1,15 +1,13 @@
 import Image from "next/image";
 import type { Content } from "../../lib/locale";
 import { Reveal } from "../Reveal";
-import { ScoreLine } from "../ScoreLine";
-import { GhostWord } from "../GhostWord";
+import { SectionKicker } from "../SectionKicker";
 
 /**
- * Werkwijze — 2-koloms: links de tekst (ScoreLine-kop, titel, body, brass-accent,
- * en een genummerde lijst van thema's waar bijzondere ruimte voor is), rechts een
- * beeld met gradient-maskers dat naar de schermrand bloedt. Een groot, amper
- * zichtbaar "ghost woord" en een zachte brass-gloed liggen achter de tekstkolom.
- * Stapelt op mobiel.
+ * Werkwijze — 2-koloms: links de tekst (kop, titel, body, brass-accent, en een
+ * genummerde lijst van thema's waar bijzondere ruimte voor is), rechts een beeld
+ * met gradient-maskers dat naar de schermrand bloedt. Een zachte brass-gloed
+ * ("oplichting") ligt achter de tekstkolom. Stapelt op mobiel.
  */
 export function Werkwijze({ c }: { c: Content }) {
   const w = c.werkwijze;
@@ -24,14 +22,12 @@ export function Werkwijze({ c }: { c: Content }) {
         borderTop: "1px solid var(--line)",
       }}
     >
-      <GhostWord word={w.ghost} align="left" top="34%" />
-
       <div className="split__text split__text--werkwijze" style={{ position: "relative", zIndex: 1 }}>
         {/* zachte brass-gloed achter de kop */}
         <div aria-hidden className="spotlight" style={{ width: 420, height: 420, left: -80, top: -120 }} />
 
         <Reveal style={{ marginBottom: 20, position: "relative", zIndex: 1 }}>
-          <ScoreLine movement={w.movement} label={w.label} tempo={w.tempo} />
+          <SectionKicker label={w.label} />
         </Reveal>
         <Reveal delay={0.1} style={{ position: "relative", zIndex: 1 }}>
           <h2

@@ -342,3 +342,55 @@ a {
   background-color: var(--brass);
   color: var(--bg);
 }
+
+/* ------------------------------------------------------------------
+   Praktisch — kalme, uitgelijnde tweekolommenrij: info links, crisis rechts.
+   dl-rijen met haarlijn-dividers en een vaste labelbreedte voor rust.
+------------------------------------------------------------------- */
+.praktisch-cols {
+  margin-top: 8vh;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 5vw;
+  align-items: start;
+  max-width: 1100px;
+}
+.info-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  column-gap: 32px;
+  border-top: 1px solid var(--line);
+  padding: 20px 0;
+}
+.info-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass);
+  padding-top: 3px;
+}
+@media (max-width: 900px) {
+  .praktisch-cols {
+    grid-template-columns: 1fr;
+    gap: 6vh;
+  }
+}
+@media (max-width: 520px) {
+  .info-row {
+    grid-template-columns: 1fr;
+    row-gap: 6px;
+  }
+}
+
+/* Formulier — twee velden naast elkaar (e-mail / telefoon), gestapeld op smal. */
+.field-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 560px) {
+  .field-2col {
+    grid-template-columns: 1fr;
+  }
+}
