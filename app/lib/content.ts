@@ -9,9 +9,14 @@
      of herschrijven zonder overleg.
    - De officiële, deontologisch verplichte titels staan exact en in
      beide talen bewust in het Nederlands.
-   - `werkwijze.aandacht` verwoordt impliciet de interesse in seksualiteit
-     en gender, zonder expliciete outing — DEFINITIEVE formulering te
-     bevestigen met Lucas.
+   - `werkwijze.themes` benoemt vragen rond geaardheid, gender en andersheid
+     als thema's waar de praktijk ruimte voor maakt (PRD-conform: dit mag wél
+     genoemd worden). Wat vermeden wordt is Lucas' eigen zelf-outing en
+     klinische labels (conform PRD: "zonder labels") — DEFINITIEVE
+     formulering te bevestigen met Lucas.
+   - Sectiekoppen zijn opgebouwd als "partituurlijn": elk deel heeft een
+     Romeins cijfer (`movement`) en een tempo-aanduiding (`tempo`), naar
+     Lucas' muzikale identiteit (piano als bureau, hoorn, pupiter).
 ------------------------------------------------------------------- */
 
 export const content = {
@@ -34,56 +39,86 @@ export const content = {
       scroll: "Scroll",
     },
     verwelkoming: {
-      num: "01",
+      movement: "I",
+      tempo: "cantabile",
       label: "Verwelkoming",
       // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg.
       body: "Wees welkom, en vertel. Dat is de basis van waaruit we vertrekken en waarop we verder gaan. Ieder mens wordt vroeg of laat geconfronteerd met een worsteling, het leven voelt dan niet meer zo voorspelbaar of behapbaar aan en dit is voor velen een punt om de stap naar gesprekstherapie te zetten. Via het spreken proberen we vat te krijgen op die worsteling, proberen we woorden te vinden voor datgene dat voor onszelf nog geen duidelijkheid heeft, geen verhaal. Ik nodig je uit om samen te komen spreken over waar jij tegenaan botst en in hoeverre deze moeilijkheden betekenisvol zijn in jouw bredere levensverhaal. ",
       accent: "Elk verhaal, elke moeilijkheid is welkom.",
     },
+    intermezzo: {
+      label: "intermezzo",
+      quote:
+        "Ruimte voor het unieke, voor warme andersheid, en om serieus genomen te worden in wat weegt.",
+    },
     werkwijze: {
-      num: "02",
+      movement: "II",
+      tempo: "adagio",
       label: "Werkwijze",
+      ghost: "spreken",
       title: "Tijd en ruimte voor jouw verhaal.",
       body: "De gesprekken vertrekken vanuit een psychoanalytische houding: traag, associatief, aandachtig en zonder vooropgesteld protocol. Er is geen checklist die bepaalt wat belangrijk is. Dat ontdekken we samen, in het spreken zelf.",
       accent:
         "Zo ontstaat ruimte voor wat nog geen vorm had: het andere, en de opgekuiste chaos van een verhaal dat nog geschreven moet worden.",
-      // TE BEVESTIGEN MET LUCAS — impliciet, geen expliciete outing.
-      aandacht:
-        "Er is bijzondere aandacht en interesse voor vragen rond seksualiteit en gender.",
+      themesTitle: "Waar ik in het bijzonder ruimte voor maak",
+      // TE BEVESTIGEN MET LUCAS — impliciet, geen expliciete outing of klinische labels.
+      themes: [
+        "Het unieke en het bijzondere, ook waar dat nog geen naam heeft.",
+        "Vragen rond verlangen, lichaam, geaardheid en identiteit.",
+        "Kunstenaars en creatieve geesten die hun plek nog zoeken.",
+      ],
     },
     overMij: {
-      num: "03",
+      movement: "III",
+      tempo: "tenuto",
       label: "Over mij",
       // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg.
       body: "Ik ben klinisch psycholoog en ik heb een passie voor en ervaring met gesprekstherapie. Zelf probeer ik mijn werk als therapeut te verfijnen door deel te nemen aan een therapieopleiding in de psychoanalyse en deel te nemen aan lezingen en opleidingsdagen.",
       ervaring:
         "Eerdere ervaring bij groepspraktijk Tondel, huis voor psychotherapie Anker en de Huiskamer, en vrijwilligerswerk in PVT De Wadi bij de Driesprong.",
+      imageCaption:
+        "De praktijk: een historische stadswoning bij de Boekentoren, met hoge plafonds, een tot bureau omgebouwde piano, veel groen en zacht licht.",
+      titelsLabel: "Titels & erkenning",
       titel1: "Klinisch psycholoog",
       titel1sub: "(Erkend door de Psychologencommissie, met visum).",
       titel2: "In opleiding tot psychoanalytisch therapeut.",
       badge: "Lucas Borghys · Gent",
-    },
-    praktisch: {
-      num: "04",
-      label: "Praktisch & contact",
-      richtprijs:
-        "Richtprijs en richtduur worden toegelicht tijdens het intakegesprek. Definitieve afspraken horen bij die eerste kennismaking.",
-      // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg.
-      terugbetaling:
-        "Niet-geconventioneerd. Gedeeltelijke terugbetaling van het ziekenfonds is mogelijk; u mag uw formulier meebrengen naar de sessie.",
-      betaling: "Betalen kan via Payconiq of overschrijving (IBAN BE53 3632 2546 8153).",
-      // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg.
-      microcopy:
-        "Een voicemail is aangeraden indien ik telefonisch niet bereikbaar ben. Ik probeer binnen de dag een antwoord te formuleren. Houd zeker ook uw spamfolder in het oog wanneer u een antwoord verwacht.",
-      gsmLabel: "GSM",
-      gsm: "0493 02 05 43",
-      gsmHref: "tel:+32493020543",
       registratieLabel: "Registratie",
       registratie: [
         "Visumnummer 374462",
         "Erkenningsnummer 991135455",
         "Ondernemingsnummer 0790.741.228",
       ],
+    },
+    praktisch: {
+      movement: "IV",
+      tempo: "coda",
+      label: "Praktisch & contact",
+      talenLabel: "Talen",
+      talenValue: "Nederlands & Engels",
+      vormLabel: "Vorm",
+      vormValue: "Op gesprek, of via video en telefoon",
+      tariefLabel: "Tarief",
+      tariefValue:
+        "Richtprijs en richtduur worden toegelicht tijdens het intakegesprek. Definitieve afspraken horen bij die eerste kennismaking.",
+      terugbetalingLabel: "Terugbetaling",
+      // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg.
+      terugbetalingValue:
+        "Niet-geconventioneerd. Gedeeltelijke terugbetaling van het ziekenfonds is mogelijk; u mag uw formulier meebrengen naar de sessie.",
+      betalingLabel: "Betaling",
+      betalingValue: "Payconiq of overschrijving",
+      betalingNote: "IBAN BE53 3632 2546 8153",
+      // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg.
+      microcopy:
+        "Een voicemail is aangeraden indien ik telefonisch niet bereikbaar ben. Ik probeer binnen de dag een antwoord te formuleren. Houd zeker ook uw spamfolder in het oog wanneer u een antwoord verwacht.",
+      gsmLabel: "GSM",
+      gsm: "0493 02 05 43",
+      gsmHref: "tel:+32493020543",
+    },
+    contact: {
+      title: "Neem contact op",
+      intro:
+        "Laat kort iets weten en ik neem contact met u op. Wat u hier deelt, blijft vertrouwelijk.",
     },
     form: {
       naam: "Naam",
@@ -103,15 +138,26 @@ export const content = {
     },
     locatie: {
       label: "Locatie",
+      praktijkLabel: "Praktijk",
       adres: "Sint-Pietersnieuwstraat 97, 9000 Gent",
       caption: "Naast de Boekentoren, in het hart van de studentenbuurt.",
       mapAria:
         "Gestileerde kaart van de omgeving van de praktijk: Sint-Pietersnieuwstraat 97 in Gent, naast de Boekentoren en het Sint-Pietersplein.",
       mapPin: "De praktijk",
       mapAbdij: "& abdij",
+      routeLabel: "Route",
+      routeNote: "Opent in uw eigen kaart-app.",
     },
-    crisis:
-      "In crisis: bel de Zelfmoordlijn 1813, of contacteer de huisarts van wacht.",
+    crisis: {
+      title: "In geval van crisis",
+      intro:
+        "Deze praktijk biedt geen crisisopvang. Heeft u nu dringend hulp nodig?",
+      items: [
+        { label: "Zelfmoordlijn 1813", value: "1813", href: "tel:1813" },
+        { label: "Huisarts van wacht", value: "1733", href: "tel:1733" },
+        { label: "Spoed / noodgeval", value: "112", href: "tel:112" },
+      ],
+    },
     footer: {
       privacy: "Privacybeleid",
       rights: "Alle rechten voorbehouden.",
@@ -167,52 +213,82 @@ export const content = {
       scroll: "Scroll",
     },
     verwelkoming: {
-      num: "01",
+      movement: "I",
+      tempo: "cantabile",
       label: "Welcome",
       body: "Be welcome, and speak. That is the ground we set out from and keep returning to. Sooner or later every person meets a struggle; life no longer feels predictable or manageable, and for many this is the moment to take the step toward talking therapy. Through speaking we try to get a hold on that struggle, to find words for what has no clarity yet, no story. I invite you to come and speak together about what you are up against, and how far these difficulties are meaningful within your broader life story. ",
       accent: "Every story, every difficulty is welcome.",
     },
+    intermezzo: {
+      label: "intermezzo",
+      quote:
+        "Room for the singular, for a warm otherness, and to be taken seriously in what weighs.",
+    },
     werkwijze: {
-      num: "02",
+      movement: "II",
+      tempo: "adagio",
       label: "Approach",
+      ghost: "speaking",
       title: "Time and room for your story.",
       body: "The conversations begin from a psychoanalytic stance: slow, associative, attentive and without a preset protocol. There is no checklist that decides what matters. We discover that together, in the speaking itself.",
       accent:
         "So room opens for what had no form yet: the other, and the ordered chaos of a story still to be written.",
-      aandacht:
-        "There is particular attention and interest in questions of sexuality and gender.",
+      themesTitle: "Where I make particular room",
+      themes: [
+        "The singular and the particular, even where it has no name yet.",
+        "Questions of desire, the body, orientation and identity.",
+        "Artists and creative minds still finding their place.",
+      ],
     },
     overMij: {
-      num: "03",
+      movement: "III",
+      tempo: "tenuto",
       label: "About",
       body: "I am a clinical psychologist with a passion for and experience in talking therapy. I keep refining my work as a therapist by taking part in a psychoanalytic training programme and by attending lectures and study days.",
       ervaring:
         "Earlier experience at group practice Tondel, house for psychotherapy Anker and de Huiskamer, and volunteer work in PVT De Wadi at de Driesprong.",
+      imageCaption:
+        "The practice: a historic townhouse near the Boekentoren, with high ceilings, a piano turned into a desk, abundant greenery and soft light.",
+      titelsLabel: "Titles & recognition",
       // Officiële titels bewust in het Nederlands — deontologisch exact.
       titel1: "Klinisch psycholoog",
       titel1sub: "(Erkend door de Psychologencommissie, met visum).",
       titel2: "In opleiding tot psychoanalytisch therapeut.",
       badge: "Lucas Borghys · Ghent",
-    },
-    praktisch: {
-      num: "04",
-      label: "Practical & contact",
-      richtprijs:
-        "Indicative rate and session length are explained during the intake conversation. Definitive arrangements belong to that first meeting.",
-      terugbetaling:
-        "Non-conventioned practice. Partial reimbursement from your health insurance fund may be possible; you may bring your form to the session.",
-      betaling: "Payment is possible via Payconiq or bank transfer (IBAN BE53 3632 2546 8153).",
-      microcopy:
-        "A voicemail is recommended if I am unreachable by phone. I aim to respond within the day. Please also keep an eye on your spam folder when expecting an answer.",
-      gsmLabel: "Mobile",
-      gsm: "0493 02 05 43",
-      gsmHref: "tel:+32493020543",
       registratieLabel: "Registration",
       registratie: [
         "Visa number 374462",
         "Recognition number 991135455",
         "Company number 0790.741.228",
       ],
+    },
+    praktisch: {
+      movement: "IV",
+      tempo: "coda",
+      label: "Practical & contact",
+      talenLabel: "Languages",
+      talenValue: "Dutch & English",
+      vormLabel: "Format",
+      vormValue: "In person, or by video and phone",
+      tariefLabel: "Fee",
+      tariefValue:
+        "Indicative rate and session length are explained during the intake conversation. Definitive arrangements belong to that first meeting.",
+      terugbetalingLabel: "Reimbursement",
+      terugbetalingValue:
+        "Non-conventioned practice. Partial reimbursement from your health insurance fund may be possible; you may bring your form to the session.",
+      betalingLabel: "Payment",
+      betalingValue: "Payconiq or bank transfer",
+      betalingNote: "IBAN BE53 3632 2546 8153",
+      microcopy:
+        "A voicemail is recommended if I am unreachable by phone. I aim to respond within the day. Please also keep an eye on your spam folder when expecting an answer.",
+      gsmLabel: "Mobile",
+      gsm: "0493 02 05 43",
+      gsmHref: "tel:+32493020543",
+    },
+    contact: {
+      title: "Get in touch",
+      intro:
+        "Leave a short note and I will get back to you. What you share here stays confidential.",
     },
     form: {
       naam: "Name",
@@ -230,14 +306,26 @@ export const content = {
     },
     locatie: {
       label: "Location",
+      praktijkLabel: "Practice",
       adres: "Sint-Pietersnieuwstraat 97, 9000 Ghent",
       caption: "Beside the Boekentoren, in the heart of the student quarter.",
       mapAria:
         "Stylised map of the practice surroundings: Sint-Pietersnieuwstraat 97 in Ghent, beside the Boekentoren and Sint-Pietersplein.",
       mapPin: "The practice",
       mapAbdij: "& abbey",
+      routeLabel: "Directions",
+      routeNote: "Opens in your own map app.",
     },
-    crisis: "In crisis: call the Suicide Line 1813, or contact the on-call GP.",
+    crisis: {
+      title: "In case of crisis",
+      intro:
+        "This practice does not provide crisis care. Do you need urgent help right now?",
+      items: [
+        { label: "Suicide line 1813", value: "1813", href: "tel:1813" },
+        { label: "GP on call", value: "1733", href: "tel:1733" },
+        { label: "Emergency", value: "112", href: "tel:112" },
+      ],
+    },
     footer: {
       privacy: "Privacy policy",
       rights: "All rights reserved.",

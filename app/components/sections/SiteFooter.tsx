@@ -2,7 +2,9 @@ import Link from "next/link";
 import type { Content, Locale } from "../../lib/locale";
 
 /**
- * Footer — naam + rol, de crisis-regel (deontologisch belangrijk), en daaronder
+ * Footer — naam + rol, een compacte crisis-regel (deontologisch belangrijk;
+ * bewust ook hier, naast de volledige crisis-kaart in Praktisch, zodat de
+ * verwijzing altijd zichtbaar is, ook zonder door te scrollen), en daaronder
  * een rij met de privacy-link en de wettelijke registratienummers.
  */
 export function SiteFooter({ c, lang }: { c: Content; lang: Locale }) {
@@ -54,13 +56,13 @@ export function SiteFooter({ c, lang }: { c: Content; lang: Locale }) {
           style={{
             fontFamily: "var(--font-mono), monospace",
             fontSize: 12,
-            lineHeight: 1.7,
+            lineHeight: 1.6,
             color: "var(--mono-2)",
-            maxWidth: 360,
+            maxWidth: 340,
             textAlign: "right",
           }}
         >
-          {c.crisis}
+          {c.crisis.title} — {c.crisis.items.map((i) => i.label).join(" · ")}
         </div>
       </div>
 

@@ -1,11 +1,14 @@
 import Image from "next/image";
 import type { Content } from "../../lib/locale";
 import { Reveal } from "../Reveal";
+import { ScoreLine } from "../ScoreLine";
 
 /**
- * Over mij — 2-koloms: links het portret (met gradient-maskers en een hoek-badge),
- * rechts label, body, eerdere ervaring (italic, gedempt) en het titelblok met de
- * exacte, deontologisch verplichte officiële titels. Stapelt op mobiel (beeld boven).
+ * Over mij — 2-koloms: links een sticky, geboxte foto (aspect 4/5) van Lucas
+ * met italic caption eronder, rechts ScoreLine-kop, body, ervaring (italic,
+ * gedempt), een blok "Titels & erkenning" en daaronder een apart blok
+ * "Registratie" (visum/erkennings-/ondernemingsnummer, tabular-nums).
+ * Stapelt op mobiel.
  */
 export function OverMij({ c }: { c: Content }) {
   const o = c.overMij;
@@ -19,67 +22,50 @@ export function OverMij({ c }: { c: Content }) {
         borderTop: "1px solid var(--line)",
       }}
     >
-      <div className="split__media">
-        <Image
-          src="/images/portret.jpg"
-          alt={o.badge}
-          fill
-          sizes="(max-width: 820px) 100vw, 50vw"
-          style={{
-            objectFit: "cover",
-            objectPosition: "center 26%",
-            filter: "grayscale(0.15) contrast(1.02) brightness(1.0)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "radial-gradient(90% 70% at 42% 32%, rgba(194,166,131,0.08), transparent 68%)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(270deg, #0E0D0C 0%, rgba(14,13,12,0.18) 22%, transparent 52%), linear-gradient(180deg, #0E0D0C 0%, transparent 16%, transparent 84%, #0E0D0C 100%)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: 22,
-            bottom: 22,
-            fontFamily: "var(--font-mono), monospace",
-            fontSize: 10,
-            letterSpacing: "0.06em",
-            color: "#c9c0b2",
-            background: "rgba(14,13,12,0.5)",
-            border: "1px solid var(--line-4)",
-            padding: "6px 9px",
-            backdropFilter: "blur(4px)",
-          }}
-        >
-          {o.badge}
-        </div>
-      </div>
-
       <div className="split__text split__text--about">
         <Reveal>
           <div
             style={{
-              fontFamily: "var(--font-mono), monospace",
-              fontSize: 12,
-              letterSpacing: "0.3em",
-              textTransform: "uppercase",
-              color: "var(--brass)",
-              marginBottom: 28,
+              position: "sticky",
+              top: "14vh",
+              aspectRatio: "4 / 5",
+              width: "100%",
+              maxWidth: 440,
+              overflow: "hidden",
+              border: "1px solid var(--line-3)",
             }}
           >
-            {o.num}&nbsp;·&nbsp;{o.label}
+            <Image
+              src="/images/portret.jpg"
+              alt={o.badge}
+              fill
+              sizes="(max-width: 820px) 100vw, 40vw"
+              style={{
+                objectFit: "cover",
+                objectPosition: "center 26%",
+                filter: "grayscale(0.15) contrast(1.02) brightness(1.0)",
+              }}
+            />
           </div>
+          <p
+            style={{
+              margin: "18px 0 0",
+              maxWidth: 440,
+              fontFamily: "var(--font-serif), serif",
+              fontStyle: "italic",
+              fontSize: 15,
+              lineHeight: 1.6,
+              color: "var(--mono-1)",
+            }}
+          >
+            {o.imageCaption}
+          </p>
+        </Reveal>
+      </div>
+
+      <div className="split__text split__text--about">
+        <Reveal style={{ marginBottom: 28 }}>
+          <ScoreLine movement={o.movement} label={o.label} tempo={o.tempo} />
         </Reveal>
         <Reveal delay={0.08}>
           <p
@@ -121,6 +107,18 @@ export function OverMij({ c }: { c: Content }) {
               maxWidth: 520,
             }}
           >
+            <p
+              style={{
+                margin: "0 0 4px",
+                fontFamily: "var(--font-mono), monospace",
+                fontSize: 11,
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: "var(--mono-2)",
+              }}
+            >
+              {o.titelsLabel}
+            </p>
             <div
               style={{
                 fontFamily: "var(--font-sans), sans-serif",
@@ -130,9 +128,7 @@ export function OverMij({ c }: { c: Content }) {
               }}
             >
               {o.titel1}{" "}
-              <span style={{ color: "var(--mono-2)", fontWeight: 400 }}>
-                {o.titel1sub}
-              </span>
+              <span style={{ color: "var(--mono-2)", fontWeight: 400 }}>{o.titel1sub}</span>
             </div>
             <div
               style={{
@@ -144,6 +140,46 @@ export function OverMij({ c }: { c: Content }) {
             >
               {o.titel2}
             </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.24}>
+          <div
+            style={{
+              borderTop: "1px solid var(--line-2)",
+              paddingTop: 20,
+              marginTop: 20,
+              maxWidth: 520,
+            }}
+          >
+            <p
+              style={{
+                margin: "0 0 10px",
+                fontFamily: "var(--font-mono), monospace",
+                fontSize: 11,
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: "var(--mono-2)",
+              }}
+            >
+              {o.registratieLabel}
+            </p>
+            <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+              {o.registratie.map((r) => (
+                <li
+                  key={r}
+                  style={{
+                    fontFamily: "var(--font-mono), monospace",
+                    fontSize: 12,
+                    lineHeight: 1.9,
+                    color: "var(--mono-3)",
+                    fontVariantNumeric: "tabular-nums",
+                  }}
+                >
+                  {r}
+                </li>
+              ))}
+            </ul>
           </div>
         </Reveal>
       </div>

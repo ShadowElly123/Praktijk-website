@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Archivo, Spectral, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Spectral, JetBrains_Mono } from "next/font/google";
 import "../globals.css";
 import { getContent, hasLocale, LOCALES } from "../lib/locale";
 import { GrainOverlay } from "../components/chrome/GrainOverlay";
 import { SideRail } from "../components/chrome/SideRail";
 import { TopChrome } from "../components/chrome/TopChrome";
 
-const sans = Archivo({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+// Tussentitel-font: Bricolage Grotesque (overgenomen uit de eerdere "partituur"-versie).
+const sans = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["300", "400", "500", "600"],
+  display: "swap",
+});
 const serif = Spectral({
   subsets: ["latin"],
   variable: "--font-serif",

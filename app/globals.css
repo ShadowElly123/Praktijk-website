@@ -12,6 +12,8 @@
   --line-3: #2f2a22;
   --line-4: #3a352c;
   --brass: #c2a683;
+  --brass-deep: #a38a6b; /* gedempte brass — tempo-aanduidingen, kleine accenten */
+  --line-brass: rgba(194, 166, 131, 0.28); /* partituurlijnen (ScoreLine) */
   --title: #f1ede5;
   --text: #e7e3db;
   --muted: #cdc7bc;
@@ -314,4 +316,29 @@ a {
   html {
     scroll-behavior: auto;
   }
+}
+
+/* ------------------------------------------------------------------
+   Spotlight — zachte radiale brass-gloed, herbruikt als ambient licht
+   achter een citaat (Intermezzo) of in de hoek van een sectie (Werkwijze).
+------------------------------------------------------------------- */
+.spotlight {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(194, 166, 131, 0.16), transparent 70%);
+  filter: blur(50px);
+  z-index: 0;
+}
+
+/* ------------------------------------------------------------------
+   Route-knop (LocatieKaart/Praktisch) — hover keert border/fill om.
+------------------------------------------------------------------- */
+.route-btn {
+  transition: background-color 0.3s, color 0.3s;
+}
+.route-btn:hover,
+.route-btn:focus-visible {
+  background-color: var(--brass);
+  color: var(--bg);
 }
