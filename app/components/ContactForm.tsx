@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import posthog from "posthog-js";
 import type { Content, Locale } from "../lib/locale";
 
 type Status = "idle" | "sending" | "success" | "error";
@@ -73,6 +74,10 @@ export function ContactForm({ c, lang }: { c: Content; lang: Locale }) {
         body: JSON.stringify(values),
       });
       setStatus(res.ok ? "success" : "error");
+      if (res.ok && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
+        // Enkel het feit dát er verzonden is — nooit de ingevulde inhoud.
+        posthog.capture("contact_form_submitted");
+      }
     } catch {
       setStatus("error");
     }
@@ -101,7 +106,16 @@ export function ContactForm({ c, lang }: { c: Content; lang: Locale }) {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+    <form
+      onSubmit={onSubmit}
+      noValidate
+      // Schermt het hele formulier af van PostHog's autocapture: hier typen
+      // mensen hun hulpvraag, dus er mag niets uit deze velden worden
+      // vastgelegd — ook niet de labels of aangeklikte elementen. Enkel het
+      // expliciete `contact_form_submitted`-event (zonder inhoud) wordt gestuurd.
+      data-ph-no-autocapture
+      style={{ display: "flex", flexDirection: "column", gap: 28 }}
+    >
       {/* Honeypot: verborgen voor mensen, verleidelijk voor bots. */}
       <input
         type="text"

@@ -10,6 +10,7 @@ export function Hero({ c }: { c: Content }) {
   return (
     <section
       aria-label={`${c.hero.titel} ${c.hero.accent}`}
+      data-section="hero"
       style={{
         position: "relative",
         minHeight: "100vh",
@@ -132,14 +133,18 @@ export function Hero({ c }: { c: Content }) {
         >
           {c.hero.scroll}
         </span>
-        <div
-          style={{
-            width: 1,
-            height: 40,
-            background: "linear-gradient(var(--brass), transparent)",
-            animation: "cueMove 2.2s ease-in-out infinite",
-          }}
-        />
+        <div style={{ width: 1, height: 40, overflow: "hidden" }}>
+          <div
+            aria-hidden
+            style={{
+              width: 1,
+              height: 40,
+              background: "var(--brass)",
+              transformOrigin: "top",
+              animation: "inkDraw 2.8s cubic-bezier(.4,0,.2,1) infinite",
+            }}
+          />
+        </div>
       </div>
     </section>
   );

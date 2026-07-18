@@ -11,6 +11,7 @@ export function Intermezzo({ c }: { c: Content }) {
   return (
     <section
       aria-label={i.quote}
+      data-section="intermezzo"
       style={{
         position: "relative",
         overflow: "hidden",

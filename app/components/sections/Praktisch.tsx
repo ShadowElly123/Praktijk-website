@@ -27,6 +27,7 @@ export function Praktisch({ c }: { c: Content }) {
   return (
     <section
       aria-label={p.label}
+      data-section="praktisch"
       className="sec-x"
       style={{
         position: "relative",

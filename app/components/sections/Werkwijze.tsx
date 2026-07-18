@@ -14,6 +14,7 @@ export function Werkwijze({ c }: { c: Content }) {
   return (
     <section
       aria-label={w.label}
+      data-section="werkwijze"
       className="split split--werkwijze"
       style={{
         position: "relative",
@@ -62,10 +63,9 @@ export function Werkwijze({ c }: { c: Content }) {
               maxWidth: 520,
               fontFamily: "var(--font-serif), serif",
               fontWeight: 300,
-              fontStyle: "italic",
               fontSize: 19,
               lineHeight: 1.8,
-              color: "var(--brass)",
+              color: "var(--muted)",
             }}
           >
             {w.accent}
@@ -76,10 +76,9 @@ export function Werkwijze({ c }: { c: Content }) {
           <p
             style={{
               margin: "0 0 18px",
-              fontFamily: "var(--font-sans), sans-serif",
-              fontSize: 13,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
+              fontFamily: "var(--font-serif), serif",
+              fontWeight: 400,
+              fontSize: 19,
               color: "var(--brass)",
             }}
           >

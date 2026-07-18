@@ -81,15 +81,22 @@ a {
     transform: none;
   }
 }
-@keyframes cueMove {
-  0%,
-  100% {
-    opacity: 0.35;
-    transform: translateY(0);
-  }
-  50% {
+@keyframes inkDraw {
+  0% {
+    transform: scaleY(0);
     opacity: 1;
-    transform: translateY(6px);
+  }
+  55% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  85% {
+    transform: scaleY(1);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleY(0);
+    opacity: 0;
   }
 }
 

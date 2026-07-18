@@ -90,11 +90,28 @@ Zonder provider werkt de UI (toont succes) maar wordt de mail **niet** verzonden
   therapeut."*
 - Crisisnummers (Zelfmoordlijn 1813, Huisarts van wacht 1733, Spoed 112) staan
   discreet onder de contactzone.
-- Geen advertentiecookies. Wel anonieme paginabezoek-analytics via PostHog
-  (EU-region, `instrumentation-client.ts`): geen autocapture, geen
-  sessieopnames, `respect_dnt`, geen persoonsprofielen. Zie `.env.example`
-  voor `NEXT_PUBLIC_POSTHOG_KEY`/`_HOST`; zonder key initialiseert niets.
-  De privacyverklaring (`content.privacy`) beschrijft dit onder "Analytics".
+- **Analytics: cookieloos, dus géén cookiebanner.** PostHog (EU-region) staat in
+  `app/components/Analytics.tsx` met `cookieless_mode: "always"` +
+  `persistence: "memory"`: er wordt niets op het toestel van de bezoeker
+  opgeslagen (geen cookies/localStorage/sessionStorage). PostHog telt sessies
+  via een server-side hash met dagelijks wisselend salt — geen persoonsgegeven.
+
+  ⚠️ **Cookieless mode moet óók aanstaan in de PostHog-projectinstellingen**,
+  anders worden alle events stilzwijgend genegeerd.
+
+  Aan: paginabezoeken + pageleave (bounce/tijd/scrolldiepte), autocapture,
+  heatmaps, dead clicks, exception- en performance-tracking, plus eigen
+  `section_viewed`-events (sectie-funnel op de one-pager) en
+  `contact_form_submitted` (conversie, zonder inhoud).
+
+  Uit/onmogelijk: session replay en surveys (werken niet cookieloos én
+  ongepast voor deze praktijk), `identify()`/persoonsprofielen. `respect_dnt`
+  staat aan. Het contactformulier draagt `data-ph-no-autocapture`, zodat er
+  niets uit die gevoelige velden wordt vastgelegd.
+
+  Zie `.env.example` voor `NEXT_PUBLIC_POSTHOG_KEY`/`_HOST`; zonder key
+  initialiseert er niets. De privacyverklaring (`content.privacy`) beschrijft
+  dit onder "Analytics — zonder cookies" en "U blijft anoniem".
 
 ## Referentie-research
 Zie [`research/analyse.md`](research/analyse.md) — analyse van bressers.be,

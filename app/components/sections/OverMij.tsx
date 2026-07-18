@@ -16,6 +16,7 @@ export function OverMij({ c }: { c: Content }) {
   return (
     <section
       aria-label={o.label}
+      data-section="over-mij"
       className="split split--about"
       style={{
         position: "relative",
@@ -43,17 +44,19 @@ export function OverMij({ c }: { c: Content }) {
               maskComposite: "intersect",
             }}
           >
-            <Image
-              src="/images/portret.jpg"
-              alt={o.badge}
-              fill
-              sizes="(max-width: 820px) 100vw, 40vw"
-              style={{
-                objectFit: "cover",
-                objectPosition: "center 26%",
-                filter: "grayscale(0.15) contrast(1.02) brightness(1.0)",
-              }}
-            />
+            <div style={{ position: "relative", width: "100%", height: "100%" }}>
+              <Image
+                src="/images/portret.jpg"
+                alt={o.badge}
+                fill
+                sizes="(max-width: 820px) 100vw, 40vw"
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "center 26%",
+                  filter: "grayscale(0.15) contrast(1.02) brightness(1.0)",
+                }}
+              />
+            </div>
           </div>
           <p
             style={{

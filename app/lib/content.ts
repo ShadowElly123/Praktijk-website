@@ -172,8 +172,12 @@ export const content = {
           p: "Het contactformulier bewaart niets op de server; uw bericht wordt enkel als e-mail doorgestuurd. Ontvangen e-mails worden niet langer bewaard dan nodig om uw vraag af te handelen.",
         },
         {
-          h: "Analytics",
-          p: "Deze website gebruikt PostHog (EU-servers) om te zien welke pagina's bezocht worden. Er is geen klik- of interactietracking, geen sessieopname, en geen advertentiecookies. Bezoekers blijven anoniem: er wordt geen profiel van u opgebouwd, en de browserinstelling 'Do Not Track' wordt gerespecteerd.",
+          h: "Analytics — zonder cookies",
+          p: "Deze website gebruikt PostHog (EU-servers) om te zien hoe de site gebruikt wordt: welke pagina's en secties bekeken worden, hoe ver er gescrold wordt, waar geklikt wordt en of er technische fouten optreden. Hiervoor worden géén cookies geplaatst en wordt er niets op uw toestel opgeslagen — vandaar dat u geen cookiemelding ziet.",
+        },
+        {
+          h: "U blijft anoniem",
+          p: "Om bezoeken te kunnen tellen berekent PostHog op de server een onomkeerbare code uit uw IP-adres en browser, met een sleutel die dagelijks verandert en daarna gewist wordt. Uit die code valt niets over u te herleiden. Er wordt geen profiel opgebouwd, u wordt niet herkend bij een volgend bezoek, en er worden geen sessieopnames gemaakt. Wat u in het contactformulier typt, wordt nooit meegemeten; enkel dat er een bericht verzonden is. De browserinstelling 'Do Not Track' wordt gerespecteerd.",
         },
         {
           h: "Uw rechten",
@@ -334,8 +338,12 @@ export const content = {
           p: "The contact form stores nothing on the server; your message is only forwarded as an email. Received emails are kept no longer than needed to handle your question.",
         },
         {
-          h: "Analytics",
-          p: "This website uses PostHog (EU servers) to see which pages are visited. There is no click or interaction tracking, no session recording, and no advertising cookies. Visitors remain anonymous: no profile is built about you, and the browser's 'Do Not Track' setting is respected.",
+          h: "Analytics — without cookies",
+          p: "This website uses PostHog (EU servers) to see how the site is used: which pages and sections are viewed, how far people scroll, where they click, and whether technical errors occur. No cookies are placed for this and nothing is stored on your device — which is why you see no cookie notice.",
+        },
+        {
+          h: "You stay anonymous",
+          p: "To count visits, PostHog computes an irreversible code on the server from your IP address and browser, using a key that changes daily and is then deleted. Nothing about you can be derived from that code. No profile is built, you are not recognised on a return visit, and no session recordings are made. What you type in the contact form is never measured; only the fact that a message was sent. The browser's 'Do Not Track' setting is respected.",
         },
         {
           h: "Your rights",

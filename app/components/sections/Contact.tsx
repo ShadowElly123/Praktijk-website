@@ -10,6 +10,7 @@ export function Contact({ c, lang }: { c: Content; lang: Locale }) {
   return (
     <section
       aria-label={c.contact.title}
+      data-section="contact"
       className="sec-x"
       style={{
         position: "relative",

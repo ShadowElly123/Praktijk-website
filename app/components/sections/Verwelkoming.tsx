@@ -11,6 +11,7 @@ export function Verwelkoming({ c }: { c: Content }) {
   return (
     <section
       aria-label={v.label}
+      data-section="verwelkoming"
       className="sec-x"
       style={{
         position: "relative",
