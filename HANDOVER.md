@@ -90,7 +90,11 @@ Zonder provider werkt de UI (toont succes) maar wordt de mail **niet** verzonden
   therapeut."*
 - Crisisnummers (Zelfmoordlijn 1813, Huisarts van wacht 1733, Spoed 112) staan
   discreet onder de contactzone.
-- Geen tracking- of advertentiecookies.
+- Geen advertentiecookies. Wel anonieme paginabezoek-analytics via PostHog
+  (EU-region, `instrumentation-client.ts`): geen autocapture, geen
+  sessieopnames, `respect_dnt`, geen persoonsprofielen. Zie `.env.example`
+  voor `NEXT_PUBLIC_POSTHOG_KEY`/`_HOST`; zonder key initialiseert niets.
+  De privacyverklaring (`content.privacy`) beschrijft dit onder "Analytics".
 
 ## Referentie-research
 Zie [`research/analyse.md`](research/analyse.md) — analyse van bressers.be,

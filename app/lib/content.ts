@@ -122,7 +122,7 @@ export const content = {
         "Er ging iets mis bij het versturen. Belt u gerust, of probeer het later opnieuw:",
       privacyLink: "Privacybeleid",
       privacyNote:
-        "Uw gegevens worden enkel gebruikt om uw vraag te beantwoorden en worden niet bewaard op de server. Geen tracking, geen advertentiecookies.",
+        "Uw formuliergegevens worden enkel gebruikt om uw vraag te beantwoorden, niet bewaard op de server, en niet gedeeld. Geen advertentiecookies.",
       requiredMsg: "Vul dit veld in.",
       emailMsg: "Controleer het e-mailadres.",
     },
@@ -161,19 +161,19 @@ export const content = {
       sections: [
         {
           h: "Welke gegevens",
-          p: "Enkel wat u zelf invult in het contactformulier: uw onderwerp, toelichting, e-mailadres en (optioneel) telefoonnummer en beschikbaarheden. Er worden geen andere persoonsgegevens verzameld.",
+          p: "Via het contactformulier: enkel wat u zelf invult (onderwerp, toelichting, e-mailadres en optioneel telefoonnummer en beschikbaarheden). Daarnaast verzamelt deze website geanonimiseerde bezoekstatistieken (zie 'Analytics' hieronder). Er worden geen andere persoonsgegevens verzameld.",
         },
         {
           h: "Doel",
-          p: "Uw gegevens worden uitsluitend gebruikt om uw vraag te beantwoorden en om contact met u op te nemen. Ze worden niet gedeeld met derden en niet voor andere doeleinden gebruikt.",
+          p: "Uw contactgegevens worden uitsluitend gebruikt om uw vraag te beantwoorden en om contact met u op te nemen. Ze worden niet gedeeld met derden en niet voor andere doeleinden gebruikt.",
         },
         {
           h: "Bewaring",
           p: "Het contactformulier bewaart niets op de server; uw bericht wordt enkel als e-mail doorgestuurd. Ontvangen e-mails worden niet langer bewaard dan nodig om uw vraag af te handelen.",
         },
         {
-          h: "Geen tracking",
-          p: "Deze website gebruikt geen tracking- of advertentiecookies en geen externe analysediensten.",
+          h: "Analytics",
+          p: "Deze website gebruikt PostHog (EU-servers) om te zien welke pagina's bezocht worden. Er is geen klik- of interactietracking, geen sessieopname, en geen advertentiecookies. Bezoekers blijven anoniem: er wordt geen profiel van u opgebouwd, en de browserinstelling 'Do Not Track' wordt gerespecteerd.",
         },
         {
           h: "Uw rechten",
@@ -284,7 +284,7 @@ export const content = {
       error: "Something went wrong sending this. Feel free to call, or try again later:",
       privacyLink: "Privacy policy",
       privacyNote:
-        "Your details are used only to answer your question and are not stored on the server. No tracking, no advertising cookies.",
+        "Your form details are used only to answer your question, not stored on the server, and not shared. No advertising cookies.",
       requiredMsg: "Please fill in this field.",
       emailMsg: "Please check the email address.",
     },
@@ -323,19 +323,19 @@ export const content = {
       sections: [
         {
           h: "Which data",
-          p: "Only what you enter yourself in the contact form: your subject, message, email address and (optionally) phone number and availability. No other personal data is collected.",
+          p: "Via the contact form: only what you enter yourself (subject, message, email address and optionally phone number and availability). This website also collects anonymised visit statistics (see 'Analytics' below). No other personal data is collected.",
         },
         {
           h: "Purpose",
-          p: "Your data is used solely to answer your question and to get in touch with you. It is not shared with third parties and not used for any other purpose.",
+          p: "Your contact details are used solely to answer your question and to get in touch with you. They are not shared with third parties and not used for any other purpose.",
         },
         {
           h: "Retention",
           p: "The contact form stores nothing on the server; your message is only forwarded as an email. Received emails are kept no longer than needed to handle your question.",
         },
         {
-          h: "No tracking",
-          p: "This website uses no tracking or advertising cookies and no external analytics services.",
+          h: "Analytics",
+          p: "This website uses PostHog (EU servers) to see which pages are visited. There is no click or interaction tracking, no session recording, and no advertising cookies. Visitors remain anonymous: no profile is built about you, and the browser's 'Do Not Track' setting is respected.",
         },
         {
           h: "Your rights",
