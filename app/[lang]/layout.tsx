@@ -6,6 +6,7 @@ import { getContent, hasLocale, LOCALES } from "../lib/locale";
 import { GrainOverlay } from "../components/chrome/GrainOverlay";
 import { SideRail } from "../components/chrome/SideRail";
 import { TopChrome } from "../components/chrome/TopChrome";
+import { Analytics } from "../components/Analytics";
 
 // Tussentitel-font: Bricolage Grotesque (overgenomen uit de eerdere "partituur"-versie).
 const sans = Bricolage_Grotesque({
@@ -86,6 +87,7 @@ export default async function LangLayout({ children, params }: LayoutProps<"/[la
       className={`${sans.variable} ${serif.variable} ${mono.variable}`}
     >
       <body>
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
