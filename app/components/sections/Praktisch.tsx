@@ -34,10 +34,23 @@ export function Praktisch({ c }: { c: Content }) {
         position: "relative",
         paddingTop: "16vh",
         paddingBottom: "12vh",
-        background: "var(--bg-alt)",
+        // Geen harde kleursprong t.o.v. Over mij (--bg) en Contact (--bg):
+        // de alt-tint vloeit er aan beide randen organisch in en uit.
+        background:
+          "linear-gradient(to bottom, var(--bg) 0%, var(--bg-alt) 26%, var(--bg-alt) 78%, var(--bg) 100%)",
       }}
     >
-      <Reveal style={{ marginBottom: 48 }}>
+      {/* Zachte brass-gloed die boven de sectiegrens uitsteekt en zo de
+          overgang vanuit Over mij verzacht — zelfde taal als de spotlights
+          in Werkwijze en Intermezzo. Geen overflow:hidden op de sectie,
+          dus de gloed bloedt over de grens heen. */}
+      <div
+        aria-hidden
+        className="spotlight"
+        style={{ width: 560, height: 560, right: "6vw", top: -220 }}
+      />
+
+      <Reveal style={{ marginBottom: 48, position: "relative", zIndex: 1 }}>
         <SectionKicker as="h2" label={p.label} />
       </Reveal>
 
