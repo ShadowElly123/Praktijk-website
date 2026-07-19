@@ -145,8 +145,15 @@ a {
   padding-bottom: 8vh;
 }
 
+/* Beeld-wrapper (masker) in Werkwijze: vult standaard het hele media-blok;
+   op mobiel eindigt het beeld hoger zodat de caption eronder vrijstaat. */
+.media-fade {
+  position: absolute;
+  inset: 0;
+}
+
 /* Caption op de Werkwijze-foto: op desktop ruim boven de onderrand, op mobiel
-   lager, in de uitgefadede zone van het beeld, zodat ze niet óp de foto staat. */
+   ónder het (ingekorte) beeld, in de donkere strook. */
 .media-caption {
   position: absolute;
   left: 6vw;
@@ -172,8 +179,17 @@ a {
   .hero-copy {
     padding-bottom: 16vh;
   }
+  /* Beeld stopt ~100px boven de onderrand van het blok; de bottom-fade van het
+     masker laat het daar al zacht uitlopen. De caption staat in die vrije strook. */
+  .media-fade {
+    inset: 0 0 100px 0;
+  }
   .media-caption {
     bottom: 10px;
+  }
+  /* Iets hoger blok zodat het ingekorte beeld niet te gedrongen oogt. */
+  .split--werkwijze .split__media {
+    min-height: 54vh;
   }
   .split {
     grid-template-columns: 1fr;

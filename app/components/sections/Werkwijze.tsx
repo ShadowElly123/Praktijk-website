@@ -124,11 +124,12 @@ export function Werkwijze({ c }: { c: Content }) {
             hier vermenigvuldigd (mask-composite), waardoor het beeld in één zachte,
             gebogen overgang uit de achtergrond opdoemt — geen rechte snijlijnen of
             scherpe hoek meer. Rechts loopt het beeld vol tot de schermrand door;
-            onderaan vloeit het weer weg. De caption staat bewust búiten dit masker. */}
+            onderaan vloeit het weer weg. De caption staat bewust búiten dit masker.
+            Positionering via .media-fade: op mobiel eindigt het beeld hoger zodat
+            de caption in de donkere strook eronder valt i.p.v. op de foto. */}
         <div
+          className="media-fade"
           style={{
-            position: "absolute",
-            inset: 0,
             WebkitMaskImage:
               "linear-gradient(to right, transparent 0%, #000 38%, #000 100%), linear-gradient(to bottom, transparent 0%, #000 40%, #000 82%, transparent 100%)",
             WebkitMaskComposite: "source-in",
