@@ -38,7 +38,7 @@ export function Praktisch({ c }: { c: Content }) {
       }}
     >
       <Reveal style={{ marginBottom: 48 }}>
-        <SectionKicker label={p.label} />
+        <SectionKicker as="h2" label={p.label} />
       </Reveal>
 
       {/* Kaart — volle breedte, bovenaan, gecentreerd */}
@@ -81,7 +81,8 @@ export function Praktisch({ c }: { c: Content }) {
             }}
           >
             {l.routeLabel}
-            <span aria-hidden>↗</span>
+            {/* U+FE0E dwingt tekst-weergave af — iOS rendert ↗ anders als emoji */}
+            <span aria-hidden>{"↗︎"}</span>
           </a>
           <span
             style={{

@@ -157,22 +157,7 @@ export function Werkwijze({ c }: { c: Content }) {
             }}
           />
         </div>
-        <p
-          style={{
-            position: "absolute",
-            left: "6vw",
-            right: "6vw",
-            bottom: "6vh",
-            margin: 0,
-            maxWidth: 380,
-            fontFamily: "var(--font-serif), serif",
-            fontSize: 14,
-            lineHeight: 1.6,
-            color: "var(--mono-1)",
-          }}
-        >
-          {w.imageCaption}
-        </p>
+        <p className="media-caption">{w.imageCaption}</p>
       </div>
     </section>
   );

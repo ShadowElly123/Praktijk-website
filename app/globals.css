@@ -139,6 +139,27 @@ a {
   padding: 16vh 6vw;
 }
 
+/* Hero-tekstblok: op mobiel extra ruimte onderaan zodat de scroll-cue
+   (absoluut gepositioneerd onderaan het scherm) de subtekst niet overlapt. */
+.hero-copy {
+  padding-bottom: 8vh;
+}
+
+/* Caption op de Werkwijze-foto: op desktop ruim boven de onderrand, op mobiel
+   lager, in de uitgefadede zone van het beeld, zodat ze niet óp de foto staat. */
+.media-caption {
+  position: absolute;
+  left: 6vw;
+  right: 6vw;
+  bottom: 6vh;
+  margin: 0;
+  max-width: 380px;
+  font-family: var(--font-serif), serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--mono-1);
+}
+
 @media (max-width: 820px) {
   /* Rail weglaten op smal scherm: voorkomt overlap met de tekst en declutter. */
   .side-rail {
@@ -147,6 +168,12 @@ a {
   .sec-x {
     padding-left: 40px;
     padding-right: 24px;
+  }
+  .hero-copy {
+    padding-bottom: 16vh;
+  }
+  .media-caption {
+    bottom: 10px;
   }
   .split {
     grid-template-columns: 1fr;

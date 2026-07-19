@@ -60,11 +60,10 @@ export function Hero({ c }: { c: Content }) {
       />
 
       <div
-        className="sec-x"
+        className="sec-x hero-copy"
         style={{
           position: "relative",
           zIndex: 2,
-          paddingBottom: "8vh",
           maxWidth: 1080,
           animation: "heroRise 1.4s cubic-bezier(.2,.7,.2,1) both",
         }}

@@ -18,9 +18,9 @@
 export const content = {
   nl: {
     meta: {
-      title: "Lucas Borghys · Klinisch psycholoog, Gent",
+      title: "Klinisch psycholoog Gent · Gesprekstherapie · Lucas Borghys",
       description:
-        "Gesprekstherapie in Gent. Wees welkom, en vertel. Een psychoanalytische praktijk met ruimte voor elk verhaal, elke moeilijkheid.",
+        "Klinisch psycholoog in Gent, bij de Boekentoren. Gesprekstherapie vanuit een psychoanalytische houding, met ruimte voor elk verhaal. Wees welkom, en vertel.",
     },
     site: {
       name: "Lucas Borghys",
@@ -184,9 +184,9 @@ export const content = {
 
   en: {
     meta: {
-      title: "Lucas Borghys · Clinical psychologist, Ghent",
+      title: "English-speaking psychologist in Ghent · Lucas Borghys",
       description:
-        "Talking therapy in Ghent. Be welcome, and speak. A psychoanalytic practice with room for every story, every difficulty.",
+        "Clinical psychologist in Ghent, therapy in English. A psychoanalytic practice with room for every story, every difficulty. Be welcome, and speak.",
     },
     site: {
       name: "Lucas Borghys",

@@ -53,6 +53,11 @@ export async function generateMetadata({
       type: "website",
     },
     robots: { index: true, follow: true },
+    // iOS Safari herkent adressen/telefoonnummers in gewone tekst en maakt er
+    // gestippelde links van (zichtbaar als puntjes onder bv. de adresregel in
+    // Praktisch). Uitschakelen — onze eigen tel:-links zijn expliciete anchors
+    // en blijven gewoon werken.
+    formatDetection: { telephone: false, address: false, email: false, date: false },
   };
 }
 
@@ -61,24 +66,53 @@ export default async function LangLayout({ children, params }: LayoutProps<"/[la
   if (!hasLocale(lang)) notFound();
   const c = getContent(lang);
 
-  // Gestructureerde data: de persoon + de praktijk als lokale zorgverlener.
+  // Gestructureerde data: twee gekoppelde nodes i.p.v. één gemengd type.
+  // Person- en MedicalBusiness-properties horen niet op hetzelfde object
+  // (jobTitle is een Person-property, address/telephone/areaServed zijn
+  // Organization-properties) — dat gaf voorheen een ongeldige mix. `Psychologist`
+  // is bovendien een specifiekere, door Google aanbevolen subtype van
+  // MedicalBusiness i.p.v. het generieke type.
+  //
+  // `geo` komt uit de bestaande Google Business Profile-vermelding van de
+  // praktijk (exacte pin, niet gegokt/geocodeerd). `openingHours`/`priceRange`
+  // blijven bewust weg: de praktijk werkt op afspraak zonder vaste uren of
+  // vaste prijs, dat verzinnen zou onjuiste info in de zoekresultaten zetten.
+  const baseUrl = `https://lucasborghys-psycholoog.be/${lang}`;
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": ["Person", "MedicalBusiness"],
-    name: c.site.name,
-    jobTitle: "Klinisch psycholoog",
-    url: `https://lucasborghys-psycholoog.be/${lang}`,
-    telephone: "+32493020543",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Sint-Pietersnieuwstraat 97",
-      postalCode: "9000",
-      addressLocality: "Gent",
-      addressCountry: "BE",
-    },
-    areaServed: { "@type": "City", name: "Gent" },
-    availableLanguage: ["nl", "en"],
-    knowsLanguage: ["nl", "en"],
+    "@graph": [
+      {
+        "@type": "Psychologist",
+        "@id": `${baseUrl}#praktijk`,
+        name: c.site.name,
+        url: baseUrl,
+        image: "https://lucasborghys-psycholoog.be/images/portret-v7.jpg",
+        telephone: "+32493020543",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Sint-Pietersnieuwstraat 97",
+          postalCode: "9000",
+          addressLocality: "Gent",
+          addressCountry: "BE",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 51.0446421,
+          longitude: 3.7268958,
+        },
+        areaServed: { "@type": "City", name: "Gent" },
+        availableLanguage: ["nl", "en"],
+        employee: { "@id": `${baseUrl}#lucas` },
+      },
+      {
+        "@type": "Person",
+        "@id": `${baseUrl}#lucas`,
+        name: c.site.name,
+        jobTitle: "Klinisch psycholoog",
+        knowsLanguage: ["nl", "en"],
+        worksFor: { "@id": `${baseUrl}#praktijk` },
+      },
+    ],
   };
 
   return (

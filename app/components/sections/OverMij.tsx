@@ -71,7 +71,7 @@ export function OverMij({ c }: { c: Content }) {
 
       <div className="split__text split__text--about">
         <Reveal style={{ marginBottom: 28 }}>
-          <SectionKicker label={o.label} />
+          <SectionKicker as="h2" label={o.label} />
         </Reveal>
         <Reveal delay={0.08}>
           <p

@@ -29,7 +29,7 @@ export function Verwelkoming({ c }: { c: Content }) {
     >
       <div style={{ position: "relative", maxWidth: 760 }}>
         <Reveal style={{ marginBottom: 40 }}>
-          <SectionKicker label={v.label} />
+          <SectionKicker as="h2" label={v.label} />
         </Reveal>
         <Reveal delay={0.1}>
           <p
