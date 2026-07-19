@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Bricolage_Grotesque, Spectral, JetBrains_Mono } from "next/font/google";
 import "../globals.css";
 import { getContent, hasLocale, LOCALES } from "../lib/locale";
+import { safeJsonLd } from "../lib/jsonld";
 import { GrainOverlay } from "../components/chrome/GrainOverlay";
 import { SideRail } from "../components/chrome/SideRail";
 import { TopChrome } from "../components/chrome/TopChrome";
@@ -124,7 +125,7 @@ export default async function LangLayout({ children, params }: LayoutProps<"/[la
         <Analytics />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
         />
         <div style={{ position: "relative", background: "var(--bg)" }}>
           <GrainOverlay />

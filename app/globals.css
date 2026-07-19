@@ -450,6 +450,110 @@ a {
   }
 }
 
+/* ------------------------------------------------------------------
+   FAQ — native <details>/<summary>: geen JS nodig, tekst blijft in de DOM
+   staan (crawlbaar, doorzoekbaar) ook dichtgeklapt. Zelfde haarlijn-ritme
+   als de Praktisch-rijen.
+------------------------------------------------------------------- */
+.faq-item {
+  border-top: 1px solid var(--line-2);
+  padding: 22px 0;
+}
+.faq-item:last-child {
+  border-bottom: 1px solid var(--line-2);
+}
+.faq-question {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-serif), serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--title);
+}
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+.faq-toggle {
+  position: relative;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  margin-top: 4px;
+}
+.faq-toggle::before,
+.faq-toggle::after {
+  content: "";
+  position: absolute;
+  background: var(--brass);
+  transition: transform 0.3s ease;
+}
+.faq-toggle::before {
+  top: 6px;
+  left: 0;
+  width: 14px;
+  height: 1.5px;
+}
+.faq-toggle::after {
+  top: 0;
+  left: 6px;
+  width: 1.5px;
+  height: 14px;
+}
+.faq-item[open] .faq-toggle::after {
+  transform: scaleY(0);
+}
+/* Open/dicht-animatie zonder JS: de browser verbergt niet-samenvatting-
+   kinderen van een dichte <details> normaal met display:none, wat niet
+   animeerbaar is. `display: grid !important` overschrijft dat altijd, en de
+   rij-hoogte animeert dan zelf van 0fr (dicht) naar 1fr (open) — de
+   standaardtruc voor een CSS-only accordion. */
+.faq-answer-wrap {
+  display: grid !important;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.faq-item[open] .faq-answer-wrap {
+  grid-template-rows: 1fr;
+}
+.faq-answer {
+  /* min-height:0 laat de grid-track ook echt tot 0 samenklappen i.p.v. te
+     stoppen bij de intrinsieke inhoudshoogte. Let op: padding zou hier de
+     track net als bij min-height verhinderen om tot 0 te krimpen (padding is
+     een vaste lengte, geen fractie van de track) — de gap gebruikt daarom
+     `margin-top`, dat wél normaal meeanimeert met de rest. */
+  min-height: 0;
+  overflow: hidden;
+  margin: 0;
+  max-width: 560px;
+  font-family: var(--font-serif), serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--muted);
+  opacity: 0;
+  transition:
+    opacity 0.25s ease,
+    margin-top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.faq-item[open] .faq-answer {
+  margin-top: 14px;
+  opacity: 1;
+  transition:
+    opacity 0.35s ease 0.08s,
+    margin-top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-answer-wrap,
+  .faq-answer {
+    transition: none;
+  }
+}
+
 /* Formulier — twee velden naast elkaar (e-mail / telefoon), gestapeld op smal. */
 .field-2col {
   display: grid;

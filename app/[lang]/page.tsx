@@ -6,6 +6,7 @@ import { Intermezzo } from "../components/sections/Intermezzo";
 import { Werkwijze } from "../components/sections/Werkwijze";
 import { OverMij } from "../components/sections/OverMij";
 import { Praktisch } from "../components/sections/Praktisch";
+import { FAQ } from "../components/sections/FAQ";
 import { Contact } from "../components/sections/Contact";
 import { SiteFooter } from "../components/sections/SiteFooter";
 
@@ -27,6 +28,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       </div>
       <OverMij c={c} />
       <Praktisch c={c} />
+      <FAQ c={c} />
       <Contact c={c} />
       <SiteFooter c={c} lang={lang as Locale} />
     </main>

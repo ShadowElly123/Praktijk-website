@@ -99,6 +99,47 @@ export const content = {
       gsm: "0493 02 05 43",
       gsmHref: "tel:+32493020543",
     },
+    faq: {
+      label: "Veelgestelde vragen",
+      items: [
+        {
+          q: "Wordt een sessie terugbetaald door het ziekenfonds?",
+          a: "Deze praktijk werkt niet binnen de RIZIV-conventie, daarom ligt er geen vast tarief per zitting vast. De meeste ziekenfondsen betalen desondanks een deel terug. Uw mutualiteit kan dat voor u nakijken, breng het formulier gerust mee.",
+        },
+        {
+          q: "Wat kost een sessie?",
+          a: "Een bedrag vindt u hier niet vermeld. Bij het eerste gesprek bekijken we samen wat haalbaar is, zowel qua tempo als budget.",
+        },
+        {
+          q: "Wat is het verschil tussen een psycholoog en een psychotherapeut?",
+          a: "Een psycholoog draagt een wettelijk beschermde titel, verkregen na een universitaire opleiding. Een psychotherapeut volgt daarnaast een langdurige, specifieke opleiding in een bepaalde gespreksmethode, bij mij de psychoanalyse. Het eerste is afgerond, het tweede nog in opleiding.",
+        },
+        {
+          q: "Kan de eerste sessie via video of telefoon?",
+          a: "Ja. Sommige mensen starten liever van thuis uit, dat kan hier net zo goed als een gesprek op de praktijk zelf.",
+        },
+        {
+          q: "Hoeveel sessies heb ik nodig?",
+          a: "Dat vooraf vastleggen zou ingaan tegen hoe deze gesprekken werken. De duur groeit mee met wat nodig blijkt, niet omgekeerd.",
+        },
+        {
+          q: "Waar bevindt de praktijk zich?",
+          a: "Centraal in Gent, op wandelafstand van het Zuid. Parkeren kan aan de achterkant van het gebouw, u rijdt gewoon de doorrit onder het gebouw door.",
+        },
+        {
+          q: "Kan ik in het Engels terecht?",
+          a: "Ja, sommige gesprekken lopen nu eenmaal makkelijker in het Engels, dat kan hier evengoed.",
+        },
+        {
+          q: "Is dit een veilige plek voor vragen rond gender, geaardheid of identiteit?",
+          a: "Ja. Wat u meebrengt hoeft niet eerst herkenbaar of behapbaar te zijn. Vragen over wie u bent, van wie u houdt, hoe uw lichaam aanvoelt, horen hier evengoed thuis, ook als het nog geen naam heeft.",
+        },
+        {
+          q: "Werkt u ook met kunstenaars of mensen met een onconventionele levensstijl?",
+          a: "Zeker. Een leven dat niet in de gewone mal past, een keuze waar u zich voor verantwoordt, iets waar u zich stilletjes voor schaamt, een gewoonte die u liever verzwijgt: voor dat alles is hier plaats.",
+        },
+      ],
+    },
     contact: {
       title: "Neem contact op",
       intro:
@@ -260,6 +301,47 @@ export const content = {
       gsmLabel: "Mobile",
       gsm: "0493 02 05 43",
       gsmHref: "tel:+32493020543",
+    },
+    faq: {
+      label: "Frequently asked questions",
+      items: [
+        {
+          q: "Is a session reimbursed by health insurance?",
+          a: "This practice does not work within the RIZIV convention system, so there is no fixed fee per session. Most health funds still reimburse a portion. Your mutuality can check this for you, feel free to bring the form.",
+        },
+        {
+          q: "What does a session cost?",
+          a: "No fixed amount is listed here. At the first conversation we look together at what fits, both in pace and in budget.",
+        },
+        {
+          q: "What is the difference between a psychologist and a psychotherapist?",
+          a: "A psychologist holds a legally protected title, earned through a university degree. A psychotherapist also completes a long, specific training in a particular method of conversation, in my case psychoanalysis. One is finished, the other still underway.",
+        },
+        {
+          q: "Can the first session be by video or phone?",
+          a: "Yes. Some people prefer to start from home, that works just as well as meeting in person.",
+        },
+        {
+          q: "How many sessions will I need?",
+          a: "Fixing that in advance would work against how these conversations unfold. Length follows what turns out to be needed, not the other way round.",
+        },
+        {
+          q: "Where is the practice located?",
+          a: "Central in Ghent, within walking distance of the Zuid area. Parking is available at the back of the building, you simply drive through the passage beneath it.",
+        },
+        {
+          q: "Can I have sessions in English?",
+          a: "Yes, some conversations simply flow more easily in English, that works just as well here.",
+        },
+        {
+          q: "Is this a safe space for questions around gender, sexuality, or identity?",
+          a: "Yes. What you bring doesn't need to be recognisable or manageable from the start. Questions about who you are, who you love, how your body feels, belong here just as much, even without a name for it yet.",
+        },
+        {
+          q: "Do you also work with artists or people living unconventional lives?",
+          a: "Certainly. A life that doesn't fit the usual mould, a choice you find yourself explaining, something you quietly feel ashamed of, a habit you'd rather keep to yourself: there's room for all of it here.",
+        },
+      ],
     },
     contact: {
       title: "Get in touch",
