@@ -95,7 +95,7 @@ export default async function LangLayout({ children, params }: LayoutProps<"/[la
         <div style={{ position: "relative", background: "var(--bg)" }}>
           <GrainOverlay />
           <SideRail text={c.site.rail} />
-          <TopChrome name={c.site.name} region={c.site.region} />
+          <TopChrome name={c.site.name} />
           {children}
         </div>
       </body>

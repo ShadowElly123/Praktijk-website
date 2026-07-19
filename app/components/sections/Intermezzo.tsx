@@ -3,8 +3,10 @@ import { Reveal } from "../Reveal";
 
 /**
  * Een rustpunt tussen Verwelkoming en Werkwijze: een gecentreerd citaat, groot
- * gezet in de serif, met een zachte brass-gloed erachter en een kort brass-
- * streepje als accent. Bewust neutraal — geen muzikale verwijzingen.
+ * gezet in de serif. Er is geen scheidingslijn en de brass-gloed (spotlight,
+ * zIndex -1) loopt bewust over de sectiegrenzen heen door — de aangrenzende
+ * secties zijn transparant en delen één achtergrond-laag (zie page.tsx) — zodat
+ * het intermezzo naadloos in de buren vervloeit i.p.v. als los blok op te vallen.
  */
 export function Intermezzo({ c }: { c: Content }) {
   const i = c.intermezzo;
@@ -14,10 +16,16 @@ export function Intermezzo({ c }: { c: Content }) {
       data-section="intermezzo"
       style={{
         position: "relative",
-        overflow: "hidden",
-        padding: "14vh 40px",
-        background: "var(--bg)",
-        borderTop: "1px solid var(--line)",
+        // Geen overflow:hidden en geen eigen achtergrond: de spotlight (zIndex -1)
+        // mag zo over de sectiegrenzen heen doorlopen, tegen de gedeelde
+        // achtergrond-laag van de wrapper in page.tsx.
+        // Asymmetrisch (minder boven, meer onder, zelfde totaal): schuift het
+        // citaat wat omhoog zodat het visueel in het midden valt tussen de
+        // Verwelkoming-tekst erboven en de foto van Werkwijze eronder.
+        paddingTop: "8vh",
+        paddingBottom: "20vh",
+        paddingLeft: 40,
+        paddingRight: 40,
       }}
     >
       <div
@@ -29,19 +37,32 @@ export function Intermezzo({ c }: { c: Content }) {
           maxWidth: 780,
           maxHeight: 780,
           left: "50%",
-          top: "50%",
+          // Verschuiving compenseert de asymmetrische padding hierboven, zodat de
+          // gloed achter het citaat blijft meebewegen.
+          top: "calc(50% - 6vh)",
           transform: "translate(-50%, -50%)",
+          // Achter de content én achter de aangrenzende (transparante) secties,
+          // zodat de gloed ongestoord over de sectiegrenzen heen doorloopt.
+          zIndex: -1,
         }}
       />
       <div style={{ position: "relative", zIndex: 1, maxWidth: 780, margin: "0 auto", textAlign: "center" }}>
         <Reveal>
           <div
             aria-hidden
-            style={{ width: 40, height: 1, background: "var(--brass)", opacity: 0.7, margin: "0 auto" }}
-          />
-          <p
             style={{
-              margin: "32px 0 0",
+              fontFamily: "var(--font-serif), serif",
+              fontSize: 64,
+              lineHeight: 1,
+              color: "var(--brass)",
+              opacity: 0.7,
+            }}
+          >
+            &ldquo;
+          </div>
+          <blockquote
+            style={{
+              margin: "8px 0 0",
               fontFamily: "var(--font-serif), serif",
               fontWeight: 300,
               fontStyle: "italic",
@@ -52,7 +73,7 @@ export function Intermezzo({ c }: { c: Content }) {
             }}
           >
             {i.quote}
-          </p>
+          </blockquote>
         </Reveal>
       </div>
     </section>

@@ -1,24 +1,31 @@
 /**
  * PraktijkKaart — een zelfgetekende, gestileerde kaart van de buurt rond de
- * praktijk, in exact de clair-obscur-taal van de site. Geen externe tiles,
- * geen tracking: puur SVG met brass-op-donker. Evoceert de omgeving
- * (Boekentoren, Sint-Pietersplein, de Schelde, Overpoort) zonder GPS-precisie
- * te claimen. Alle kleuren komen uit de CSS-tokens zodat de kaart meekleurt.
+ * praktijk, exact naar het door Lucas' opdrachtgever aangeleverde ontwerp
+ * ("kaartje v2"): dunne brass-straten op donker, de Boekentoren-plattegrond,
+ * de Muinkschelde als donker lint met de Muinkkaai, campuslabels met
+ * vierpuntige sterretjes, en het brandpunt: het praktijkpand in amber naast
+ * zijn grijze buur, met een salmon looproute-pijl naar de ingang.
  *
- * Schaalt responsief via `viewBox` + `width:100%`; labels in JetBrains Mono.
+ * Dynamisch t.o.v. het statische ontwerp:
+ * - de warme gloed rond de praktijk "ademt" traag (mapGlowBreathe);
+ * - de pijl tekent zichzelf in een cyclus, houdt vast en vervaagt weer
+ *   (mapRouteDraw/mapArrowHead) — zelfde ritme-idee als de scroll-streep.
+ *
+ * Geen externe tiles, geen tracking: puur SVG. Kleuren komen waar mogelijk
+ * uit de CSS-tokens; alles komt uit de CSS-tokens: brass als enige accent
+ * (pand, labels, sterren), token-grijs voor het buurpand en off-white (--title)
+ * voor de looproute-pijl, zodat die helder leesbaar blijft op donker.
  */
 export function PraktijkKaart({
   className,
   pinLabel,
-  abbeyLabel,
 }: {
   className?: string;
   pinLabel: string;
-  abbeyLabel: string;
 }) {
   return (
     <svg
-      viewBox="0 0 1200 600"
+      viewBox="0 0 1663 944"
       preserveAspectRatio="xMidYMid meet"
       className={className}
       style={{ display: "block", width: "100%", height: "auto" }}
@@ -26,124 +33,275 @@ export function PraktijkKaart({
       focusable="false"
     >
       <defs>
-        <radialGradient id="pk-glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="rgba(194,166,131,0.18)" />
+        <radialGradient id="kaart-glow-lg" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="rgba(194,166,131,0.11)" />
           <stop offset="55%" stopColor="rgba(194,166,131,0.05)" />
           <stop offset="100%" stopColor="rgba(194,166,131,0)" />
         </radialGradient>
-        <linearGradient id="pk-water" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="rgba(120,140,165,0.12)" />
-          <stop offset="100%" stopColor="rgba(120,140,165,0.03)" />
+        <radialGradient id="kaart-glow-md" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="rgba(194,166,131,0.16)" />
+          <stop offset="100%" stopColor="rgba(194,166,131,0)" />
+        </radialGradient>
+        <radialGradient id="kaart-glow-core" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="rgba(194,166,131,0.24)" />
+          <stop offset="100%" stopColor="rgba(194,166,131,0)" />
+        </radialGradient>
+        <linearGradient id="kaart-water" x1="0" y1="0" x2="0.4" y2="1">
+          <stop offset="0%" stopColor="rgba(120,140,160,0.10)" />
+          <stop offset="100%" stopColor="rgba(120,140,160,0.04)" />
         </linearGradient>
-        <linearGradient id="pk-vignette" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="rgba(14,13,12,0)" />
-          <stop offset="100%" stopColor="rgba(14,13,12,0.55)" />
-        </linearGradient>
+        <radialGradient id="kaart-vignette" cx="49%" cy="50%" r="72%">
+          <stop offset="0%" stopColor="rgba(0,0,0,0)" />
+          <stop offset="62%" stopColor="rgba(0,0,0,0)" />
+          <stop offset="100%" stopColor="rgba(0,0,0,0.42)" />
+        </radialGradient>
       </defs>
 
       {/* basis */}
-      <rect x="0" y="0" width="1200" height="600" fill="var(--bg)" />
+      <rect x="0" y="0" width="1663" height="944" fill="var(--bg)" />
 
-      {/* warm licht rond de praktijk */}
-      <rect x="360" y="80" width="520" height="440" fill="url(#pk-glow)" />
-
-      {/* de Schelde als donker lint langs de rechterkant */}
+      {/* de Muinkschelde: donker lint rechts, met heel zachte oeverlijnen */}
       <path
-        d="M1040 -20 C 1010 150, 1110 300, 1030 620 L 1220 620 L 1220 -20 Z"
-        fill="url(#pk-water)"
+        d="M1447 0 C 1360 260, 1255 560, 1082 944 L 1268 944 C 1420 600, 1520 280, 1617 0 Z"
+        fill="url(#kaart-water)"
       />
-      <text
-        x="1105"
-        y="300"
-        transform="rotate(90 1105 300)"
-        textAnchor="middle"
-        className="map-street"
-        fill="rgba(150,168,190,0.55)"
-      >
-        Muinkschelde
-      </text>
+      <g stroke="rgba(150,168,190,0.14)" strokeWidth="1.4" fill="none">
+        <path d="M1447 0 C 1360 260, 1255 560, 1082 944" />
+        <path d="M1617 0 C 1520 280, 1420 600, 1268 944" />
+      </g>
 
-      {/* bouwblokken: heel zacht, als vulling tussen de straten */}
-      <g fill="rgba(194,166,131,0.045)">
-        <path d="M150 140 L 430 170 L 410 330 L 175 305 Z" />
-        <path d="M700 110 L 960 140 L 940 280 L 690 255 Z" />
-        <path d="M210 360 L 470 385 L 450 520 L 205 495 Z" />
-        <path d="M690 330 L 930 355 L 1000 510 L 720 520 Z" />
+      {/* warme gloed rond de praktijk — ademt traag */}
+      <g
+        style={{
+          transformOrigin: "812px 470px",
+          animation: "mapGlowBreathe 7s ease-in-out infinite",
+        }}
+      >
+        <ellipse cx="812" cy="470" rx="560" ry="430" fill="url(#kaart-glow-lg)" />
+        <ellipse cx="815" cy="470" rx="235" ry="195" fill="url(#kaart-glow-md)" />
+        <ellipse cx="815" cy="468" rx="100" ry="84" fill="url(#kaart-glow-core)" />
       </g>
 
       {/* straten: dunne brass-haarlijnen */}
-      <g stroke="var(--brass)" fill="none" strokeLinecap="round">
-        {/* Sint-Pietersnieuwstraat — de hoofdader door de pin */}
-        <path d="M600 -20 C 580 130, 640 320, 600 620" strokeWidth="2.6" strokeOpacity="0.6" />
-        {/* Overpoortstraat, aftakking naar de studentenbuurt */}
-        <path d="M622 360 C 730 400, 840 450, 1000 560" strokeWidth="2" strokeOpacity="0.42" />
-        {/* Rozier, richting Boekentoren — sluit aan op de toren, vlak bij de pin */}
-        <path d="M205 230 C 320 250, 460 245, 560 255" strokeWidth="2" strokeOpacity="0.42" />
-        {/* secundaire straten, textuur */}
-        <path d="M40 160 C 280 190, 520 168, 800 120" strokeWidth="1.3" strokeOpacity="0.2" />
-        <path d="M40 330 C 250 345, 430 348, 590 330" strokeWidth="1.3" strokeOpacity="0.2" />
-        <path d="M820 -20 C 840 170, 800 360, 900 620" strokeWidth="1.3" strokeOpacity="0.2" />
+      <g stroke="var(--brass)" fill="none" strokeLinecap="round" strokeLinejoin="round">
+        {/* Hoveniersberg (west) met knik naar de bovenrand */}
+        <path d="M0 302 L 573 158 L 597 0" strokeWidth="1.8" strokeOpacity="0.5" />
+        {/* Sint-Pietersnieuwstraat — de hoofdader */}
+        <path d="M758 0 C 752 240, 742 430, 703 944" strokeWidth="2.2" strokeOpacity="0.62" />
+        {/* Hoveniersberg (oost), met knik richting de kaai */}
+        <path d="M752 296 L 1032 320 L 1258 372" strokeWidth="1.8" strokeOpacity="0.5" />
+        {/* aanloop vanuit de bovenrand naar de Hoveniersberg-knik */}
+        <path d="M1105 0 L 1032 320" strokeWidth="1.4" strokeOpacity="0.22" />
+        {/* Rozier, met knik en zijstraat naar linksonder */}
+        <path d="M0 588 L 295 640 L 722 708" strokeWidth="1.8" strokeOpacity="0.5" />
+        <path d="M295 640 L 135 944" strokeWidth="1.4" strokeOpacity="0.32" />
+        {/* Blandijnberg — steekt als brug de Muinkschelde over en loopt door
+            tot de rechterrand; het faculteitssterretje ligt er net onder */}
+        <path d="M718 726 L 1046 820 L 1235 812 L 1663 786" strokeWidth="1.8" strokeOpacity="0.5" />
+        {/* Muinkkaai, mee met de rivier */}
+        <path d="M1262 372 C 1210 540, 1140 750, 1058 944" strokeWidth="1.8" strokeOpacity="0.5" />
       </g>
 
       {/* straatlabels */}
-      <text x="352" y="256" transform="rotate(4 352 256)" className="map-street" fill="var(--mono-2)">
-        Rozier
-      </text>
-      <text x="800" y="470" transform="rotate(26 800 470)" className="map-street" fill="var(--mono-2)">
-        Overpoort
-      </text>
-      <text x="628" y="120" transform="rotate(82 628 120)" className="map-street" fill="var(--mono-2)">
-        Sint-Pietersnieuwstraat
-      </text>
+      <g fill="var(--mono-1)">
+        <text
+          x="350"
+          y="205"
+          textAnchor="middle"
+          transform="rotate(-13.5 350 205)"
+          className="map-street"
+          style={{ fontSize: 15, letterSpacing: "0.22em" }}
+        >
+          Hoveniersberg
+        </text>
+        <text
+          x="922"
+          y="298"
+          textAnchor="middle"
+          transform="rotate(4.5 922 298)"
+          className="map-street"
+          style={{ fontSize: 15, letterSpacing: "0.22em" }}
+        >
+          Hoveniersberg
+        </text>
+        <text
+          x="716"
+          y="460"
+          textAnchor="middle"
+          transform="rotate(-90 716 460)"
+          className="map-street"
+          style={{ fontSize: 15, letterSpacing: "0.22em" }}
+        >
+          Sint-Pietersnieuwstraat
+        </text>
+        <text
+          x="465"
+          y="648"
+          textAnchor="middle"
+          transform="rotate(9 465 648)"
+          className="map-street"
+          style={{ fontSize: 15, letterSpacing: "0.22em" }}
+        >
+          Rozier
+        </text>
+        <text
+          x="882"
+          y="766"
+          textAnchor="middle"
+          transform="rotate(16 882 766)"
+          className="map-street"
+          style={{ fontSize: 15, letterSpacing: "0.22em" }}
+        >
+          Blandijnberg
+        </text>
+        <text
+          x="1168"
+          y="578"
+          textAnchor="middle"
+          transform="rotate(-71 1168 578)"
+          className="map-street"
+          style={{ fontSize: 15, letterSpacing: "0.22em" }}
+        >
+          Muinkkaai
+        </text>
+      </g>
 
-      {/* Boekentoren — het ijkpunt, letterlijk naast de praktijk (dicht bij de pin) */}
+      {/* Boekentoren — plattegrond als haarlijn-contour */}
       <g>
-        <rect x="538" y="150" width="24" height="120" fill="rgba(194,166,131,0.16)" stroke="var(--brass)" strokeOpacity="0.55" strokeWidth="1.3" />
-        <rect x="532" y="140" width="36" height="12" fill="var(--brass)" fillOpacity="0.55" />
-        <text x="550" y="296" textAnchor="middle" className="map-label" fill="var(--muted)">
+        <path
+          d="M597 228 L 658 228 L 658 258 L 663 258 L 663 283 L 610 283 L 610 398 L 657 398 L 657 425 L 515 425 L 515 398 L 577 398 L 577 283 L 520 283 L 520 258 L 597 258 Z"
+          fill="rgba(194,166,131,0.05)"
+          stroke="var(--brass)"
+          strokeOpacity="0.45"
+          strokeWidth="1.4"
+        />
+        <text
+          x="505"
+          y="352"
+          textAnchor="end"
+          className="map-street"
+          fill="var(--mono-1)"
+          style={{ fontSize: 16, letterSpacing: "0.22em" }}
+        >
           Boekentoren
         </text>
       </g>
 
-      {/* Sint-Pietersplein + abdij, ten zuiden */}
-      <g>
-        <rect x="520" y="420" width="90" height="54" fill="none" stroke="var(--brass)" strokeOpacity="0.3" strokeWidth="1.2" />
-        <text x="565" y="500" textAnchor="middle" className="map-street" fill="var(--mono-2)">
-          Sint-Pietersplein
+      {/* plaatslabels met sterretjes */}
+      <g fill="var(--mono-1)">
+        <text
+          x="1120"
+          y="98"
+          textAnchor="middle"
+          className="map-street"
+          style={{ fontSize: 16, letterSpacing: "0.22em" }}
+        >
+          Universiteit Gent
         </text>
-        <text x="565" y="518" textAnchor="middle" className="map-street" fill="var(--mono-3)">
-          {abbeyLabel}
+        <path
+          d="M0 -7 Q 1.6 -1.6 7 0 Q 1.6 1.6 0 7 Q -1.6 1.6 -7 0 Q -1.6 -1.6 0 -7 Z"
+          transform="translate(1120 127)"
+          fill="var(--brass)"
+          fillOpacity="0.75"
+        />
+        <text
+          x="868"
+          y="860"
+          textAnchor="middle"
+          className="map-street"
+          style={{ fontSize: 16, letterSpacing: "0.22em" }}
+        >
+          Campus Tweekerken
         </text>
+        <path
+          d="M0 -6 Q 1.4 -1.4 6 0 Q 1.4 1.4 0 6 Q -1.4 1.4 -6 0 Q -1.4 -1.4 0 -6 Z"
+          transform="translate(868 888)"
+          fill="var(--brass)"
+          fillOpacity="0.75"
+        />
+        <text
+          x="1502"
+          y="728"
+          textAnchor="middle"
+          className="map-street"
+          style={{ fontSize: 16, letterSpacing: "0.22em" }}
+        >
+          Faculteit Economie
+        </text>
+        <text
+          x="1502"
+          y="752"
+          textAnchor="middle"
+          className="map-street"
+          style={{ fontSize: 16, letterSpacing: "0.22em" }}
+        >
+          en Bedrijfskunde
+        </text>
+        <path
+          d="M0 -13 Q 2.6 -2.6 13 0 Q 2.6 2.6 0 13 Q -2.6 2.6 -13 0 Q -2.6 -2.6 0 -13 Z"
+          transform="translate(1504 822)"
+          fill="var(--brass)"
+          fillOpacity="0.9"
+        />
       </g>
 
-      {/* Blandijnberg, subtiel, ten westen */}
-      <text x="245" y="430" textAnchor="middle" className="map-street" fill="var(--mono-3)">
-        Blandijnberg
-      </text>
-
-      {/* kompas */}
-      <g transform="translate(1120 70)" fill="var(--mono-2)">
-        <path d="M0 -14 L 5 4 L 0 -1 L -5 4 Z" fill="var(--brass)" fillOpacity="0.7" />
-        <text x="0" y="24" textAnchor="middle" className="map-street" fill="var(--mono-2)">
-          N
-        </text>
-      </g>
-
-      {/* de pin: de praktijk, het brandpunt */}
+      {/* het brandpunt: praktijkpand (brass) + buurpand in dezelfde donkere
+          haarlijn-stijl als de Boekentoren-plattegrond */}
       <g>
-        <circle cx="600" cy="250" r="30" fill="none" stroke="var(--brass)" strokeWidth="1" style={{ transformOrigin: "600px 250px", animation: "mapPulse 3.2s ease-in-out infinite" }} />
-        <circle cx="600" cy="250" r="15" fill="none" stroke="var(--brass)" strokeWidth="1.6" />
-        <circle cx="600" cy="250" r="7" fill="var(--brass)" />
-        <text x="600" y="312" textAnchor="middle" className="map-pin-kicker" fill="var(--brass)">
-          {pinLabel}
-        </text>
-        <text x="600" y="338" textAnchor="middle" className="map-pin-addr" fill="var(--text)">
+        <path
+          d="M772 428 L 818 428 L 818 437 L 825 437 L 825 505 L 772 505 Z"
+          fill="var(--brass)"
+          fillOpacity="0.95"
+        />
+        <path
+          d="M825 437 L 852 437 L 852 425 L 888 425 L 888 447 L 880 447 L 880 515 L 838 515 L 838 505 L 825 505 Z"
+          fill="rgba(194,166,131,0.05)"
+          stroke="var(--brass)"
+          strokeOpacity="0.45"
+          strokeWidth="1.4"
+        />
+
+        {/* looproute naar de ingang: tekent zichzelf in een cyclus */}
+        <g stroke="var(--title)" fill="none">
+          <path
+            d="M742 523 L 806 523 Q 816 523 816 513 L 816 498"
+            strokeWidth="4.5"
+            strokeLinecap="round"
+            pathLength={1}
+            strokeDasharray={1}
+            style={{ animation: "mapRouteDraw 4.2s cubic-bezier(.4,0,.2,1) infinite" }}
+          />
+          <path
+            d="M816 484 L 825 500 L 807 500 Z"
+            fill="var(--title)"
+            stroke="none"
+            style={{ animation: "mapArrowHead 4.2s cubic-bezier(.4,0,.2,1) infinite" }}
+          />
+        </g>
+
+        {/* adres + praktijklabel */}
+        <text
+          x="908"
+          y="470"
+          className="map-street"
+          fill="var(--text)"
+          style={{ fontSize: 20, letterSpacing: "0.12em" }}
+        >
           Sint-Pietersnieuwstraat 97
         </text>
+        <text
+          x="908"
+          y="500"
+          className="map-street"
+          fill="var(--brass)"
+          style={{ fontSize: 18, letterSpacing: "0.18em" }}
+        >
+          {pinLabel}
+        </text>
       </g>
 
-      {/* onderrand-vignette voor diepte */}
-      <rect x="0" y="0" width="1200" height="600" fill="url(#pk-vignette)" pointerEvents="none" />
+      {/* rand-vignette voor diepte */}
+      <rect x="0" y="0" width="1663" height="944" fill="url(#kaart-vignette)" pointerEvents="none" />
     </svg>
   );
 }

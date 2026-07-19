@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import posthog from "posthog-js";
-import type { Content, Locale } from "../lib/locale";
+import type { Content } from "../lib/locale";
 
 type Status = "idle" | "sending" | "success" | "error";
 type Field = "onderwerp" | "toelichting" | "email";
@@ -40,7 +40,7 @@ const errStyle: React.CSSProperties = {
  * verplichte velden, submit-states en een honeypot-veld. De server slaat niets
  * op; hij stuurt de inzending enkel door als e-mail.
  */
-export function ContactForm({ c, lang }: { c: Content; lang: Locale }) {
+export function ContactForm({ c }: { c: Content }) {
   const f = c.form;
   const [values, setValues] = useState({
     onderwerp: "",
@@ -259,22 +259,6 @@ export function ContactForm({ c, lang }: { c: Content; lang: Locale }) {
           .
         </p>
       )}
-
-      <p
-        style={{
-          fontFamily: "var(--font-mono), monospace",
-          fontSize: 11,
-          lineHeight: 1.7,
-          color: "var(--mono-3)",
-          marginTop: 4,
-          maxWidth: 480,
-        }}
-      >
-        {f.privacyNote}{" "}
-        <a href={`/${lang}/privacy`} style={{ color: "var(--mono-1)" }}>
-          {f.privacyLink}
-        </a>
-      </p>
     </form>
   );
 }

@@ -1,4 +1,4 @@
-import type { Content, Locale } from "../../lib/locale";
+import type { Content } from "../../lib/locale";
 import { Reveal } from "../Reveal";
 import { ContactForm } from "../ContactForm";
 
@@ -6,7 +6,7 @@ import { ContactForm } from "../ContactForm";
  * Contact — eigen, rustige sectie met titel, korte intro en het formulier.
  * Losgekoppeld van Praktisch zodat die sectie kalmer oogt.
  */
-export function Contact({ c, lang }: { c: Content; lang: Locale }) {
+export function Contact({ c }: { c: Content }) {
   return (
     <section
       aria-label={c.contact.title}
@@ -17,10 +17,9 @@ export function Contact({ c, lang }: { c: Content; lang: Locale }) {
         paddingTop: "12vh",
         paddingBottom: "16vh",
         background: "var(--bg)",
-        borderTop: "1px solid var(--line)",
       }}
     >
-      <div style={{ maxWidth: 620 }}>
+      <div style={{ maxWidth: 620, margin: "0 auto" }}>
         <Reveal>
           <h2
             style={{
@@ -48,7 +47,7 @@ export function Contact({ c, lang }: { c: Content; lang: Locale }) {
           </p>
         </Reveal>
         <Reveal delay={0.1}>
-          <ContactForm c={c} lang={lang} />
+          <ContactForm c={c} />
         </Reveal>
       </div>
     </section>

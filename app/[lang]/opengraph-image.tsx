@@ -34,18 +34,6 @@ export default async function OgImage({ params }: { params: Promise<{ lang: stri
         <div
           style={{
             display: "flex",
-            fontSize: 22,
-            letterSpacing: 8,
-            textTransform: "uppercase",
-            color: "#C2A683",
-            marginBottom: 24,
-          }}
-        >
-          {c.site.region}
-        </div>
-        <div
-          style={{
-            display: "flex",
             fontSize: 96,
             fontWeight: 700,
             color: "#F1EDE5",

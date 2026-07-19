@@ -6,8 +6,9 @@ import { SectionKicker } from "../SectionKicker";
 /**
  * Werkwijze — 2-koloms: links de tekst (kop, titel, body, brass-accent, en een
  * genummerde lijst van thema's waar bijzondere ruimte voor is), rechts een beeld
- * met gradient-maskers dat naar de schermrand bloedt. Een zachte brass-gloed
- * ("oplichting") ligt achter de tekstkolom. Stapelt op mobiel.
+ * van de praktijkruimte met gradient-maskers dat naar de schermrand bloedt en een
+ * gedempte caption linksonder. Een zachte brass-gloed ("oplichting") ligt achter
+ * de tekstkolom. Stapelt op mobiel.
  */
 export function Werkwijze({ c }: { c: Content }) {
   const w = c.werkwijze;
@@ -18,9 +19,13 @@ export function Werkwijze({ c }: { c: Content }) {
       className="split split--werkwijze"
       style={{
         position: "relative",
-        overflow: "hidden",
-        background: "var(--bg-alt)",
-        borderTop: "1px solid var(--line)",
+        // Géén overflow:hidden: de brass-spotlight achter de kop steekt boven de
+        // sectie uit en moet over de grens met het intermezzo kunnen doorvloeien —
+        // een sectie-clip zou 'm daar hard afsnijden. Het beeld zelf wordt al
+        // geclipt door .split__media (overflow: hidden).
+        // Transparant: de gedeelde achtergrond-wrapper (page.tsx) levert de kleur,
+        // zodat de intermezzo-gloed hier ongestoord in kan doorlopen.
+        background: "transparent",
       }}
     >
       <div className="split__text split__text--werkwijze" style={{ position: "relative", zIndex: 1 }}>
@@ -35,7 +40,7 @@ export function Werkwijze({ c }: { c: Content }) {
             style={{
               margin: "8px 0 28px",
               fontFamily: "var(--font-sans), sans-serif",
-              fontWeight: 600,
+              fontWeight: 500,
               fontSize: "clamp(34px,4vw,58px)",
               lineHeight: 1.04,
               letterSpacing: "-0.02em",
@@ -115,24 +120,59 @@ export function Werkwijze({ c }: { c: Content }) {
       </div>
 
       <div className="split__media">
-        <Image
-          src="/images/werkwijze.jpg"
-          alt=""
-          fill
-          sizes="(max-width: 820px) 100vw, 50vw"
-          style={{
-            objectFit: "cover",
-            filter: "saturate(0.78) contrast(1.05) brightness(0.7)",
-          }}
-        />
+        {/* Masker i.p.v. donkere overlay-gradiënten: de linker- en bovenfade worden
+            hier vermenigvuldigd (mask-composite), waardoor het beeld in één zachte,
+            gebogen overgang uit de achtergrond opdoemt — geen rechte snijlijnen of
+            scherpe hoek meer. Rechts loopt het beeld vol tot de schermrand door;
+            onderaan vloeit het weer weg. De caption staat bewust búiten dit masker. */}
         <div
           style={{
             position: "absolute",
             inset: 0,
-            background:
-              "linear-gradient(90deg, #100E0C 0%, rgba(16,14,12,0.25) 22%, transparent 55%), linear-gradient(180deg, #100E0C 0%, transparent 16%, transparent 84%, #100E0C 100%), radial-gradient(90% 70% at 70% 40%, rgba(194,166,131,0.14), transparent 60%)",
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent 0%, #000 38%, #000 100%), linear-gradient(to bottom, transparent 0%, #000 40%, #000 82%, transparent 100%)",
+            WebkitMaskComposite: "source-in",
+            maskImage:
+              "linear-gradient(to right, transparent 0%, #000 38%, #000 100%), linear-gradient(to bottom, transparent 0%, #000 40%, #000 82%, transparent 100%)",
+            maskComposite: "intersect",
           }}
-        />
+        >
+          <Image
+            src="/images/werkwijze.jpg"
+            alt=""
+            fill
+            sizes="(max-width: 820px) 100vw, 50vw"
+            style={{
+              objectFit: "cover",
+              filter: "saturate(0.78) contrast(1.05) brightness(0.7)",
+            }}
+          />
+          {/* zachte brass-gloed op het beeld */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "radial-gradient(90% 70% at 70% 40%, rgba(194,166,131,0.14), transparent 60%)",
+            }}
+          />
+        </div>
+        <p
+          style={{
+            position: "absolute",
+            left: "6vw",
+            right: "6vw",
+            bottom: "6vh",
+            margin: 0,
+            maxWidth: 380,
+            fontFamily: "var(--font-serif), serif",
+            fontSize: 14,
+            lineHeight: 1.6,
+            color: "var(--mono-1)",
+          }}
+        >
+          {w.imageCaption}
+        </p>
       </div>
     </section>
   );

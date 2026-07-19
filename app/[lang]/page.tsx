@@ -16,12 +16,18 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   return (
     <main>
       <Hero c={c} />
-      <Verwelkoming c={c} />
-      <Intermezzo c={c} />
-      <Werkwijze c={c} />
+      {/* Gedeelde achtergrond-laag: Verwelkoming, Intermezzo en Werkwijze zijn
+          transparant, deze wrapper levert de kleur en de stacking-context. Zo kan
+          de intermezzo-spotlight (zIndex -1) ongestoord over de sectiegrenzen
+          heen doorlopen in plaats van bij elke sectie te worden afgekapt. */}
+      <div style={{ position: "relative", zIndex: 0, background: "var(--bg)" }}>
+        <Verwelkoming c={c} />
+        <Intermezzo c={c} />
+        <Werkwijze c={c} />
+      </div>
       <OverMij c={c} />
       <Praktisch c={c} />
-      <Contact c={c} lang={lang as Locale} />
+      <Contact c={c} />
       <SiteFooter c={c} lang={lang as Locale} />
     </main>
   );

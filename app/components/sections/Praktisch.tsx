@@ -5,9 +5,10 @@ import { PraktijkKaart } from "../map/PraktijkKaart";
 
 /**
  * Praktisch & contact — rustig opgebouwd: kop, dan de kaart (volle breedte) met
- * een "Route"-knop, en daaronder één uitgelijnde tweekolommenrij: links de
- * praktische info als nette dl-lijst + microcopy, rechts het crisis-kader. Het
- * contactformulier staat in een aparte sectie (Contact.tsx). Stapelt op mobiel.
+ * een "Route"-knop, daaronder de praktische info als nette dl-lijst, en
+ * daaronder het crisis-kader (gestapeld, niet ernaast — dat oogde te veel als
+ * een gelijke keuze naast de rest). Het contactformulier staat in een aparte
+ * sectie (Contact.tsx).
  */
 export function Praktisch({ c }: { c: Content }) {
   const p = c.praktisch;
@@ -34,15 +35,14 @@ export function Praktisch({ c }: { c: Content }) {
         paddingTop: "16vh",
         paddingBottom: "12vh",
         background: "var(--bg-alt)",
-        borderTop: "1px solid var(--line)",
       }}
     >
       <Reveal style={{ marginBottom: 48 }}>
         <SectionKicker label={p.label} />
       </Reveal>
 
-      {/* Kaart — volle breedte, bovenaan */}
-      <Reveal>
+      {/* Kaart — volle breedte, bovenaan, gecentreerd */}
+      <Reveal style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div
           role="img"
           aria-label={l.mapAria}
@@ -50,11 +50,10 @@ export function Praktisch({ c }: { c: Content }) {
             position: "relative",
             border: "1px solid var(--line-4)",
             background: "var(--bg)",
-            maxWidth: 1100,
             overflow: "hidden",
           }}
         >
-          <PraktijkKaart pinLabel={l.mapPin} abbeyLabel={l.mapAbdij} />
+          <PraktijkKaart pinLabel={l.mapPin} />
           <span className="map-corner" style={{ top: 14, left: 14, borderWidth: "1px 0 0 1px" }} />
           <span className="map-corner" style={{ top: 14, right: 14, borderWidth: "1px 1px 0 0" }} />
           <span className="map-corner" style={{ bottom: 14, left: 14, borderWidth: "0 0 1px 1px" }} />
@@ -97,10 +96,42 @@ export function Praktisch({ c }: { c: Content }) {
         </div>
       </Reveal>
 
-      {/* Praktische info (links) + crisis (rechts) — uitgelijnd, kalm */}
-      <div className="praktisch-cols">
+      {/* Praktische info, daaronder crisis — gestapeld, kalm */}
+      <div style={{ marginTop: "8vh", maxWidth: 620, marginLeft: "auto", marginRight: "auto" }}>
         <Reveal>
           <dl style={{ display: "flex", flexDirection: "column", margin: 0 }}>
+            {/* GSM als eerste rij met tel-link + microcopy als note */}
+            <div className="info-row">
+              <dt className="info-label">{p.gsmLabel}</dt>
+              <dd style={{ margin: 0 }}>
+                <a
+                  href={p.gsmHref}
+                  style={{
+                    fontFamily: "var(--font-serif), serif",
+                    fontSize: 17,
+                    lineHeight: 1.6,
+                    color: "var(--text)",
+                    textDecoration: "none",
+                    fontVariantNumeric: "tabular-nums",
+                  }}
+                >
+                  {p.gsm}
+                </a>
+                <span
+                  style={{
+                    display: "block",
+                    marginTop: 4,
+                    fontFamily: "var(--font-serif), serif",
+                    fontStyle: "italic",
+                    fontSize: 14,
+                    color: "var(--mono-1)",
+                  }}
+                >
+                  {p.microcopy}
+                </span>
+              </dd>
+            </div>
+
             {rows.map((row) => (
               <div key={row.label} className="info-row">
                 <dt className="info-label">{row.label}</dt>
@@ -133,45 +164,11 @@ export function Praktisch({ c }: { c: Content }) {
                 </dd>
               </div>
             ))}
-
-            {/* GSM als aparte rij met tel-link */}
-            <div className="info-row" style={{ borderBottom: "1px solid var(--line)" }}>
-              <dt className="info-label">{p.gsmLabel}</dt>
-              <dd style={{ margin: 0 }}>
-                <a
-                  href={p.gsmHref}
-                  style={{
-                    fontFamily: "var(--font-sans), sans-serif",
-                    fontSize: 19,
-                    letterSpacing: "0.02em",
-                    color: "var(--brass)",
-                    textDecoration: "none",
-                    fontVariantNumeric: "tabular-nums",
-                  }}
-                >
-                  {p.gsm}
-                </a>
-              </dd>
-            </div>
           </dl>
-
-          <p
-            style={{
-              margin: "24px 0 0",
-              maxWidth: "46ch",
-              fontFamily: "var(--font-serif), serif",
-              fontStyle: "italic",
-              fontSize: 14,
-              lineHeight: 1.7,
-              color: "var(--mono-1)",
-            }}
-          >
-            {p.microcopy}
-          </p>
         </Reveal>
 
         {/* Crisis */}
-        <Reveal delay={0.1}>
+        <Reveal delay={0.1} style={{ marginTop: 40 }}>
           <div style={{ border: "1px solid var(--line-3)", padding: 28 }}>
             <p
               style={{

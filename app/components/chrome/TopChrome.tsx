@@ -5,11 +5,11 @@ import { usePathname } from "next/navigation";
 import { LOCALES, type Locale } from "../../lib/locale";
 
 /**
- * Sticky topbalk: links de naam, rechts regio + NL/EN-taalpil. De pil is een
+ * Sticky topbalk: links de naam, rechts de NL/EN-taalpil. De pil is een
  * paar `<Link>`s die de huidige subroute behouden en enkel de locale wisselen.
  * Stijl exact uit de goedgekeurde Claude Design (glazen pil, brass-fill actief).
  */
-export function TopChrome({ name, region }: { name: string; region: string }) {
+export function TopChrome({ name }: { name: string }) {
   const pathname = usePathname();
   // Strip de leidende locale zodat de subroute (bv. /privacy) behouden blijft.
   const rest = pathname.replace(/^\/(nl|en)(?=\/|$)/, "");
@@ -45,18 +45,6 @@ export function TopChrome({ name, region }: { name: string; region: string }) {
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: 18, pointerEvents: "auto" }}>
-        <span
-          className="top-chrome__region"
-          style={{
-            fontFamily: "var(--font-mono), monospace",
-            fontSize: 11,
-            letterSpacing: "0.08em",
-            color: "var(--mono-1)",
-            textShadow: "0 1px 8px rgba(0,0,0,0.7)",
-          }}
-        >
-          {region}
-        </span>
         <nav
           aria-label="Taal / Language"
           style={{

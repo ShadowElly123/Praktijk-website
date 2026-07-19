@@ -73,7 +73,7 @@ export function Hero({ c }: { c: Content }) {
           style={{
             margin: 0,
             fontFamily: "var(--font-sans), sans-serif",
-            fontWeight: 600,
+            fontWeight: 500,
             fontSize: "clamp(52px,8vw,116px)",
             lineHeight: 0.98,
             letterSpacing: "-0.02em",

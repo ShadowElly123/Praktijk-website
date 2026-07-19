@@ -22,7 +22,9 @@ export function Verwelkoming({ c }: { c: Content }) {
         justifyContent: "center",
         paddingTop: "16vh",
         paddingBottom: "16vh",
-        background: "var(--bg)",
+        // Transparant: de gedeelde achtergrond-wrapper (page.tsx) levert de kleur,
+        // zodat de intermezzo-gloed hier ongestoord in kan doorlopen.
+        background: "transparent",
       }}
     >
       <div style={{ position: "relative", maxWidth: 760 }}>

@@ -4,12 +4,14 @@ import { Reveal } from "../Reveal";
 import { SectionKicker } from "../SectionKicker";
 
 /**
- * Over mij — 2-koloms: links een sticky foto (aspect 4/5) van Lucas die met een
- * feather-masker aan alle zijden zacht in de donkere achtergrond opgaat (geen
- * harde rand), met italic caption eronder; rechts de kop, body, ervaring
- * (italic, gedempt), een blok "Titels & erkenning" en daaronder een apart blok
- * "Registratie" (visum/erkennings-/ondernemingsnummer, tabular-nums).
- * Stapelt op mobiel.
+ * Over mij — 2-koloms: links een sticky foto (aspect 4/5) van Lucas met een
+ * zachte rechthoekige feather-rand (rechte zijden, afgeronde zachte hoeken) die
+ * aan alle zijden in de donkere achtergrond oplost (die rand + toon-correctie
+ * zitten in portret-v6.png gebakken; geen caption eronder — die zou door de
+ * sticky positionering met scrollende inhoud overlappen); rechts de kop, body, ervaring
+ * (gedempt), een blok "Titels & erkenning" en daaronder een apart blok
+ * "Registratie" (visum/erkennings-/ondernemingsnummer, tabular-nums). De
+ * prozatekst blijft bewust één serif-stem (geen italics) voor rust. Stapelt op mobiel.
  */
 export function OverMij({ c }: { c: Content }) {
   const o = c.overMij;
@@ -21,7 +23,6 @@ export function OverMij({ c }: { c: Content }) {
       style={{
         position: "relative",
         background: "var(--bg)",
-        borderTop: "1px solid var(--line)",
       }}
     >
       <div className="split__text split__text--about">
@@ -32,45 +33,39 @@ export function OverMij({ c }: { c: Content }) {
               top: "14vh",
               aspectRatio: "4 / 5",
               width: "100%",
-              maxWidth: 440,
-              // Feather-masker: het beeld vervaagt aan alle vier de zijden naar
-              // transparant, zodat het naadloos in de donkere achtergrond opgaat
-              // in plaats van een hoekig kader te vormen.
-              WebkitMaskImage:
-                "linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%)",
-              WebkitMaskComposite: "source-in",
-              maskImage:
-                "linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%)",
-              maskComposite: "intersect",
+              maxWidth: 560,
+              // Naar de rechterrand van de kolom, dichter bij de tekst — anders
+              // ontstaat een grote lege kloof tussen beeld en tekstkolom.
+              marginLeft: "auto",
             }}
           >
-            <div style={{ position: "relative", width: "100%", height: "100%" }}>
+            {/* Zelfde zachte overgang als de Werkwijze-foto: twee vermenigvuldigde
+                lineaire gradiënten (mask-composite) laten alle vier de randen breed
+                en gebogen in de achtergrond oplossen — geen rechte snijlijnen of
+                scherpe hoeken. Het beeld zelf (portret-v7.jpg) is enkel crop + toon;
+                het masker leeft in CSS en is dus makkelijk bij te stellen. */}
+            <div
+              style={{
+                position: "relative",
+                width: "100%",
+                height: "100%",
+                WebkitMaskImage:
+                  "linear-gradient(to right, transparent 0%, #000 32%, #000 68%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 30%, #000 72%, transparent 100%)",
+                WebkitMaskComposite: "source-in",
+                maskImage:
+                  "linear-gradient(to right, transparent 0%, #000 32%, #000 68%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 30%, #000 72%, transparent 100%)",
+                maskComposite: "intersect",
+              }}
+            >
               <Image
-                src="/images/portret.jpg"
+                src="/images/portret-v7.jpg"
                 alt={o.badge}
                 fill
                 sizes="(max-width: 820px) 100vw, 40vw"
-                style={{
-                  objectFit: "cover",
-                  objectPosition: "center 26%",
-                  filter: "grayscale(0.15) contrast(1.02) brightness(1.0)",
-                }}
+                style={{ objectFit: "cover" }}
               />
             </div>
           </div>
-          <p
-            style={{
-              margin: "18px 0 0",
-              maxWidth: 440,
-              fontFamily: "var(--font-serif), serif",
-              fontStyle: "italic",
-              fontSize: 15,
-              lineHeight: 1.6,
-              color: "var(--mono-1)",
-            }}
-          >
-            {o.imageCaption}
-          </p>
         </Reveal>
       </div>
 
@@ -98,7 +93,6 @@ export function OverMij({ c }: { c: Content }) {
               maxWidth: 520,
               fontFamily: "var(--font-serif), serif",
               fontWeight: 300,
-              fontStyle: "italic",
               fontSize: 17,
               lineHeight: 1.75,
               color: "var(--mono-1)",
@@ -130,26 +124,44 @@ export function OverMij({ c }: { c: Content }) {
             >
               {o.titelsLabel}
             </p>
-            <div
-              style={{
-                fontFamily: "var(--font-sans), sans-serif",
-                fontWeight: 500,
-                fontSize: 15,
-                color: "var(--brass)",
-              }}
-            >
-              {o.titel1}{" "}
-              <span style={{ color: "var(--mono-2)", fontWeight: 400 }}>{o.titel1sub}</span>
+            <div style={{ display: "flex", gap: 12, alignItems: "baseline" }}>
+              <span
+                aria-hidden
+                style={{ color: "var(--brass)", fontSize: 15, lineHeight: 1.6, flexShrink: 0 }}
+              >
+                —
+              </span>
+              <div
+                style={{
+                  fontFamily: "var(--font-serif), serif",
+                  fontWeight: 400,
+                  fontSize: 16,
+                  lineHeight: 1.6,
+                  color: "var(--title)",
+                }}
+              >
+                {o.titel1}{" "}
+                <span style={{ color: "var(--mono-1)" }}>{o.titel1sub}</span>
+              </div>
             </div>
-            <div
-              style={{
-                fontFamily: "var(--font-sans), sans-serif",
-                fontWeight: 500,
-                fontSize: 15,
-                color: "var(--brass)",
-              }}
-            >
-              {o.titel2}
+            <div style={{ display: "flex", gap: 12, alignItems: "baseline" }}>
+              <span
+                aria-hidden
+                style={{ color: "var(--brass)", fontSize: 15, lineHeight: 1.6, flexShrink: 0 }}
+              >
+                —
+              </span>
+              <div
+                style={{
+                  fontFamily: "var(--font-serif), serif",
+                  fontWeight: 400,
+                  fontSize: 16,
+                  lineHeight: 1.6,
+                  color: "var(--title)",
+                }}
+              >
+                {o.titel2}
+              </div>
             </div>
           </div>
         </Reveal>
