@@ -507,17 +507,28 @@ a {
 .faq-item[open] .faq-toggle::after {
   transform: scaleY(0);
 }
-/* Open/dicht-animatie zonder JS: de browser verbergt niet-samenvatting-
-   kinderen van een dichte <details> normaal met display:none, wat niet
-   animeerbaar is. `display: grid !important` overschrijft dat altijd, en de
-   rij-hoogte animeert dan zelf van 0fr (dicht) naar 1fr (open) — de
-   standaardtruc voor een CSS-only accordion. */
+/* Open/dicht-animatie (aangestuurd vanuit FaqItem.tsx via een `.is-open`-
+   klasse, NIET het `[open]`-attribuut zelf): de browser verbergt niet-
+   samenvatting-kinderen van een dichte <details> normaal met display:none,
+   wat niet animeerbaar is. `display: grid !important` overschrijft dat
+   altijd, en de rij-hoogte animeert dan van 0fr (dicht) naar 1fr (open) —
+   de standaardtruc voor een CSS-only accordion. Getest en bevestigd dat een
+   transitie op het `[open]`-attribuut zelf niet betrouwbaar animeert (de
+   browser lijkt de eigen toggle en de stijlwijziging intern samen te
+   voegen); via een gewone klasse, aangestuurd door FaqItem, werkt het wél
+   in beide richtingen.
+
+   Alle vier eigenschappen (rij-hoogte, opacity, transform, margin-top) delen
+   bewust exact dezelfde duur en easing-curve, anders werd de tekst al
+   volledig zichtbaar terwijl de rij nog groeide ("pop" op het einde i.p.v.
+   één vloeiende beweging). De translateY zorgt voor een echte glijdende
+   verschuiving, niet enkel een groeiend vak met tekst die erin verschijnt. */
 .faq-answer-wrap {
   display: grid !important;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: grid-template-rows 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.faq-item[open] .faq-answer-wrap {
+.faq-item.is-open .faq-answer-wrap {
   grid-template-rows: 1fr;
 }
 .faq-answer {
@@ -536,16 +547,16 @@ a {
   line-height: 1.7;
   color: var(--muted);
   opacity: 0;
+  transform: translateY(-10px);
   transition:
-    opacity 0.25s ease,
-    margin-top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    margin-top 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.faq-item[open] .faq-answer {
+.faq-item.is-open .faq-answer {
   margin-top: 14px;
   opacity: 1;
-  transition:
-    opacity 0.35s ease 0.08s,
-    margin-top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
 }
 @media (prefers-reduced-motion: reduce) {
   .faq-answer-wrap,

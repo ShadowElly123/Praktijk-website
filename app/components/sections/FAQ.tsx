@@ -2,13 +2,14 @@ import type { Content } from "../../lib/locale";
 import { safeJsonLd } from "../../lib/jsonld";
 import { Reveal } from "../Reveal";
 import { SectionKicker } from "../SectionKicker";
+import { FaqItem } from "../FaqItem";
 
 /**
  * Veelgestelde vragen — een rustige, gestapelde lijst van native `<details>`-
- * elementen: uitklapbaar zonder JavaScript, en de tekst blijft in de DOM
- * aanwezig (goed voor crawlers en `Ctrl+F`) ook als het dichtgeklapt is.
- * Zelfde haarlijn-dividers als de Praktisch-sectie, brass-plus/min als
- * open/dicht-indicator i.p.v. een los icoon-lettertype.
+ * elementen (via FaqItem): de tekst blijft in de DOM aanwezig (goed voor
+ * crawlers en `Ctrl+F`) ook als het dichtgeklapt is. Zelfde haarlijn-dividers
+ * als de Praktisch-sectie, brass-plus/min als open/dicht-indicator i.p.v. een
+ * los icoon-lettertype. Open/dicht-animatie: zie FaqItem.tsx.
  */
 export function FAQ({ c }: { c: Content }) {
   const f = c.faq;
@@ -59,19 +60,7 @@ export function FAQ({ c }: { c: Content }) {
         <Reveal delay={0.08}>
           <div>
             {f.items.map((item) => (
-              <details key={item.q} className="faq-item">
-                <summary className="faq-question">
-                  <span>{item.q}</span>
-                  <span aria-hidden className="faq-toggle" />
-                </summary>
-                {/* faq-answer-wrap is de grid-track die van 0fr naar 1fr animeert
-                    bij open/dicht; faq-answer zelf clipt (overflow:hidden) en
-                    faded lichtjes mee, voor een zachte in plaats van abrupte
-                    uitklap — puur CSS, geen JavaScript nodig. */}
-                <div className="faq-answer-wrap">
-                  <p className="faq-answer">{item.a}</p>
-                </div>
-              </details>
+              <FaqItem key={item.q} q={item.q} a={item.a} />
             ))}
           </div>
         </Reveal>
