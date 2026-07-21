@@ -138,7 +138,16 @@ a {
    tot de rand doorbloedt. */
 .werkwijze-foto {
   position: absolute;
-  inset: 0;
+  /* Verticaal ingekort tot exact het tekstblok ernaast: dezelfde 16vh boven- en
+     ondermarge als de tekstkolom-padding, zodat de bovenrand van de foto op één
+     lijn ligt met de "Werkwijze"-kop i.p.v. tot de sectiebovenkant door te lopen.
+     Links/rechts blijft 0 → rechts loopt het beeld nog steeds vol tot de rand. */
+  inset: 16vh 0;
+  /* De scroll-parallax hieronder (.split__media img) schaalt en verschuift het
+     beeld tijdens het scrollen; zonder clip zou dat zichtbaar boven/onder de
+     sectiegrens uitsteken. overflow:hidden houdt de rand strak op de grens,
+     de mask hieronder blijft zorgen voor de zachte fade. */
+  overflow: hidden;
   -webkit-mask-image:
     linear-gradient(to right, transparent 0%, #000 22%, #000 100%),
     linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%);
@@ -188,6 +197,11 @@ a {
     aspect-ratio: 1086 / 1448;
     min-height: 0;
     max-height: 78vh;
+  }
+  /* Gestapeld staat de foto boven de tekst (niet ernaast), dus geen 16vh-inkorting
+     nodig: het beeld vult de aspect-ratio-box volledig. */
+  .werkwijze-foto {
+    inset: 0;
   }
   /* Beeld boven de tekst wanneer werkwijze stapelt (bij OverMij staat het beeld al eerst). */
   .split--werkwijze .split__media {

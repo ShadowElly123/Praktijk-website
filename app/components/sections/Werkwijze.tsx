@@ -133,6 +133,7 @@ export function Werkwijze({ c }: { c: Content }) {
             sizes="(max-width: 820px) 100vw, 50vw"
             style={{
               objectFit: "cover",
+              objectPosition: "center bottom",
               filter: "saturate(0.82) contrast(1.03) brightness(0.9)",
             }}
           />
