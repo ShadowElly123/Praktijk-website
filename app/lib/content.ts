@@ -1,176 +1,152 @@
 /* ------------------------------------------------------------------
-   CONTENT: dit is het "lichte CMS".
-   Alle teksten van de site staan hier op één plek, per taal (nl / en).
-   Pas hier tekst aan; de site werkt de rest automatisch bij.
+   CONTENT — het "lichte CMS".
+   Alle zichtbare tekst staat hier op één plek, per taal (nl / en).
+   Pas hier tekst aan; de componenten werken automatisch bij.
 
-   BELANGRIJK: de Nederlandse kernteksten die Lucas aanleverde staan
-   LETTERLIJK bewaard (zie PRD). Niet vertalen/herschrijven zonder overleg.
-   De officiële, deontologisch verplichte titels staan in beide talen
-   bewust in het Nederlands.
-
-   CONCEPT: de pagina is opgebouwd als een muziekstuk (Lucas is muzikant,
-   zijn bureau is een omgebouwde piano). Secties zijn "delen" met een
-   tempo-aanduiding; het citaat is een intermezzo met fermate.
+   BELANGRIJK
+   - De Nederlandse kernteksten van Lucas staan LETTERLIJK bewaard
+     (Verwelkoming, Over mij, Praktisch, microcopy). Niet vrij vertalen
+     of herschrijven zonder overleg.
+   - De officiële, deontologisch verplichte titels staan exact en in
+     beide talen bewust in het Nederlands.
+   - `werkwijze.themes` benoemt vragen rond geaardheid, gender en andersheid
+     als thema's waar de praktijk ruimte voor maakt (PRD-conform: dit mag wél
+     genoemd worden). Wat vermeden wordt is Lucas' eigen zelf-outing en
+     klinische labels — DEFINITIEVE formulering te bevestigen met Lucas.
 ------------------------------------------------------------------- */
-
-export type Lang = "nl" | "en";
-
-export const LANGS: Lang[] = ["nl", "en"];
-
-// Deontologisch exact voorgeschreven. Nooit vrij vertalen.
-const OFFICIELE_TITELS = [
-  "Klinisch psycholoog (Erkend door de Psychologencommissie, met visum).",
-  "In opleiding tot psychoanalytisch therapeut.",
-];
-
-// Officiële registratie (aangeleverd door Lucas).
-const REGISTRATIE = {
-  visum: "374462",
-  erkenning: "991135455",
-  ondernemingsnummer: "0790.741.228",
-};
-
-const TELEFOON = { display: "0493 02 05 43", href: "tel:+32493020543" };
 
 export const content = {
   nl: {
-    htmlLang: "nl",
-    langLabel: "NL",
-    otherLangLabel: "EN",
-
-    nav: {
-      welkom: "Welkom",
-      werkwijze: "Werkwijze",
-      overMij: "Over mij",
-      praktisch: "Praktisch",
-      contact: "Contact",
+    meta: {
+      title: "Klinisch psycholoog Gent · Gesprekstherapie · Lucas Borghys",
+      description:
+        "Klinisch psycholoog in Gent, bij de Boekentoren. Gesprekstherapie vanuit een psychoanalytische houding, met ruimte voor elk verhaal. Wees welkom, en vertel.",
     },
-
-    hero: {
-      // OPEN VRAAG (PRD): Lucas kiest nog de definitieve quote.
-      // Dit is een voorlopige keuze in zijn eigen woorden.
-      quote: "Wees welkom, en vertel.",
-      quoteIsPlaceholder: true,
-      badge: "ouverture",
+    site: {
       name: "Lucas Borghys",
       role: "Klinisch psycholoog · Gent",
-      scrollCue: "Kom binnen",
+      rail: "Klinisch psycholoog · psychoanalytische praktijk",
     },
-
-    welkom: {
-      movement: "I",
-      kicker: "Verwelkoming",
-      tempo: "cantabile",
-      ghost: "vertel",
-      // LETTERLIJKE KERNTEKST. Niet wijzigen zonder overleg.
-      body: "Wees welkom, en vertel. Dat is de basis van waaruit we vertrekken en waarop we verder gaan. Ieder mens wordt vroeg of laat geconfronteerd met een worsteling, het leven voelt dan niet meer zo voorspelbaar of behapbaar aan en dit is voor velen een punt om de stap naar gesprekstherapie te zetten. Via het spreken proberen we vat te krijgen op die worsteling, proberen we woorden te vinden voor datgene dat voor onszelf nog geen duidelijkheid heeft, geen verhaal. Ik nodig je uit om samen te komen spreken over waar jij tegenaan botst en in hoeverre deze moeilijkheden betekenisvol zijn in jouw bredere levensverhaal. Elk verhaal, elke moeilijkheid is welkom.",
+    hero: {
+      titel: "Wees welkom,",
+      accent: "en vertel.",
+      sub: "Klinisch psycholoog te Gent. Een psychoanalytische gesprekspraktijk, met ruimte voor andersheid en voor wat nog geen woorden heeft.",
+      scroll: "Scroll",
     },
-
-    // NIEUWE COPY (op basis van tone-of-voice uit de PRD): te bevestigen met Lucas.
+    verwelkoming: {
+      label: "Verwelkoming",
+      // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg.
+      body: "Wees welkom, en vertel. Dat is de basis van waaruit we vertrekken en waarop we verder gaan. Ieder mens wordt vroeg of laat geconfronteerd met een worsteling, het leven voelt dan niet meer zo voorspelbaar of behapbaar aan en dit is voor velen een punt om de stap naar gesprekstherapie te zetten. Via het spreken proberen we vat te krijgen op die worsteling, proberen we woorden te vinden voor datgene dat voor onszelf nog geen duidelijkheid heeft, geen verhaal. Ik nodig je uit om samen te komen spreken over waar jij tegenaan botst en in hoeverre deze moeilijkheden betekenisvol zijn in jouw bredere levensverhaal. ",
+      accent: "Elk verhaal, elke moeilijkheid is welkom.",
+    },
     intermezzo: {
-      label: "intermezzo",
-      quote:
-        "Ruimte voor het unieke, voor warme andersheid, en om serieus genomen te worden in wat weegt.",
+      quote: "We zijn allemaal vreemden voor onszelf, en pas wanneer we tot een ander spreken, wordt deze vreemdheid een thuis.",
     },
-
     werkwijze: {
-      movement: "II",
-      kicker: "Werkwijze",
-      tempo: "adagio",
-      ghost: "spreken",
-      title: "Traag, talig, en met ruimte voor je verhaal.",
-      paragraphs: [
-        "Ik werk psychoanalytisch georiënteerd. Dat betekent: geen snelle technieken of afvinklijstjes, maar tijd en ruimte om te spreken. We vertrekken van wat zich aandient en volgen de draad van je eigen woorden.",
-        // NIEUWE COPY: impliciet queer-welkom, zonder labels of outing. Te bevestigen met Lucas.
-        "Sommige dingen laten zich moeilijker uitspreken. Vragen rond verlangen, lichaam, geaardheid of identiteit, of het gevoel anders te zijn dan wat de omgeving verwacht. Net die verhalen krijgen hier alle ruimte, zonder dat er iets uitgelegd of verantwoord hoeft te worden.",
-        "Via het spreken proberen we vat te krijgen op wat nog geen vorm heeft gevonden. Niet elke moeilijkheid heeft meteen een verklaring; soms is het zoeken naar taal voor iets dat er nog geen had, al een deel van de weg.",
-      ],
+      label: "Werkwijze",
+      title: "Tijd en ruimte voor jouw verhaal.",
+      body: "De gesprekken vertrekken vanuit een psychoanalytische houding: traag, associatief, aandachtig en zonder vooropgesteld protocol. Er is geen checklist die bepaalt wat belangrijk is. Dat ontdekken we samen, in het spreken zelf.",
+      accent:
+        "Zo ontstaat ruimte voor wat nog geen vorm had: het andere, en de opgekuiste chaos van een verhaal dat nog geschreven moet worden.",
       themesTitle: "Waar ik in het bijzonder ruimte voor maak",
+      // Weerspiegelt de drie thema's uit de PRD ("Claimed themes"); definitieve
+      // formulering nog TE BEVESTIGEN MET LUCAS.
       themes: [
-        "Seksualiteit en genderproblemen",
-        "Kunstenaars die hun plekje onder de zon nog moeten vinden",
-        "Mensen die last hebben van hun denken: dwanggedachten, psychotische of bipolaire kwetsbaarheden",
-      ],
-    },
-
-    overMij: {
-      movement: "III",
-      kicker: "Over mij",
-      tempo: "tenuto",
-      ghost: "verhaal",
-      // LETTERLIJKE KERNTEKST. Niet wijzigen zonder overleg.
-      body: "Ik ben klinisch psycholoog en ik heb een passie voor en ervaring met gesprekstherapie. Zelf probeer ik mijn werk als therapeut te verfijnen door deel te nemen aan een therapieopleiding in de psychoanalyse en deel te nemen aan lezingen en opleidingsdagen.",
-      // Subtiel verweven werkervaring (PRD).
-      ervaring:
-        "Eerder werkte en leerde ik onder meer bij groepspraktijk Tondel, huis voor psychotherapie, Anker en de huiskamer, en deed ik vrijwilligerswerk in PVT De Wadi bij de Driesprong.",
-      titelsLabel: "Titels & erkenning",
-      titels: OFFICIELE_TITELS,
-      registratieLabel: "Registratie",
-      registratie: [
-        `Visumnummer ${REGISTRATIE.visum}`,
-        `Erkenningsnummer ${REGISTRATIE.erkenning}`,
-        `Ondernemingsnummer ${REGISTRATIE.ondernemingsnummer}`,
+        "Vragen rond seksualiteit, verlangen, gender en identiteit.",
+        "Kunstenaars en creatieve geesten die hun plek nog zoeken.",
+        "Wie vastloopt in het eigen denken — dwingende gedachten, of een psychotische of bipolaire kwetsbaarheid.",
       ],
       imageCaption:
         "De praktijk: een historische stadswoning bij de Boekentoren, met hoge plafonds, een tot bureau omgebouwde piano, veel groen en zacht licht.",
     },
-
-    praktisch: {
-      movement: "IV",
-      kicker: "Praktisch",
-      tempo: "coda",
-      title: "Praktisch & contact",
-      locatie: {
-        label: "Praktijk",
-        value: "Sint-Pietersnieuwstraat 97, 9000 Gent",
-        note: "Naast de Boekentoren, in het hart van de studentenbuurt.",
-      },
-      talen: { label: "Talen", value: "Nederlands & Engels" },
-      vorm: {
-        label: "Vorm",
-        value: "Op gesprek, of via video en telefoon",
-      },
-      tarief: {
-        label: "Tarief",
-        // Bewust een richtprijs/richtduur, geen strikte bedragen (PRD).
-        value:
-          "Een richtprijs en richtduur bespreken we bij de intake; de concrete afspraken stemmen we daar samen af.",
-      },
-      terugbetaling: {
-        label: "Terugbetaling",
-        // LETTERLIJKE KERNTEKST. Niet wijzigen zonder overleg.
-        value:
-          "Niet-geconventioneerd. Gedeeltelijke terugbetaling van het ziekenfonds is mogelijk; u mag uw formulier meebrengen naar de sessie.",
-      },
-      telefoonLabel: "GSM",
-      telefoon: TELEFOON,
-      emailNote: "E-mail: via het contactformulier hieronder.",
-      kaart: {
-        title: "Vind de weg",
-        pin: "Praktijk",
-        pinAddress: "Sint-Pietersnieuwstraat 97",
-        landmark: "Boekentoren",
-        water: "Schelde",
-        streets: {
-          main: "Sint-Pietersnieuwstraat",
-          overpoort: "Overpoortstraat",
-          rozier: "Rozier",
-        },
-        routeLabel: "Route",
-        routeHref:
-          "https://www.google.com/maps/search/?api=1&query=Sint-Pietersnieuwstraat+97+9000+Gent",
-        routeNote: "Opent in uw eigen kaart-app.",
-      },
-      // LETTERLIJKE KERNTEKST. Niet wijzigen zonder overleg.
-      contactMicrocopy:
-        "Een voicemail is aangeraden indien ik telefonisch niet bereikbaar ben. Ik probeer binnen de dag een antwoord te formuleren. Houd zeker ook uw spamfolder in het oog wanneer u een antwoord verwacht.",
-      email: "praktijkadres-staat-in-env",
+    overMij: {
+      label: "Over mij",
+      // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg.
+      body: "Ik ben klinisch psycholoog en ik heb een passie voor en ervaring met gesprekstherapie. Zelf probeer ik mijn werk als therapeut te verfijnen door deel te nemen aan een therapieopleiding in de psychoanalyse en deel te nemen aan lezingen en opleidingsdagen.",
+      ervaring:
+        "Eerdere ervaring bij groepspraktijk Tondel, huis voor psychotherapie Anker en de Huiskamer, en vrijwilligerswerk in PVT De Wadi bij de Driesprong.",
+      titelsLabel: "Titels & erkenning",
+      titel1: "Klinisch psycholoog",
+      titel1sub: "(Erkend door de Psychologencommissie, met visum).",
+      titel2: "In opleiding tot psychoanalytisch therapeut.",
+      badge: "Lucas Borghys · Gent",
+      registratieLabel: "Registratie",
+      registratie: [
+        "Visumnummer 374462",
+        "Erkenningsnummer 991135455",
+        "Ondernemingsnummer 0790.741.228",
+      ],
     },
-
-    form: {
+    praktisch: {
+      label: "Praktisch & contact",
+      talenLabel: "Talen",
+      talenValue: "Nederlands & Engels",
+      vormLabel: "Vorm",
+      vormValue: "Op gesprek, of via video en telefoon",
+      tariefLabel: "Tarief",
+      tariefValue:
+        "Richtprijs en richtduur worden toegelicht tijdens het intakegesprek. Definitieve afspraken horen bij die eerste kennismaking.",
+      terugbetalingLabel: "Terugbetaling",
+      // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg.
+      terugbetalingValue:
+        "Niet-geconventioneerd. Gedeeltelijke terugbetaling van het ziekenfonds is mogelijk. U mag uw formulier meebrengen naar de sessie.",
+      betalingLabel: "Betaling",
+      betalingValue: "Bancontact app (Payconiq) of overschrijving",
+      betalingNote: "IBAN BE53 3632 2546 8153",
+      // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg.
+      microcopy:
+        "Een voicemail is aangeraden indien ik telefonisch niet bereikbaar ben. Ik probeer binnen de dag een antwoord te formuleren.",
+      gsmLabel: "GSM",
+      gsm: "0493 02 05 43",
+      gsmHref: "tel:+32493020543",
+    },
+    faq: {
+      label: "Veelgestelde vragen",
+      items: [
+        {
+          q: "Wordt een sessie terugbetaald door het ziekenfonds?",
+          a: "Deze praktijk werkt niet binnen de RIZIV-conventie, daarom ligt er geen vast tarief per zitting vast. De meeste ziekenfondsen betalen desondanks een deel terug. Uw mutualiteit kan dat voor u nakijken, breng het formulier gerust mee.",
+        },
+        {
+          q: "Wat kost een sessie?",
+          a: "Een bedrag vindt u hier niet vermeld. Bij het eerste gesprek bekijken we samen wat haalbaar is, zowel qua tempo als budget.",
+        },
+        {
+          q: "Wat is het verschil tussen een psycholoog en een psychotherapeut?",
+          a: "Een psycholoog draagt een wettelijk beschermde titel, verkregen na een universitaire opleiding. Een psychotherapeut volgt daarnaast een langdurige, specifieke opleiding in een bepaalde gespreksmethode, bij mij de psychoanalyse. Het eerste is afgerond, het tweede nog in opleiding.",
+        },
+        {
+          q: "Kan de eerste sessie via video of telefoon?",
+          a: "Ja. Sommige mensen starten liever van thuis uit, dat kan hier net zo goed als een gesprek op de praktijk zelf.",
+        },
+        {
+          q: "Hoeveel sessies heb ik nodig?",
+          a: "Dat vooraf vastleggen zou ingaan tegen hoe deze gesprekken werken. De duur groeit mee met wat nodig blijkt, niet omgekeerd.",
+        },
+        {
+          q: "Waar bevindt de praktijk zich?",
+          a: "Centraal in Gent, op wandelafstand van het Zuid. Parkeren kan aan de achterkant van het gebouw, u rijdt gewoon de doorrit onder het gebouw door.",
+        },
+        {
+          q: "Kan ik in het Engels terecht?",
+          a: "Ja, sommige gesprekken lopen nu eenmaal makkelijker in het Engels, dat kan hier evengoed.",
+        },
+        {
+          q: "Is dit een veilige plek voor vragen rond gender, geaardheid of identiteit?",
+          a: "Ja. Wat u meebrengt hoeft niet eerst herkenbaar of behapbaar te zijn. Vragen over wie u bent, van wie u houdt, hoe uw lichaam aanvoelt, horen hier evengoed thuis, ook als het nog geen naam heeft.",
+        },
+        {
+          q: "Werkt u ook met kunstenaars of mensen met een onconventionele levensstijl?",
+          a: "Zeker. Een leven dat niet in de gewone mal past, een keuze waar u zich voor verantwoordt, iets waar u zich stilletjes voor schaamt, een gewoonte die u liever verzwijgt: voor dat alles is hier plaats.",
+        },
+      ],
+    },
+    contact: {
       title: "Neem contact op",
       intro:
         "Laat kort iets weten en ik neem contact met u op. Wat u hier deelt, blijft vertrouwelijk.",
+    },
+    form: {
       onderwerp: "Onderwerp",
       toelichting: "Toelichting",
       toelichtingHint: "Kort volstaat. U hoeft nu nog niets uit te leggen.",
@@ -178,19 +154,26 @@ export const content = {
       telefoonLabel: "Telefoonnummer",
       beschikbaarheid: "Weekbeschikbaarheden",
       beschikbaarheidHint: "Bijv. weekdagen na 17u, of woensdagvoormiddag.",
-      submit: "Versturen",
+      verstuur: "Versturen",
       sending: "Versturen…",
       success:
-        "Dank u. Uw bericht is verstuurd. Ik probeer binnen de dag te antwoorden.",
+        "Dank u dat u de stap zette om te schrijven. Ik lees dit met aandacht en laat binnen de dag iets weten. Hoort u niets, kijk dan gerust nog eens in uw spamfolder.",
       error:
         "Er ging iets mis bij het versturen. Belt u gerust, of probeer het later opnieuw:",
-      privacy: "Privacybeleid",
-      privacyNote:
-        "Uw gegevens worden enkel gebruikt om uw vraag te beantwoorden en worden niet gedeeld. Geen tracking, geen advertentiecookies.",
-      required: "Vul dit veld in.",
-      invalidEmail: "Controleer het e-mailadres.",
+      requiredMsg: "Vul dit veld in.",
+      emailMsg: "Controleer het e-mailadres.",
     },
-
+    locatie: {
+      label: "Locatie",
+      praktijkLabel: "Praktijk",
+      adres: "Sint-Pietersnieuwstraat 97, 9000 Gent",
+      caption: "Naast de Boekentoren, in het hart van Gent.",
+      mapAria:
+        "Gestileerde kaart van de buurt rond de praktijk: Sint-Pietersnieuwstraat 97 in Gent, tussen de Boekentoren, de universiteitsgebouwen en de Muinkschelde.",
+      mapPin: "Praktijk",
+      routeLabel: "Route",
+      routeNote: "Opent in uw eigen kaart-app.",
+    },
     crisis: {
       title: "In geval van crisis",
       intro:
@@ -201,144 +184,172 @@ export const content = {
         { label: "Spoed / noodgeval", value: "112", href: "tel:112" },
       ],
     },
-
     footer: {
-      tagline: "Elk verhaal, elke moeilijkheid is welkom.",
-      rights: "Alle rechten voorbehouden.",
       privacy: "Privacybeleid",
-      legal: `Visum ${REGISTRATIE.visum} · Erkenning ${REGISTRATIE.erkenning} · KBO ${REGISTRATIE.ondernemingsnummer}`,
-      colophon: "Ontworpen met zorg. Beelden en quote nog te vervangen.",
+      rights: "Alle rechten voorbehouden.",
+      legal: "Visum 374462 · Erkenning 991135455 · KBO 0790.741.228",
+    },
+    privacy: {
+      title: "Privacybeleid",
+      draftNote: "Concept — juridisch na te kijken vóór livegang.",
+      intro:
+        "Deze praktijk gaat zorgvuldig om met uw gegevens. Hieronder leest u welke gegevens worden verwerkt en waarom.",
+      sections: [
+        {
+          h: "Welke gegevens",
+          p: "Via het contactformulier: enkel wat u zelf invult (onderwerp, toelichting, e-mailadres en optioneel telefoonnummer en beschikbaarheden). Daarnaast verzamelt deze website geanonimiseerde bezoekstatistieken (zie 'Analytics' hieronder). Er worden geen andere persoonsgegevens verzameld.",
+        },
+        {
+          h: "Doel",
+          p: "Uw contactgegevens worden uitsluitend gebruikt om uw vraag te beantwoorden en om contact met u op te nemen. Ze worden niet gedeeld met derden en niet voor andere doeleinden gebruikt.",
+        },
+        {
+          h: "Bewaring",
+          p: "Het contactformulier bewaart niets op de server; uw bericht wordt enkel als e-mail doorgestuurd. Ontvangen e-mails worden niet langer bewaard dan nodig om uw vraag af te handelen.",
+        },
+        {
+          h: "Analytics — zonder cookies",
+          p: "Deze website gebruikt PostHog (EU-servers) om te zien hoe de site gebruikt wordt: welke pagina's en secties bekeken worden, hoe ver er gescrold wordt, waar geklikt wordt en of er technische fouten optreden. Hiervoor worden géén cookies geplaatst en wordt er niets op uw toestel opgeslagen — vandaar dat u geen cookiemelding ziet.",
+        },
+        {
+          h: "U blijft anoniem",
+          p: "Om bezoeken te kunnen tellen berekent PostHog op de server een onomkeerbare code uit uw IP-adres en browser, met een sleutel die dagelijks verandert en daarna gewist wordt. Uit die code valt niets over u te herleiden. Er wordt geen profiel opgebouwd, u wordt niet herkend bij een volgend bezoek, en er worden geen sessieopnames gemaakt. Wat u in het contactformulier typt, wordt nooit meegemeten; enkel dat er een bericht verzonden is. De browserinstelling 'Do Not Track' wordt gerespecteerd.",
+        },
+        {
+          h: "Uw rechten",
+          p: "U hebt het recht op inzage, correctie en verwijdering van uw gegevens. Neem daarvoor contact op via het contactformulier of telefonisch.",
+        },
+      ],
+      back: "Terug naar de startpagina",
     },
   },
 
   en: {
-    htmlLang: "en",
-    langLabel: "EN",
-    otherLangLabel: "NL",
-
-    nav: {
-      welkom: "Welcome",
-      werkwijze: "Approach",
-      overMij: "About",
-      praktisch: "Practical",
-      contact: "Contact",
+    meta: {
+      title: "English-speaking psychologist in Ghent · Lucas Borghys",
+      description:
+        "Clinical psychologist in Ghent, therapy in English. A psychoanalytic practice with room for every story, every difficulty. Be welcome, and speak.",
     },
-
-    hero: {
-      quote: "Be welcome, and speak.",
-      quoteIsPlaceholder: true,
-      badge: "ouverture",
+    site: {
       name: "Lucas Borghys",
       role: "Clinical psychologist · Ghent",
-      scrollCue: "Come in",
+      rail: "Clinical psychologist · psychoanalytic practice",
     },
-
-    welkom: {
-      movement: "I",
-      kicker: "Welcome",
-      tempo: "cantabile",
-      ghost: "speak",
-      body: "Be welcome, and speak. That is the ground we set out from and keep returning to. Sooner or later, everyone meets a struggle; life no longer feels predictable or manageable, and for many this is the point where they take the step toward talking therapy. Through speaking we try to get a hold on that struggle, to find words for what has, for ourselves, no clarity yet, no story. I invite you to come and speak together about what you run up against, and how far these difficulties are meaningful within your broader life story. Every story, every difficulty is welcome.",
+    hero: {
+      titel: "Be welcome,",
+      accent: "and speak.",
+      sub: "Clinical psychologist in Ghent. A psychoanalytic talking practice, with room for otherness and for what does not yet have words.",
+      scroll: "Scroll",
     },
-
+    verwelkoming: {
+      label: "Welcome",
+      body: "Be welcome, and speak. That is the ground we set out from and keep returning to. Sooner or later every person meets a struggle; life no longer feels predictable or manageable, and for many this is the moment to take the step toward talking therapy. Through speaking we try to get a hold on that struggle, to find words for what has no clarity yet, no story. I invite you to come and speak together about what you are up against, and how far these difficulties are meaningful within your broader life story. ",
+      accent: "Every story, every difficulty is welcome.",
+    },
     intermezzo: {
-      label: "intermezzo",
-      quote:
-        "Room for the singular, for a warm otherness, and to be taken seriously in what weighs on you.",
+      quote: "The place where I fit will not exist until I make it myself.",
     },
-
     werkwijze: {
-      movement: "II",
-      kicker: "Approach",
-      tempo: "adagio",
-      ghost: "speaking",
-      title: "Slow, spoken, and with room for your story.",
-      paragraphs: [
-        "I work from a psychoanalytic orientation. That means: no quick techniques or checklists, but time and space to speak. We start from whatever presents itself and follow the thread of your own words.",
-        "Some things are harder to say out loud. Questions of desire, the body, orientation or identity, or the sense of being other than what your surroundings expect. Precisely those stories are given full room here, without anything needing to be explained or justified.",
-        "Through speaking we try to grasp what has not yet found a shape. Not every difficulty has an immediate explanation; sometimes the search for language for something that had none is already part of the way.",
-      ],
+      label: "Approach",
+      title: "Time and room for your story.",
+      body: "The conversations begin from a psychoanalytic stance: slow, associative, attentive and without a preset protocol. There is no checklist that decides what matters. We discover that together, in the speaking itself.",
+      accent:
+        "So room opens for what had no form yet: the other, and the ordered chaos of a story still to be written.",
       themesTitle: "Where I make particular room",
       themes: [
-        "Sexuality and gender questions",
-        "Artists still finding their place in the sun",
-        "People troubled by their own thinking: intrusive thoughts, psychotic or bipolar vulnerabilities",
-      ],
-    },
-
-    overMij: {
-      movement: "III",
-      kicker: "About",
-      tempo: "tenuto",
-      ghost: "story",
-      body: "I am a clinical psychologist with a passion for, and experience in, talking therapy. I try to refine my work as a therapist by taking part in a training in psychoanalysis and by attending lectures and study days.",
-      ervaring:
-        "I previously worked and trained at group practice Tondel, huis voor psychotherapie, Anker and de huiskamer, and volunteered at PVT De Wadi at de Driesprong.",
-      titelsLabel: "Titles & recognition",
-      titels: OFFICIELE_TITELS,
-      registratieLabel: "Registration",
-      registratie: [
-        `Visa number ${REGISTRATIE.visum}`,
-        `Recognition number ${REGISTRATIE.erkenning}`,
-        `Company number ${REGISTRATIE.ondernemingsnummer}`,
+        "Questions of sexuality, desire, gender and identity.",
+        "Artists and creative minds still finding their place.",
+        "Those caught in their own thinking — intrusive thoughts, or a psychotic or bipolar vulnerability.",
       ],
       imageCaption:
         "The practice: a historic townhouse near the Boekentoren, with high ceilings, a piano turned into a desk, abundant greenery and soft light.",
     },
-
-    praktisch: {
-      movement: "IV",
-      kicker: "Practical",
-      tempo: "coda",
-      title: "Practical & contact",
-      locatie: {
-        label: "Practice",
-        value: "Sint-Pietersnieuwstraat 97, 9000 Ghent",
-        note: "Beside the Boekentoren, in the heart of the student quarter.",
-      },
-      talen: { label: "Languages", value: "Dutch & English" },
-      vorm: {
-        label: "Format",
-        value: "In person, or by video and phone",
-      },
-      tarief: {
-        label: "Fee",
-        value:
-          "A guide price and guide duration are discussed at intake; we settle the concrete arrangements together there.",
-      },
-      terugbetaling: {
-        label: "Reimbursement",
-        value:
-          "Niet-geconventioneerd. Gedeeltelijke terugbetaling van het ziekenfonds is mogelijk; u mag uw formulier meebrengen naar de sessie.",
-      },
-      telefoonLabel: "Mobile",
-      telefoon: TELEFOON,
-      emailNote: "Email: through the contact form below.",
-      kaart: {
-        title: "Find your way",
-        pin: "Practice",
-        pinAddress: "Sint-Pietersnieuwstraat 97",
-        landmark: "Boekentoren",
-        water: "Schelde",
-        streets: {
-          main: "Sint-Pietersnieuwstraat",
-          overpoort: "Overpoortstraat",
-          rozier: "Rozier",
-        },
-        routeLabel: "Directions",
-        routeHref:
-          "https://www.google.com/maps/search/?api=1&query=Sint-Pietersnieuwstraat+97+9000+Gent",
-        routeNote: "Opens in your own map app.",
-      },
-      contactMicrocopy:
-        "A voicemail is advised if I cannot be reached by phone. I try to reply within the day. Do keep an eye on your spam folder when expecting an answer.",
-      email: "praktijkadres-staat-in-env",
+    overMij: {
+      label: "About",
+      body: "I am a clinical psychologist with a passion for and experience in talking therapy. I keep refining my work as a therapist by taking part in a psychoanalytic training programme and by attending lectures and study days.",
+      ervaring:
+        "Earlier experience at group practice Tondel, house for psychotherapy Anker and de Huiskamer, and volunteer work in PVT De Wadi at de Driesprong.",
+      titelsLabel: "Titles & recognition",
+      // Officiële titels bewust in het Nederlands — deontologisch exact.
+      titel1: "Klinisch psycholoog",
+      titel1sub: "(Erkend door de Psychologencommissie, met visum).",
+      titel2: "In opleiding tot psychoanalytisch therapeut.",
+      badge: "Lucas Borghys · Ghent",
+      registratieLabel: "Registration",
+      registratie: [
+        "Visa number 374462",
+        "Recognition number 991135455",
+        "Company number 0790.741.228",
+      ],
     },
-
-    form: {
+    praktisch: {
+      label: "Practical & contact",
+      talenLabel: "Languages",
+      talenValue: "Dutch & English",
+      vormLabel: "Format",
+      vormValue: "In person, or by video and phone",
+      tariefLabel: "Fee",
+      tariefValue:
+        "Indicative rate and session length are explained during the intake conversation. Definitive arrangements belong to that first meeting.",
+      terugbetalingLabel: "Reimbursement",
+      terugbetalingValue:
+        "Non-conventioned practice. Partial reimbursement from your health insurance fund may be possible; you may bring your form to the session.",
+      betalingLabel: "Payment",
+      betalingValue: "Bancontact app (Payconiq) or bank transfer",
+      betalingNote: "IBAN BE53 3632 2546 8153",
+      microcopy:
+        "A voicemail is recommended if I am unreachable by phone. I aim to respond within the day.",
+      gsmLabel: "Mobile",
+      gsm: "0493 02 05 43",
+      gsmHref: "tel:+32493020543",
+    },
+    faq: {
+      label: "Frequently asked questions",
+      items: [
+        {
+          q: "Is a session reimbursed by health insurance?",
+          a: "This practice does not work within the RIZIV convention system, so there is no fixed fee per session. Most health funds still reimburse a portion. Your mutuality can check this for you, feel free to bring the form.",
+        },
+        {
+          q: "What does a session cost?",
+          a: "No fixed amount is listed here. At the first conversation we look together at what fits, both in pace and in budget.",
+        },
+        {
+          q: "What is the difference between a psychologist and a psychotherapist?",
+          a: "A psychologist holds a legally protected title, earned through a university degree. A psychotherapist also completes a long, specific training in a particular method of conversation, in my case psychoanalysis. One is finished, the other still underway.",
+        },
+        {
+          q: "Can the first session be by video or phone?",
+          a: "Yes. Some people prefer to start from home, that works just as well as meeting in person.",
+        },
+        {
+          q: "How many sessions will I need?",
+          a: "Fixing that in advance would work against how these conversations unfold. Length follows what turns out to be needed, not the other way round.",
+        },
+        {
+          q: "Where is the practice located?",
+          a: "Central in Ghent, within walking distance of the Zuid area. Parking is available at the back of the building, you simply drive through the passage beneath it.",
+        },
+        {
+          q: "Can I have sessions in English?",
+          a: "Yes, some conversations simply flow more easily in English, that works just as well here.",
+        },
+        {
+          q: "Is this a safe space for questions around gender, sexuality, or identity?",
+          a: "Yes. What you bring doesn't need to be recognisable or manageable from the start. Questions about who you are, who you love, how your body feels, belong here just as much, even without a name for it yet.",
+        },
+        {
+          q: "Do you also work with artists or people living unconventional lives?",
+          a: "Certainly. A life that doesn't fit the usual mould, a choice you find yourself explaining, something you quietly feel ashamed of, a habit you'd rather keep to yourself: there's room for all of it here.",
+        },
+      ],
+    },
+    contact: {
       title: "Get in touch",
       intro:
         "Leave a short note and I will get back to you. What you share here stays confidential.",
+    },
+    form: {
       onderwerp: "Subject",
       toelichting: "Message",
       toelichtingHint: "A few lines are enough. No need to explain everything now.",
@@ -346,17 +357,25 @@ export const content = {
       telefoonLabel: "Phone number",
       beschikbaarheid: "Weekly availability",
       beschikbaarheidHint: "E.g. weekdays after 5pm, or Wednesday mornings.",
-      submit: "Send",
+      verstuur: "Send",
       sending: "Sending…",
-      success: "Thank you. Your message has been sent. I try to reply within the day.",
+      success:
+        "Thank you for taking that step to write. I read this with care and will get back to you within the day. If nothing arrives, do take a peek in your spam folder.",
       error: "Something went wrong sending this. Feel free to call, or try again later:",
-      privacy: "Privacy policy",
-      privacyNote:
-        "Your details are used only to answer your question and are not shared. No tracking, no advertising cookies.",
-      required: "Please fill in this field.",
-      invalidEmail: "Please check the email address.",
+      requiredMsg: "Please fill in this field.",
+      emailMsg: "Please check the email address.",
     },
-
+    locatie: {
+      label: "Location",
+      praktijkLabel: "Practice",
+      adres: "Sint-Pietersnieuwstraat 97, 9000 Ghent",
+      caption: "Beside the Boekentoren, in the heart of Ghent.",
+      mapAria:
+        "Stylised map of the neighbourhood around the practice: Sint-Pietersnieuwstraat 97 in Ghent, between the Boekentoren, the university buildings and the Muinkschelde.",
+      mapPin: "Practice",
+      routeLabel: "Directions",
+      routeNote: "Opens in your own map app.",
+    },
     crisis: {
       title: "In case of crisis",
       intro:
@@ -367,15 +386,43 @@ export const content = {
         { label: "Emergency", value: "112", href: "tel:112" },
       ],
     },
-
     footer: {
-      tagline: "Every story, every difficulty is welcome.",
-      rights: "All rights reserved.",
       privacy: "Privacy policy",
-      legal: `Visa ${REGISTRATIE.visum} · Recognition ${REGISTRATIE.erkenning} · Company no. ${REGISTRATIE.ondernemingsnummer}`,
-      colophon: "Designed with care. Imagery and quote still to be replaced.",
+      rights: "All rights reserved.",
+      legal: "Visa 374462 · Recognition 991135455 · Company no. 0790.741.228",
+    },
+    privacy: {
+      title: "Privacy policy",
+      draftNote: "Draft — to be reviewed legally before going live.",
+      intro:
+        "This practice handles your data with care. Below you can read which data is processed and why.",
+      sections: [
+        {
+          h: "Which data",
+          p: "Via the contact form: only what you enter yourself (subject, message, email address and optionally phone number and availability). This website also collects anonymised visit statistics (see 'Analytics' below). No other personal data is collected.",
+        },
+        {
+          h: "Purpose",
+          p: "Your contact details are used solely to answer your question and to get in touch with you. They are not shared with third parties and not used for any other purpose.",
+        },
+        {
+          h: "Retention",
+          p: "The contact form stores nothing on the server; your message is only forwarded as an email. Received emails are kept no longer than needed to handle your question.",
+        },
+        {
+          h: "Analytics — without cookies",
+          p: "This website uses PostHog (EU servers) to see how the site is used: which pages and sections are viewed, how far people scroll, where they click, and whether technical errors occur. No cookies are placed for this and nothing is stored on your device — which is why you see no cookie notice.",
+        },
+        {
+          h: "You stay anonymous",
+          p: "To count visits, PostHog computes an irreversible code on the server from your IP address and browser, using a key that changes daily and is then deleted. Nothing about you can be derived from that code. No profile is built, you are not recognised on a return visit, and no session recordings are made. What you type in the contact form is never measured; only the fact that a message was sent. The browser's 'Do Not Track' setting is respected.",
+        },
+        {
+          h: "Your rights",
+          p: "You have the right to access, correct and delete your data. To do so, get in touch via the contact form or by phone.",
+        },
+      ],
+      back: "Back to the home page",
     },
   },
 } as const;
-
-export type Content = (typeof content)[Lang];

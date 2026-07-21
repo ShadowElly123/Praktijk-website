@@ -1,182 +1,264 @@
 "use client";
 
 import { useState } from "react";
-import { useLang } from "../lib/LanguageProvider";
+import posthog from "posthog-js";
+import type { Content } from "../lib/locale";
 
 type Status = "idle" | "sending" | "success" | "error";
+type Field = "onderwerp" | "toelichting" | "email";
 
-const field =
-  "w-full bg-transparent px-0 py-3 font-serif text-[1.02rem] text-[var(--text)] outline-none placeholder:text-[var(--text-faint)] border-b transition-colors duration-300";
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export function ContactForm() {
-  const { t } = useLang();
+const labelStyle: React.CSSProperties = {
+  fontFamily: "var(--font-mono), monospace",
+  fontSize: 11,
+  letterSpacing: "0.2em",
+  textTransform: "uppercase",
+  color: "var(--mono-2)",
+  marginBottom: 8,
+  display: "block",
+};
+
+const hintStyle: React.CSSProperties = {
+  fontFamily: "var(--font-serif), serif",
+  fontStyle: "italic",
+  fontSize: 13,
+  color: "var(--mono-1)",
+  marginTop: 8,
+};
+
+const errStyle: React.CSSProperties = {
+  fontFamily: "var(--font-mono), monospace",
+  fontSize: 12,
+  color: "#c98b76",
+  marginTop: 8,
+};
+
+/**
+ * Contactformulier (client). Vijf velden (onderwerp, toelichting, e-mail,
+ * telefoon, beschikbaarheid) met echte, zichtbare labels, client-validatie op de
+ * verplichte velden, submit-states en een honeypot-veld. De server slaat niets
+ * op; hij stuurt de inzending enkel door als e-mail.
+ */
+export function ContactForm({ c }: { c: Content }) {
+  const f = c.form;
+  const [values, setValues] = useState({
+    onderwerp: "",
+    toelichting: "",
+    email: "",
+    telefoon: "",
+    beschikbaarheid: "",
+    company: "",
+  });
+  const [errors, setErrors] = useState<Partial<Record<Field, string>>>({});
   const [status, setStatus] = useState<Status>("idle");
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form).entries());
+  function validate() {
+    const next: Partial<Record<Field, string>> = {};
+    if (!values.onderwerp.trim()) next.onderwerp = f.requiredMsg;
+    if (!values.toelichting.trim()) next.toelichting = f.requiredMsg;
+    if (!values.email.trim()) next.email = f.requiredMsg;
+    else if (!EMAIL_RE.test(values.email.trim())) next.email = f.emailMsg;
+    setErrors(next);
+    return Object.keys(next).length === 0;
+  }
 
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!validate()) return;
     setStatus("sending");
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(values),
       });
-      if (!res.ok) throw new Error("Request failed");
-      setStatus("success");
-      form.reset();
+      setStatus(res.ok ? "success" : "error");
+      if (res.ok && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
+        // Enkel het feit dát er verzonden is — nooit de ingevulde inhoud.
+        posthog.capture("contact_form_submitted");
+      }
     } catch {
       setStatus("error");
     }
   }
 
+  function update(field: keyof typeof values, value: string) {
+    setValues((v) => ({ ...v, [field]: value }));
+    if (field in errors) setErrors((prev) => ({ ...prev, [field]: undefined }));
+  }
+
   if (status === "success") {
     return (
       <p
-        className="font-serif"
-        style={{ fontSize: "1.15rem", lineHeight: 1.6, color: "var(--brass)" }}
         role="status"
+        style={{
+          fontFamily: "var(--font-serif), serif",
+          fontWeight: 300,
+          fontSize: 19,
+          lineHeight: 1.7,
+          color: "var(--brass)",
+        }}
       >
-        {t.form.success}
+        {f.success}
       </p>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-8" noValidate={false}>
-      {/* honeypot tegen spam — verborgen voor mensen */}
+    <form
+      onSubmit={onSubmit}
+      noValidate
+      // Schermt het hele formulier af van PostHog's autocapture: hier typen
+      // mensen hun hulpvraag, dus er mag niets uit deze velden worden
+      // vastgelegd — ook niet de labels of aangeklikte elementen. Enkel het
+      // expliciete `contact_form_submitted`-event (zonder inhoud) wordt gestuurd.
+      data-ph-no-autocapture
+      style={{ display: "flex", flexDirection: "column", gap: 28 }}
+    >
+      {/* Honeypot: verborgen voor mensen, verleidelijk voor bots. */}
       <input
         type="text"
         name="company"
+        value={values.company}
+        onChange={(e) => update("company", e.target.value)}
         tabIndex={-1}
         autoComplete="off"
-        aria-hidden
-        className="pointer-events-none absolute h-0 w-0 opacity-0"
+        aria-hidden="true"
+        style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
       />
 
-      <label className="flex flex-col gap-2">
-        <span className="font-display text-[0.72rem] uppercase tracking-[0.2em] text-[var(--text-dim)]">
-          {t.form.onderwerp}
-        </span>
+      <div>
+        <label htmlFor="cf-onderwerp" style={labelStyle}>
+          {f.onderwerp}
+        </label>
         <input
+          id="cf-onderwerp"
           name="onderwerp"
-          required
-          className={field}
-          style={{ borderColor: "var(--line)" }}
-          onFocus={(e) => (e.currentTarget.style.borderColor = "var(--brass)")}
-          onBlur={(e) => (e.currentTarget.style.borderColor = "var(--line)")}
+          className="contact-field"
+          value={values.onderwerp}
+          onChange={(e) => update("onderwerp", e.target.value)}
+          aria-invalid={errors.onderwerp ? "true" : undefined}
+          aria-describedby={errors.onderwerp ? "cf-onderwerp-err" : undefined}
         />
-      </label>
-
-      <label className="flex flex-col gap-2">
-        <span className="font-display text-[0.72rem] uppercase tracking-[0.2em] text-[var(--text-dim)]">
-          {t.form.toelichting}
-        </span>
-        <textarea
-          name="toelichting"
-          required
-          rows={4}
-          className={`${field} resize-none`}
-          style={{ borderColor: "var(--line)" }}
-          onFocus={(e) => (e.currentTarget.style.borderColor = "var(--brass)")}
-          onBlur={(e) => (e.currentTarget.style.borderColor = "var(--line)")}
-        />
-        <span className="font-serif text-[0.82rem] italic text-[var(--text-faint)]">
-          {t.form.toelichtingHint}
-        </span>
-      </label>
-
-      <div className="grid gap-8 sm:grid-cols-2">
-        <label className="flex flex-col gap-2">
-          <span className="font-display text-[0.72rem] uppercase tracking-[0.2em] text-[var(--text-dim)]">
-            {t.form.emailLabel}
-          </span>
-          <input
-            name="email"
-            type="email"
-            required
-            className={field}
-            style={{ borderColor: "var(--line)" }}
-            onFocus={(e) => (e.currentTarget.style.borderColor = "var(--brass)")}
-            onBlur={(e) => (e.currentTarget.style.borderColor = "var(--line)")}
-          />
-        </label>
-        <label className="flex flex-col gap-2">
-          <span className="font-display text-[0.72rem] uppercase tracking-[0.2em] text-[var(--text-dim)]">
-            {t.form.telefoonLabel}
-          </span>
-          <input
-            name="telefoon"
-            type="tel"
-            className={field}
-            style={{ borderColor: "var(--line)" }}
-            onFocus={(e) => (e.currentTarget.style.borderColor = "var(--brass)")}
-            onBlur={(e) => (e.currentTarget.style.borderColor = "var(--line)")}
-          />
-        </label>
-      </div>
-
-      <label className="flex flex-col gap-2">
-        <span className="font-display text-[0.72rem] uppercase tracking-[0.2em] text-[var(--text-dim)]">
-          {t.form.beschikbaarheid}
-        </span>
-        <input
-          name="beschikbaarheid"
-          className={field}
-          style={{ borderColor: "var(--line)" }}
-          onFocus={(e) => (e.currentTarget.style.borderColor = "var(--brass)")}
-          onBlur={(e) => (e.currentTarget.style.borderColor = "var(--line)")}
-        />
-        <span className="font-serif text-[0.82rem] italic text-[var(--text-faint)]">
-          {t.form.beschikbaarheidHint}
-        </span>
-      </label>
-
-      <div className="flex flex-col gap-4 pt-2">
-        <button
-          type="submit"
-          disabled={status === "sending"}
-          className="group inline-flex w-fit items-center gap-3 border px-8 py-4 font-display text-[0.82rem] uppercase tracking-[0.2em] transition-all duration-500 disabled:opacity-60"
-          style={{
-            borderColor: "var(--brass)",
-            color: "var(--brass)",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "var(--brass)";
-            e.currentTarget.style.color = "#14110d";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "transparent";
-            e.currentTarget.style.color = "var(--brass)";
-          }}
-        >
-          {status === "sending" ? t.form.sending : t.form.submit}
-          <span aria-hidden>→</span>
-        </button>
-
-        {status === "error" && (
-          <p className="font-serif text-[0.95rem]" style={{ color: "#d98d76" }} role="alert">
-            {t.form.error}{" "}
-            <a
-              href={t.praktisch.telefoon.href}
-              className="link-underline"
-              style={{ color: "var(--brass)" }}
-            >
-              {t.praktisch.telefoon.display}
-            </a>
-            .
+        {errors.onderwerp && (
+          <p id="cf-onderwerp-err" style={errStyle}>
+            {errors.onderwerp}
           </p>
         )}
+      </div>
 
-        <p className="font-serif text-[0.82rem] leading-relaxed text-[var(--text-faint)]">
-          {t.form.privacyNote}{" "}
-          <a href="#privacy" className="link-underline" style={{ color: "var(--text-dim)" }}>
-            {t.form.privacy}
-          </a>
+      <div>
+        <label htmlFor="cf-toelichting" style={labelStyle}>
+          {f.toelichting}
+        </label>
+        <textarea
+          id="cf-toelichting"
+          name="toelichting"
+          rows={4}
+          className="contact-field"
+          value={values.toelichting}
+          onChange={(e) => update("toelichting", e.target.value)}
+          aria-invalid={errors.toelichting ? "true" : undefined}
+          aria-describedby={errors.toelichting ? "cf-toelichting-err" : "cf-toelichting-hint"}
+          style={{ resize: "none" }}
+        />
+        {errors.toelichting ? (
+          <p id="cf-toelichting-err" style={errStyle}>
+            {errors.toelichting}
+          </p>
+        ) : (
+          <p id="cf-toelichting-hint" style={hintStyle}>
+            {f.toelichtingHint}
+          </p>
+        )}
+      </div>
+
+      <div className="field-2col">
+        <div>
+          <label htmlFor="cf-email" style={labelStyle}>
+            {f.emailLabel}
+          </label>
+          <input
+            id="cf-email"
+            name="email"
+            type="email"
+            className="contact-field"
+            value={values.email}
+            onChange={(e) => update("email", e.target.value)}
+            aria-invalid={errors.email ? "true" : undefined}
+            aria-describedby={errors.email ? "cf-email-err" : undefined}
+            autoComplete="email"
+          />
+          {errors.email && (
+            <p id="cf-email-err" style={errStyle}>
+              {errors.email}
+            </p>
+          )}
+        </div>
+        <div>
+          <label htmlFor="cf-telefoon" style={labelStyle}>
+            {f.telefoonLabel}
+          </label>
+          <input
+            id="cf-telefoon"
+            name="telefoon"
+            type="tel"
+            className="contact-field"
+            value={values.telefoon}
+            onChange={(e) => update("telefoon", e.target.value)}
+            autoComplete="tel"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="cf-beschikbaarheid" style={labelStyle}>
+          {f.beschikbaarheid}
+        </label>
+        <input
+          id="cf-beschikbaarheid"
+          name="beschikbaarheid"
+          className="contact-field"
+          value={values.beschikbaarheid}
+          onChange={(e) => update("beschikbaarheid", e.target.value)}
+          aria-describedby="cf-beschikbaarheid-hint"
+        />
+        <p id="cf-beschikbaarheid-hint" style={hintStyle}>
+          {f.beschikbaarheidHint}
         </p>
       </div>
+
+      <button
+        type="submit"
+        disabled={status === "sending"}
+        style={{
+          alignSelf: "flex-start",
+          marginTop: 4,
+          background: "var(--brass)",
+          color: "var(--bg)",
+          border: "none",
+          padding: "14px 30px",
+          fontFamily: "var(--font-sans), sans-serif",
+          fontWeight: 600,
+          fontSize: 14,
+          letterSpacing: "0.04em",
+          cursor: status === "sending" ? "default" : "pointer",
+          opacity: status === "sending" ? 0.7 : 1,
+        }}
+      >
+        {status === "sending" ? f.sending : f.verstuur}
+      </button>
+
+      {status === "error" && (
+        <p role="alert" style={{ ...errStyle, marginTop: 0 }}>
+          {f.error}{" "}
+          <a href={c.praktisch.gsmHref} style={{ color: "var(--brass)" }}>
+            {c.praktisch.gsm}
+          </a>
+          .
+        </p>
+      )}
     </form>
   );
 }

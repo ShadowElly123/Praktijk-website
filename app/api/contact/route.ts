@@ -31,10 +31,7 @@ type Payload = {
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function escapeHtml(s: string) {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 export async function POST(req: Request) {
@@ -45,9 +42,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "invalid_json" }, { status: 400 });
   }
 
-  // Honeypot: bots vullen dit onzichtbare veld in → stilzwijgend negeren.
+  // Honeypot: bots vullen dit onzichtbare veld in → stilzwijgend "ok".
   if (data.company && data.company.trim() !== "") {
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true, delivered: false });
   }
 
   const onderwerp = (data.onderwerp ?? "").trim();
@@ -67,21 +64,23 @@ export async function POST(req: Request) {
   const subject = `Website · nieuwe aanvraag: ${onderwerp}`;
   const lines = [
     `Onderwerp: ${onderwerp}`,
-    `Toelichting: ${toelichting}`,
     `E-mailadres: ${email}`,
     `Telefoonnummer: ${telefoon || "(niet opgegeven)"}`,
     `Weekbeschikbaarheden: ${beschikbaarheid || "(niet opgegeven)"}`,
+    "",
+    "Toelichting:",
+    toelichting,
   ];
   const text = lines.join("\n");
   const html = `<div style="font-family:Georgia,serif;line-height:1.6">${lines
-    .map((l) => `<p style="margin:0 0 6px">${escapeHtml(l)}</p>`)
+    .map((l) => (l === "" ? "<br>" : `<p style="margin:0 0 6px">${escapeHtml(l)}</p>`))
     .join("")}</div>`;
 
   const resendKey = process.env.RESEND_API_KEY;
 
   // Geen provider geconfigureerd → log server-side (dev/demo) en meld succes,
   // zodat de UI werkt. In productie MOET een provider ingesteld zijn; anders
-  // is het mailto-adres onder het formulier de betrouwbare terugvalweg.
+  // is het GSM-nummer onder het formulier de betrouwbare terugvalweg.
   if (!resendKey) {
     console.info("[contact] (geen mailprovider geconfigureerd) inzending:", text);
     return NextResponse.json({ ok: true, delivered: false });
