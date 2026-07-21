@@ -21,8 +21,8 @@ export function Werkwijze({ c }: { c: Content }) {
         position: "relative",
         // Géén overflow:hidden: de brass-spotlight achter de kop steekt boven de
         // sectie uit en moet over de grens met het intermezzo kunnen doorvloeien —
-        // een sectie-clip zou 'm daar hard afsnijden. Het beeld zelf wordt al
-        // geclipt door .split__media (overflow: hidden).
+        // een sectie-clip zou 'm daar hard afsnijden. Het beeld heeft geen harde
+        // rand nodig: het feather-masker op .werkwijze-foto lost de randen op.
         // Transparant: de gedeelde achtergrond-wrapper (page.tsx) levert de kleur,
         // zodat de intermezzo-gloed hier ongestoord in kan doorlopen.
         background: "transparent",
@@ -120,24 +120,12 @@ export function Werkwijze({ c }: { c: Content }) {
       </div>
 
       <div className="split__media">
-        {/* Masker i.p.v. donkere overlay-gradiënten: de linker- en bovenfade worden
-            hier vermenigvuldigd (mask-composite), waardoor het beeld in één zachte,
-            gebogen overgang uit de achtergrond opdoemt — geen rechte snijlijnen of
-            scherpe hoek meer. Rechts loopt het beeld vol tot de schermrand door;
-            onderaan vloeit het weer weg. De caption staat bewust búiten dit masker.
-            Positionering via .media-fade: op mobiel eindigt het beeld hoger zodat
-            de caption in de donkere strook eronder valt i.p.v. op de foto. */}
-        <div
-          className="media-fade"
-          style={{
-            WebkitMaskImage:
-              "linear-gradient(to right, transparent 0%, #000 38%, #000 100%), linear-gradient(to bottom, transparent 0%, #000 40%, #000 82%, transparent 100%)",
-            WebkitMaskComposite: "source-in",
-            maskImage:
-              "linear-gradient(to right, transparent 0%, #000 38%, #000 100%), linear-gradient(to bottom, transparent 0%, #000 40%, #000 82%, transparent 100%)",
-            maskComposite: "intersect",
-          }}
-        >
+        {/* Bewust een verticale foto, in haar geheel getoond. De wrapper heeft exact
+            de verhouding van de foto (3:4), zodat het feather-masker precies op de
+            fotoranden valt en alle vier de randen breed en gebogen in de achtergrond
+            oplossen — dezelfde perfecte blend als het portret in Over mij, geen rechte
+            snijlijnen. Geen caption meer. */}
+        <div className="werkwijze-foto">
           <Image
             src="/images/werkwijze.jpg"
             alt=""
@@ -145,20 +133,10 @@ export function Werkwijze({ c }: { c: Content }) {
             sizes="(max-width: 820px) 100vw, 50vw"
             style={{
               objectFit: "cover",
-              filter: "saturate(0.78) contrast(1.05) brightness(0.7)",
-            }}
-          />
-          {/* zachte brass-gloed op het beeld */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "radial-gradient(90% 70% at 70% 40%, rgba(194,166,131,0.14), transparent 60%)",
+              filter: "saturate(0.82) contrast(1.03) brightness(0.9)",
             }}
           />
         </div>
-        <p className="media-caption">{w.imageCaption}</p>
       </div>
     </section>
   );

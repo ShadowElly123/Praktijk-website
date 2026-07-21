@@ -40,7 +40,7 @@ export const content = {
       accent: "Elk verhaal, elke moeilijkheid is welkom.",
     },
     intermezzo: {
-      quote: "De plek waar ik in pas, zal niet bestaan totdat ik hem zelf maak.",
+      quote: "We zijn allemaal vreemden voor onszelf, en pas wanneer we tot een ander spreken, wordt deze vreemdheid een thuis.",
     },
     werkwijze: {
       label: "Werkwijze",
@@ -49,11 +49,12 @@ export const content = {
       accent:
         "Zo ontstaat ruimte voor wat nog geen vorm had: het andere, en de opgekuiste chaos van een verhaal dat nog geschreven moet worden.",
       themesTitle: "Waar ik in het bijzonder ruimte voor maak",
-      // TE BEVESTIGEN MET LUCAS.
+      // Weerspiegelt de drie thema's uit de PRD ("Claimed themes"); definitieve
+      // formulering nog TE BEVESTIGEN MET LUCAS.
       themes: [
-        "Dingen waarvan je denkt dat ze 'te veel' of 'te raar' zijn om te bespreken.",
-        "Vragen rond verlangen, lichaam, geaardheid en identiteit.",
+        "Vragen rond seksualiteit, verlangen, gender en identiteit.",
         "Kunstenaars en creatieve geesten die hun plek nog zoeken.",
+        "Wie vastloopt in het eigen denken — dwingende gedachten, of een psychotische of bipolaire kwetsbaarheid.",
       ],
       imageCaption:
         "De praktijk: een historische stadswoning bij de Boekentoren, met hoge plafonds, een tot bureau omgebouwde piano, veel groen en zacht licht.",
@@ -256,9 +257,9 @@ export const content = {
         "So room opens for what had no form yet: the other, and the ordered chaos of a story still to be written.",
       themesTitle: "Where I make particular room",
       themes: [
-        "The singular and the particular, even where it has no name yet.",
-        "Questions of desire, the body, orientation and identity.",
+        "Questions of sexuality, desire, gender and identity.",
         "Artists and creative minds still finding their place.",
+        "Those caught in their own thinking — intrusive thoughts, or a psychotic or bipolar vulnerability.",
       ],
       imageCaption:
         "The practice: a historic townhouse near the Boekentoren, with high ceilings, a piano turned into a desk, abundant greenery and soft light.",

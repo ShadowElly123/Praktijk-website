@@ -43,3 +43,6 @@ next-env.d.ts
 
 # Playwright MCP scratch
 .playwright-mcp/
+
+# lokale downloadkopieën van site-afbeeldingen (geen bronbestand)
+/downloads/
