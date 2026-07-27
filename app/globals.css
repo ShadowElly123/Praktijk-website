@@ -124,8 +124,44 @@ a {
 .split--werkwijze {
   grid-template-columns: 1.05fr 1fr;
 }
+/* Over mij — 2 kolommen × 2 rijen. Rij 1 draagt enkel de sectiekop, rij 2 de
+   alinea én de foto. Beide rijen zijn `auto`, dus rij 2 is precies zo hoog als
+   de alinea; `align-content: center` verdeelt eventuele restruimte buiten de
+   rijen i.p.v. ze op te rekken. Daardoor loopt de foto exact met de alinea
+   gelijk, ook op hoge schermen waar min-height:100vh meer ruimte geeft dan de
+   inhoud nodig heeft. De verticale sectiemarge staat hier (niet meer op de
+   kolommen), de horizontale per cel — zie .about__*. */
 .split--about {
   grid-template-columns: 1fr 1.05fr;
+  grid-template-rows: auto auto;
+  align-content: center;
+  padding: 16vh 0;
+}
+.about__kicker {
+  grid-column: 2;
+  grid-row: 1;
+  padding: 0 6vw;
+  margin-bottom: 28px;
+}
+.about__body {
+  grid-column: 2;
+  grid-row: 2;
+  padding: 0 6vw;
+}
+.about__media {
+  grid-column: 1;
+  grid-row: 2;
+  position: relative;
+}
+/* Absoluut in de cel, dus zonder eigen hoogte: de alinea ernaast bepaalt de
+   rijhoogte en de foto vult die volledig. Rechts dezelfde optische marge als de
+   tekstkolom, zodat er geen kloof tussen beeld en tekst valt. */
+.about__photo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 6vw;
+  width: min(400px, calc(100% - 12vw));
 }
 .split__media {
   position: relative;
@@ -164,9 +200,6 @@ a {
 }
 .split__text--werkwijze {
   padding: 16vh 6vw 16vh var(--rail);
-}
-.split__text--about {
-  padding: 16vh 6vw;
 }
 
 /* Hero-tekstblok: op mobiel extra ruimte onderaan zodat de scroll-cue
@@ -222,9 +255,40 @@ a {
   .split--werkwijze .split__media {
     order: -1;
   }
-  .split__text--werkwijze,
-  .split__text--about {
+  .split__text--werkwijze {
     padding: 12vh 40px;
+  }
+  /* Gestapeld staat de foto boven de kop en de tekst, en is er dus geen alinea
+     meer om de hoogte aan te ontlenen: de foto krijgt zijn eigen 4/5-verhouding
+     terug en wordt gewoon volledig getoond. */
+  .split--about {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    padding: 12vh 0;
+  }
+  .about__media {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .about__photo {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    right: auto;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 4 / 5;
+    margin: 0 auto 40px;
+  }
+  .about__kicker {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 0 40px;
+  }
+  .about__body {
+    grid-column: 1;
+    grid-row: 3;
+    padding: 0 40px;
   }
 }
 @media (max-width: 480px) {
@@ -232,9 +296,15 @@ a {
     padding-left: 28px;
     padding-right: 20px;
   }
-  .split__text--werkwijze,
-  .split__text--about {
+  .split__text--werkwijze {
     padding: 10vh 28px;
+  }
+  .split--about {
+    padding: 10vh 0;
+  }
+  .about__kicker,
+  .about__body {
+    padding: 0 28px;
   }
 }
 

@@ -11,10 +11,14 @@ export function Reveal({
   children,
   delay = 0,
   style,
+  className,
 }: {
   children: React.ReactNode;
   delay?: number;
   style?: React.CSSProperties;
+  // Voor blokken waarvan de plaatsing per breakpoint verschilt: die hoort in
+  // globals.css, niet in een inline-style die een media-query niet kan overrulen.
+  className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
@@ -46,6 +50,7 @@ export function Reveal({
   return (
     <div
       ref={ref}
+      className={className}
       style={{
         opacity: shown ? 1 : 0,
         transform: shown ? "none" : "translateY(16px)",

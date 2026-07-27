@@ -5,12 +5,20 @@ import { SectionKicker } from "../SectionKicker";
 import { Editable } from "../review/Editable";
 
 /**
- * Over mij — 2-koloms: links een sticky foto (aspect 4/5) van Lucas, rechte
- * rand zonder fade (geen caption eronder — die zou door de sticky positionering
- * met scrollende inhoud overlappen); rechts de kop, body en ervaring
- * (gedempt). Titels & erkenning en de registratienummers staan enkel nog in
- * de footer, om dubbele vermelding te vermijden. De prozatekst blijft bewust
- * één serif-stem (geen italics) voor rust. Stapelt op mobiel.
+ * Over mij — 2-koloms: links de foto van Lucas, rechts de kop en de tekst.
+ *
+ * De drie blokken zijn losse grid-items i.p.v. twee kolom-divs, en dat is de
+ * hele truc: de sectiekop staat alleen in rij 1, de alinea en de foto delen
+ * rij 2. Een grid-rij is zo hoog als zijn hoogste item, en de foto zit
+ * absoluut gepositioneerd in zijn cel (dus zonder eigen hoogte) — daardoor
+ * bepaalt de alinea de rijhoogte en loopt de foto er exact mee gelijk, boven-
+ * en onderaan, zonder de kop mee te rekenen. Zie `.about__*` in globals.css.
+ *
+ * De foto heeft bewust geen fade of vignet: op een lichte foto (warme, lichte
+ * muur) tegen de bijna-zwarte site las elke uitdoof-poging als een silhouet —
+ * ovaal (doodsprentje) of rechthoekig kadertje. Gewoon de foto, rechte rand.
+ * De prozatekst blijft één serif-stem (geen italics) voor rust.
+ * Stapelt op mobiel, waar de foto zijn eigen 4/5-verhouding terugkrijgt.
  */
 export function OverMij({ c }: { c: Content }) {
   const o = c.overMij;
@@ -24,73 +32,60 @@ export function OverMij({ c }: { c: Content }) {
         background: "var(--bg)",
       }}
     >
-      <div className="split__text split__text--about">
-        <Reveal>
-          <div
-            style={{
-              position: "sticky",
-              top: "14vh",
-              aspectRatio: "4 / 5",
-              width: "100%",
-              maxWidth: 400,
-              // Naar de rechterrand van de kolom, dichter bij de tekst — anders
-              // ontstaat een grote lege kloof tussen beeld en tekstkolom.
-              marginLeft: "auto",
-            }}
-          >
-            {/* Geen fade/vignet: op een lichte foto (nu een warme, lichte muur i.p.v.
-                een studio-achtergrond) tegen de bijna-zwarte site las elke
-                uitdoof-poging als een silhouet — ovaal (doodsprentje) of rechthoekig
-                kadertje. Gewoon de foto, rechte rand. */}
-            <Image
-              src="/images/portret-v10.jpg"
-              alt={o.badge}
-              fill
-              sizes="(max-width: 820px) 100vw, 40vw"
-              style={{ objectFit: "cover" }}
-            />
-          </div>
-        </Reveal>
-      </div>
+      <Reveal className="about__media">
+        <div className="about__photo">
+          <Image
+            src="/images/portret-v10.jpg"
+            alt={o.badge}
+            fill
+            sizes="(max-width: 820px) 100vw, 30vw"
+            // De cel is hoger dan de 4/5 van het bestand (hij volgt de alinea),
+            // dus `cover` snijdt links en rechts iets weg. De uitsnede schuift
+            // daarom naar rechts: zo blijven zowel zijn gezicht als de volledige
+            // sunburst-spiegel binnen beeld, en verdwijnt enkel wat donkere zetel
+            // aan de linkerrand.
+            style={{ objectFit: "cover", objectPosition: "65% 50%" }}
+          />
+        </div>
+      </Reveal>
 
-      <div className="split__text split__text--about">
-        <Reveal style={{ marginBottom: 28 }}>
-          <SectionKicker as="h2" label={<Editable path="overMij.label">{o.label}</Editable>} />
-        </Reveal>
-        <Reveal delay={0.08}>
+      <Reveal className="about__kicker">
+        <SectionKicker as="h2" label={<Editable path="overMij.label">{o.label}</Editable>} />
+      </Reveal>
+
+      <Reveal delay={0.08} className="about__body">
+        <p
+          style={{
+            margin: 0,
+            maxWidth: 520,
+            fontFamily: "var(--font-serif), serif",
+            fontWeight: 300,
+            // Zelfde maat als de alinea in Werkwijze — die twee secties staan
+            // naast elkaar in de leesbeleving en moeten dus gelijk wegen.
+            fontSize: "clamp(22px,2.3vw,28px)",
+            lineHeight: 1.75,
+            color: "var(--text)",
+            whiteSpace: "pre-line",
+          }}
+        >
+          <Editable path="overMij.body">{o.body}</Editable>
+        </p>
+        {o.ervaring && (
           <p
             style={{
-              margin: "0 0 22px",
+              margin: "22px 0 0",
               maxWidth: 520,
               fontFamily: "var(--font-serif), serif",
               fontWeight: 300,
-              // Zelfde maat als de alinea in Werkwijze — die twee secties staan
-              // naast elkaar in de leesbeleving en moeten dus gelijk wegen.
-              fontSize: "clamp(22px,2.3vw,28px)",
+              fontSize: 17,
               lineHeight: 1.75,
-              color: "var(--text)",
-              whiteSpace: "pre-line",
+              color: "var(--mono-1)",
             }}
           >
-            <Editable path="overMij.body">{o.body}</Editable>
+            <Editable path="overMij.ervaring">{o.ervaring}</Editable>
           </p>
-          {o.ervaring && (
-            <p
-              style={{
-                margin: "0 0 36px",
-                maxWidth: 520,
-                fontFamily: "var(--font-serif), serif",
-                fontWeight: 300,
-                fontSize: 17,
-                lineHeight: 1.75,
-                color: "var(--mono-1)",
-              }}
-            >
-              <Editable path="overMij.ervaring">{o.ervaring}</Editable>
-            </p>
-          )}
-        </Reveal>
-      </div>
+        )}
+      </Reveal>
     </section>
   );
 }
