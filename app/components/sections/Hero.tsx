@@ -20,14 +20,22 @@ export function Hero({ c }: { c: Content }) {
       }}
     >
       <Image
-        src="/images/hero.jpg"
+        src="/images/hero-v3.jpg"
         alt=""
         fill
         priority
+        // Hi-res bronbestand (4344×3258) — hoger dan Next's grootste device-size
+        // (3840), dus nooit upscaling nodig, ook niet op brede Retina-schermen.
+        // quality optgetrokken t.o.v. Next's default (75): dit is de LCP-hero-
+        // afbeelding, dus scherpte weegt hier zwaarder dan de kleine bestandswinst.
+        quality={88}
         sizes="100vw"
+        className="hero-img"
         style={{
           objectFit: "cover",
-          filter: "saturate(0.82) contrast(1.05) brightness(0.72)",
+          // Zachtere behandeling dan de vorige (lichtere) hero: deze foto is al
+          // warm-clair-obscur, dus minder verdonkeren zodat hij zichtbaar blijft.
+          filter: "saturate(0.92) contrast(1.02) brightness(0.9)",
           animation: "kenburns 24s ease-in-out infinite alternate",
         }}
       />
@@ -37,25 +45,26 @@ export function Hero({ c }: { c: Content }) {
           position: "absolute",
           inset: 0,
           background:
-            "radial-gradient(120% 90% at 78% 18%, rgba(194,166,131,0.20), transparent 46%)",
+            "radial-gradient(120% 90% at 78% 18%, rgba(194,166,131,0.16), transparent 46%)",
         }}
       />
-      {/* horizontale verdonkering voor leesbaarheid van de tekst links */}
+      {/* Links een lichte verdonkering, en onderaan een sterkere: daar staan de
+          headline en de subtekst, dus daar is het meeste contrast nodig. Boven en
+          rechts blijft de foto (gordijn, hoorn, lamp) grotendeels open. */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(90deg, rgba(14,13,12,0.94) 0%, rgba(14,13,12,0.60) 40%, rgba(14,13,12,0.30) 68%, rgba(14,13,12,0.78) 100%)",
+            "linear-gradient(90deg, rgba(14,13,12,0.72) 0%, rgba(14,13,12,0.34) 34%, transparent 62%)",
         }}
       />
-      {/* onderrand-fade naar de basiskleur */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(0deg, #0E0D0C 1%, rgba(14,13,12,0.15) 34%, transparent 60%)",
+            "linear-gradient(0deg, #0E0D0C 2%, rgba(14,13,12,0.78) 20%, rgba(14,13,12,0.30) 40%, transparent 60%)",
         }}
       />
 

@@ -175,6 +175,15 @@ a {
   padding-bottom: 8vh;
 }
 
+/* Hero-beeld-uitsnede. Op breed scherm snijdt cover boven/onder weg (Y telt):
+   88% duwt de hoorn omhoog, boven de headline links. Op smal scherm snijdt cover
+   de zijkanten weg (X telt): zie de media-query — daar schuift de uitsnede naar
+   de rechterkant zodat de hoorn links buiten de tekst valt. Zo overlapt de
+   headline op geen enkele breedte met de hoorn. */
+.hero-img {
+  object-position: 50% 96%;
+}
+
 @media (max-width: 820px) {
   /* Rail weglaten op smal scherm: voorkomt overlap met de tekst en declutter. */
   .side-rail {
@@ -186,6 +195,12 @@ a {
   }
   .hero-copy {
     padding-bottom: 16vh;
+  }
+  /* Smal scherm: cover snijdt de zijkanten weg. Toon de rechterhelft (lamp,
+     plant, bureau) zodat de hoorn links buiten beeld/tekst valt; de headline
+     staat dan over de donkere bureaupartij i.p.v. over de hoorn. */
+  .hero-img {
+    object-position: 82% 50%;
   }
   .split {
     grid-template-columns: 1fr;

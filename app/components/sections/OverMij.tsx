@@ -42,7 +42,7 @@ export function OverMij({ c }: { c: Content }) {
             {/* Zelfde zachte overgang als de Werkwijze-foto: twee vermenigvuldigde
                 lineaire gradiënten (mask-composite) laten alle vier de randen breed
                 en gebogen in de achtergrond oplossen — geen rechte snijlijnen of
-                scherpe hoeken. Het beeld zelf (portret-v7.jpg) is enkel crop + toon;
+                scherpe hoeken. Het beeld zelf (portret-v8.jpg) is enkel crop + toon;
                 het masker leeft in CSS en is dus makkelijk bij te stellen. */}
             <div
               style={{
@@ -58,7 +58,7 @@ export function OverMij({ c }: { c: Content }) {
               }}
             >
               <Image
-                src="/images/portret-v7.jpg"
+                src="/images/portret-v8.jpg"
                 alt={o.badge}
                 fill
                 sizes="(max-width: 820px) 100vw, 40vw"

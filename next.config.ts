@@ -7,6 +7,12 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.join(__dirname),
   },
+  images: {
+    // `images.qualities` staat standaard op enkel [75] — een `quality`-prop met
+    // een andere waarde (bv. de hero op 88) wordt anders stilzwijgend terug-
+    // geklemd naar 75, zonder waarschuwing. Expliciet toevoegen dus.
+    qualities: [75, 88],
+  },
 };
 
 export default nextConfig;

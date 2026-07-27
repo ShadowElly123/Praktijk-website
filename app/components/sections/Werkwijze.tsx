@@ -127,7 +127,7 @@ export function Werkwijze({ c }: { c: Content }) {
             snijlijnen. Geen caption meer. */}
         <div className="werkwijze-foto">
           <Image
-            src="/images/werkwijze.jpg"
+            src="/images/werkwijze-v2.jpg"
             alt=""
             fill
             sizes="(max-width: 820px) 100vw, 50vw"
