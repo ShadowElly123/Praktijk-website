@@ -37,19 +37,21 @@ export function Werkwijze({ c }: { c: Content }) {
           <SectionKicker label={<Editable path="werkwijze.label">{w.label}</Editable>} />
         </Reveal>
         <Reveal delay={0.1} style={{ position: "relative", zIndex: 1 }}>
-          <h2
-            style={{
-              margin: "8px 0 28px",
-              fontFamily: "var(--font-sans), sans-serif",
-              fontWeight: 500,
-              fontSize: "clamp(34px,4vw,58px)",
-              lineHeight: 1.04,
-              letterSpacing: "-0.02em",
-              color: "var(--title)",
-            }}
-          >
-            <Editable path="werkwijze.title">{w.title}</Editable>
-          </h2>
+          {w.title && (
+            <h2
+              style={{
+                margin: "8px 0 28px",
+                fontFamily: "var(--font-sans), sans-serif",
+                fontWeight: 500,
+                fontSize: "clamp(34px,4vw,58px)",
+                lineHeight: 1.04,
+                letterSpacing: "-0.02em",
+                color: "var(--title)",
+              }}
+            >
+              <Editable path="werkwijze.title">{w.title}</Editable>
+            </h2>
+          )}
           <p
             style={{
               margin: "0 0 22px",
@@ -72,52 +74,59 @@ export function Werkwijze({ c }: { c: Content }) {
               fontSize: 19,
               lineHeight: 1.8,
               color: "var(--muted)",
+              whiteSpace: "pre-line",
             }}
           >
             <Editable path="werkwijze.accent">{w.accent}</Editable>
           </p>
         </Reveal>
 
-        <Reveal delay={0.2} style={{ marginTop: 40, position: "relative", zIndex: 1 }}>
-          <p
-            style={{
-              margin: "0 0 18px",
-              fontFamily: "var(--font-serif), serif",
-              fontWeight: 400,
-              fontSize: 19,
-              color: "var(--brass)",
-            }}
-          >
-            <Editable path="werkwijze.themesTitle">{w.themesTitle}</Editable>
-          </p>
-          <ul style={{ listStyle: "none", margin: 0, padding: 0, maxWidth: 520 }}>
-            {w.themes.map((theme, i) => (
-              <li
-                key={theme}
+        {(w.themesTitle || w.themes.some((t) => t)) && (
+          <Reveal delay={0.2} style={{ marginTop: 40, position: "relative", zIndex: 1 }}>
+            {w.themesTitle && (
+              <p
                 style={{
-                  borderTop: "1px solid var(--line-2)",
-                  padding: "16px 0",
+                  margin: "0 0 18px",
                   fontFamily: "var(--font-serif), serif",
-                  fontSize: 17,
-                  lineHeight: 1.6,
-                  color: "var(--text)",
+                  fontWeight: 400,
+                  fontSize: 19,
+                  color: "var(--brass)",
                 }}
               >
-                <span
-                  style={{
-                    marginRight: 14,
-                    fontFamily: "var(--font-mono), monospace",
-                    fontSize: 13,
-                    color: "var(--brass)",
-                  }}
-                >
-                  0{i + 1}
-                </span>
-                <Editable path={`werkwijze.themes[${i}]`}>{theme}</Editable>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
+                <Editable path="werkwijze.themesTitle">{w.themesTitle}</Editable>
+              </p>
+            )}
+            <ul style={{ listStyle: "none", margin: 0, padding: 0, maxWidth: 520 }}>
+              {w.themes.map((theme, i) =>
+                theme ? (
+                  <li
+                    key={i}
+                    style={{
+                      borderTop: "1px solid var(--line-2)",
+                      padding: "16px 0",
+                      fontFamily: "var(--font-serif), serif",
+                      fontSize: 17,
+                      lineHeight: 1.6,
+                      color: "var(--text)",
+                    }}
+                  >
+                    <span
+                      style={{
+                        marginRight: 14,
+                        fontFamily: "var(--font-mono), monospace",
+                        fontSize: 13,
+                        color: "var(--brass)",
+                      }}
+                    >
+                      0{i + 1}
+                    </span>
+                    <Editable path={`werkwijze.themes[${i}]`}>{theme}</Editable>
+                  </li>
+                ) : null
+              )}
+            </ul>
+          </Reveal>
+        )}
       </div>
 
       <div className="split__media">

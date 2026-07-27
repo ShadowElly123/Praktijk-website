@@ -42,6 +42,7 @@ export function Verwelkoming({ c }: { c: Content }) {
               lineHeight: 1.65,
               color: "var(--text)",
               textWrap: "pretty",
+              whiteSpace: "pre-line",
             }}
           >
             <Editable path="verwelkoming.body">{v.body}</Editable>

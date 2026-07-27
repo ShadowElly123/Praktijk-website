@@ -30,13 +30,13 @@ export const content = {
     hero: {
       titel: "Wees welkom,",
       accent: "en vertel.",
-      sub: "Klinisch psycholoog te Gent. Een psychoanalytische gesprekspraktijk, met ruimte voor andersheid en voor wat nog geen woorden heeft.",
+      sub: "Een psychoanalytische gesprekspraktijk in Gent met ruimte voor uw eigenheid en voor dat wat nog geen woorden heeft. ",
       scroll: "Scroll",
     },
     verwelkoming: {
       label: "Verwelkoming",
-      // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg.
-      body: "Wees welkom, en vertel. Dat is de basis van waaruit we vertrekken en waarop we verder gaan. Ieder mens wordt vroeg of laat geconfronteerd met een worsteling, het leven voelt dan niet meer zo voorspelbaar of behapbaar aan en dit is voor velen een punt om de stap naar gesprekstherapie te zetten. Via het spreken proberen we vat te krijgen op die worsteling, proberen we woorden te vinden voor datgene dat voor onszelf nog geen duidelijkheid heeft, geen verhaal. Ik nodig je uit om samen te komen spreken over waar jij tegenaan botst en in hoeverre deze moeilijkheden betekenisvol zijn in jouw bredere levensverhaal. ",
+      // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg. Update 2026-07-27: herschreven door Lucas via preview-edit.
+      body: "Wees welkom, en vertel. Dat is het vertrekpunt. Vroeg\nof laat botsen we allemaal op een worsteling waardoor het leven niet meer\nbehapbaar voelt. Dit is vaak het moment om de stap naar gesprekstherapie te\nzetten.\n\nVia het spreken zoeken we samen naar woorden voor wat nu nog\nonduidelijk is. Ik nodig u uit om stil te staan bij uw verhaal en te ontdekken\nhoe deze moeilijkheden verweven zijn met uw leven. ",
       accent: "Elk verhaal, elke moeilijkheid is welkom.",
     },
     intermezzo: {
@@ -44,27 +44,22 @@ export const content = {
     },
     werkwijze: {
       label: "Werkwijze",
-      title: "Tijd en ruimte voor jouw verhaal.",
+      // Update 2026-07-27: titel/themesTitle/themes leeggemaakt door Lucas via preview-edit.
+      title: "",
       body: "De gesprekken vertrekken vanuit een psychoanalytische houding: traag, associatief, aandachtig en zonder vooropgesteld protocol. Er is geen checklist die bepaalt wat belangrijk is. Dat ontdekken we samen, in het spreken zelf.",
       accent:
-        "Zo ontstaat ruimte voor wat nog geen vorm had: het andere, en de opgekuiste chaos van een verhaal dat nog geschreven moet worden.",
-      themesTitle: "Waar ik in het bijzonder ruimte voor maak",
-      // Weerspiegelt de drie thema's uit de PRD ("Claimed themes"); definitieve
-      // formulering nog TE BEVESTIGEN MET LUCAS.
-      themes: [
-        "Vragen rond seksualiteit, verlangen, gender en identiteit.",
-        "Kunstenaars en creatieve geesten die hun plek nog zoeken.",
-        "Wie vastloopt in het eigen denken — dwingende gedachten, of een psychotische of bipolaire kwetsbaarheid.",
-      ],
+        "Binnen de therapie staat het vrij associëren\ncentraal: de uitnodiging om gedachten, gevoelens en fantasieën zonder censuur\nuit te spreken. Dit bijzondere spreken helpt om uw levensgeschiedenis\nbeter te begrijpen en patronen te ontrafelen die aan de basis liggen van uw\npsychisch lijden. Door woorden te geven aan wat er in u leeft, krijgt u dieper\ninzicht en verliest de problematiek haar dwingende greep. Dit proces opent de\nweg naar verwerking, nieuwe keuzes en een vrijere manier van leven. Deze\nmethodiek pas ik toe via psychotherapie of via psychoanalyse.",
+      themesTitle: "",
+      themes: ["", "", ""],
       imageCaption:
         "De praktijk: een historische stadswoning bij de Boekentoren, met hoge plafonds, een tot bureau omgebouwde piano, veel groen en zacht licht.",
     },
     overMij: {
       label: "Over mij",
-      // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg.
-      body: "Ik ben klinisch psycholoog en ik heb een passie voor en ervaring met gesprekstherapie. Zelf probeer ik mijn werk als therapeut te verfijnen door deel te nemen aan een therapieopleiding in de psychoanalyse en deel te nemen aan lezingen en opleidingsdagen.",
-      ervaring:
-        "Eerdere ervaring bij groepspraktijk Tondel, huis voor psychotherapie Anker en de Huiskamer, en vrijwilligerswerk in PVT De Wadi bij de Driesprong.",
+      // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg. Update 2026-07-27: herschreven door Lucas via preview-edit.
+      body: "Na mijn afstuderen als Master in de klinische psychologie\n(UGent, 2022) ben ik mij blijven specialiseren in de psychoanalytische\npsychotherapie. Naast een postgraduaat aan de UGent volg ik continu seminaries\nen opleidingsdagen.\nMijn klinische vorming kreeg écht vorm in de praktijk: via mijn werk bij CGG\nAndante, groepspraktijken Tondel, Anker en de Huiskamer, en PVT De Wadi. Om de\nkwaliteit van mijn psychologische begeleiding te waarborgen, zet ik daarnaast\nsteevast in op supervisie, intervisie en een eigen leeranalyse.",
+      // Update 2026-07-27: leeggemaakt door Lucas via preview-edit.
+      ervaring: "",
       titelsLabel: "Titels & erkenning",
       titel1: "Klinisch psycholoog",
       titel1sub: "(Erkend door de Psychologencommissie, met visum).",

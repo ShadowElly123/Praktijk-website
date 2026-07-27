@@ -67,23 +67,26 @@ export function OverMij({ c }: { c: Content }) {
               fontSize: "clamp(19px,1.9vw,23px)",
               lineHeight: 1.75,
               color: "var(--text)",
+              whiteSpace: "pre-line",
             }}
           >
             <Editable path="overMij.body">{o.body}</Editable>
           </p>
-          <p
-            style={{
-              margin: "0 0 36px",
-              maxWidth: 520,
-              fontFamily: "var(--font-serif), serif",
-              fontWeight: 300,
-              fontSize: 17,
-              lineHeight: 1.75,
-              color: "var(--mono-1)",
-            }}
-          >
-            <Editable path="overMij.ervaring">{o.ervaring}</Editable>
-          </p>
+          {o.ervaring && (
+            <p
+              style={{
+                margin: "0 0 36px",
+                maxWidth: 520,
+                fontFamily: "var(--font-serif), serif",
+                fontWeight: 300,
+                fontSize: 17,
+                lineHeight: 1.75,
+                color: "var(--mono-1)",
+              }}
+            >
+              <Editable path="overMij.ervaring">{o.ervaring}</Editable>
+            </p>
+          )}
         </Reveal>
         <Reveal delay={0.16}>
           <div
