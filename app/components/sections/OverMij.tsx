@@ -4,11 +4,9 @@ import { Reveal } from "../Reveal";
 import { SectionKicker } from "../SectionKicker";
 
 /**
- * Over mij — 2-koloms: links een sticky foto (aspect 4/5) van Lucas met een
- * zachte rechthoekige feather-rand (rechte zijden, afgeronde zachte hoeken) die
- * aan alle zijden in de donkere achtergrond oplost (die rand + toon-correctie
- * zitten in portret-v6.png gebakken; geen caption eronder — die zou door de
- * sticky positionering met scrollende inhoud overlappen); rechts de kop, body, ervaring
+ * Over mij — 2-koloms: links een sticky foto (aspect 4/5) van Lucas, rechte
+ * rand zonder fade (geen caption eronder — die zou door de sticky positionering
+ * met scrollende inhoud overlappen); rechts de kop, body, ervaring
  * (gedempt), een blok "Titels & erkenning" en daaronder een apart blok
  * "Registratie" (visum/erkennings-/ondernemingsnummer, tabular-nums). De
  * prozatekst blijft bewust één serif-stem (geen italics) voor rust. Stapelt op mobiel.
@@ -39,32 +37,17 @@ export function OverMij({ c }: { c: Content }) {
               marginLeft: "auto",
             }}
           >
-            {/* Zelfde zachte overgang als de Werkwijze-foto: twee vermenigvuldigde
-                lineaire gradiënten (mask-composite) laten alle vier de randen breed
-                en gebogen in de achtergrond oplossen — geen rechte snijlijnen of
-                scherpe hoeken. Het beeld zelf (portret-v8.jpg) is enkel crop + toon;
-                het masker leeft in CSS en is dus makkelijk bij te stellen. */}
-            <div
-              style={{
-                position: "relative",
-                width: "100%",
-                height: "100%",
-                WebkitMaskImage:
-                  "linear-gradient(to right, transparent 0%, #000 32%, #000 68%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 30%, #000 72%, transparent 100%)",
-                WebkitMaskComposite: "source-in",
-                maskImage:
-                  "linear-gradient(to right, transparent 0%, #000 32%, #000 68%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 30%, #000 72%, transparent 100%)",
-                maskComposite: "intersect",
-              }}
-            >
-              <Image
-                src="/images/portret-v8.jpg"
-                alt={o.badge}
-                fill
-                sizes="(max-width: 820px) 100vw, 40vw"
-                style={{ objectFit: "cover" }}
-              />
-            </div>
+            {/* Geen fade/vignet meer: op deze foto (lichtgrijze studio-achtergrond
+                tegen de bijna-zwarte site) las elke uitdoof-poging als een silhouet
+                — ovaal (doodsprentje) of rechthoekig kadertje. Gewoon de foto,
+                rechte rand. */}
+            <Image
+              src="/images/portret-v8.jpg"
+              alt={o.badge}
+              fill
+              sizes="(max-width: 820px) 100vw, 40vw"
+              style={{ objectFit: "cover" }}
+            />
           </div>
         </Reveal>
       </div>
