@@ -254,22 +254,22 @@ export const content = {
     hero: {
       titel: "Be welcome,",
       accent: "and speak.",
-      sub: "Clinical psychologist in Ghent. A psychoanalytic talking practice, with room for otherness and for what does not yet have words.",
+      sub: "A psychoanalytic talking practice in Ghent, with room for who you are and for what does not yet have words.",
       scroll: "Scroll",
     },
     verwelkoming: {
       label: "Welcome",
-      body: "Be welcome, and speak. That is the ground we set out from and keep returning to. Sooner or later every person meets a struggle; life no longer feels predictable or manageable, and for many this is the moment to take the step toward talking therapy.",
+      body: "Be welcome, and speak. That is where we begin. Sooner or later, all of us run into a struggle that makes life no longer feel manageable. That is often the moment to take the step towards talking therapy.",
       body2:
-        "Through speaking we try to get a hold on that struggle, to find words for what has no clarity yet, no story. I invite you to come and speak together about what you are up against, and how far these difficulties are meaningful within your broader life story.",
+        "Through speaking, we search together for words for what is still unclear. I invite you to pause with your own story and to discover how these difficulties are interwoven with your life.",
       accent: "Every story, every difficulty is welcome.",
     },
     werkwijze: {
       label: "Approach",
       title: "",
-      body: "The conversations begin from a psychoanalytic stance: slow, associative, attentive and without a preset protocol. There is no checklist that decides what matters. We discover that together, in the speaking itself.",
+      body: "",
       accent:
-        "Free association is central to the therapy: the invitation to speak thoughts, feelings and fantasies without censorship. This particular way of speaking helps you understand your life story more deeply and unravel the patterns underlying your psychological suffering. By putting words to what lives inside you, you gain deeper insight and the problem loses its compelling grip. This process opens the way to working through, new choices and a freer way of living. I apply this method through psychotherapy or through psychoanalysis.",
+        "Free association is central to the therapy: the invitation to speak thoughts, feelings and fantasies without censorship. This particular way of speaking helps you understand your life story more deeply and unravel the patterns underlying your psychological suffering. By putting words to what lives inside you, you gain deeper insight and the difficulty loses its insistent grip. This process opens the way to working things through, to new choices and a freer way of living. I apply this method through psychotherapy or through psychoanalysis.",
       themesTitle: "",
       themes: ["", "", ""],
       imageCaption:
@@ -288,8 +288,8 @@ export const content = {
         "A session lasts around 45 minutes, at an indicative rate of 70 euros, which may vary. If you cannot make an appointment, please let me know at least 24 hours in advance.",
       terugbetalingLabel: "Reimbursement",
       terugbetalingValue:
-        "Non-conventioned practice. Partial reimbursement from your health insurance fund may be possible. You may bring a form.",
-      terugbetalingLinkLabel: "Overview of reimbursement forms per health fund",
+        "This practice works outside the RIZIV convention system. Partial reimbursement from your health insurance fund may be possible. You may bring a form.",
+      terugbetalingLinkLabel: "Overview of reimbursement forms by health fund",
       terugbetalingLinkHref: "https://www.vind-een-psycholoog.be/info/terugbetaling-psychotherapie.html",
       betalingLabel: "Payment",
       betalingValue: "Bancontact app (Payconiq) or bank transfer",
@@ -310,8 +310,8 @@ export const content = {
       items: [
         {
           q: "Is a session reimbursed by health insurance?",
-          a: "This practice does not work within the RIZIV convention system. Most health funds still reimburse a portion. Your mutuality can check this for you.",
-          linkLabel: "Overview of reimbursement forms per health fund",
+          a: "This practice does not work within the RIZIV convention system. Most health funds still reimburse a portion. Your health fund can check this for you.",
+          linkLabel: "Overview of reimbursement forms by health fund",
           linkHref: "https://www.vind-een-psycholoog.be/info/terugbetaling-psychotherapie.html",
           items: [],
         },
@@ -324,21 +324,21 @@ export const content = {
         },
         {
           q: "What is the difference between a psychologist and a psychotherapist?",
-          a: "A psychologist holds a legally protected title, earned through a university degree. A psychotherapist also completes a long, specific training in a particular method of conversation, in my case psychoanalysis. One is finished, the other still underway.",
+          a: "A psychologist holds a legally protected title, earned through a university degree. A psychotherapist also completes a long, specialised training programme in a particular method of conversation, in my case psychoanalysis. The first is complete, the second still in progress.",
           linkLabel: "",
           linkHref: "",
           items: [],
         },
         {
           q: "Is online guidance also possible?",
-          a: "Yes, sessions can also take place by video or phone. For the first, get-acquainted conversation, an in-person meeting is preferred, but it isn't a requirement.",
+          a: "Yes, sessions can also take place by video or phone. For the first, introductory conversation, meeting in person is preferred, though it isn't a requirement.",
           linkLabel: "",
           linkHref: "",
           items: [],
         },
         {
           q: "How many sessions will I need?",
-          a: "That isn't fixed in advance. Length follows what turns out to be needed, not the other way round.",
+          a: "That isn't fixed in advance. The length follows what turns out to be needed, not the other way round.",
           linkLabel: "",
           linkHref: "",
           items: [],
@@ -351,14 +351,14 @@ export const content = {
           items: [],
         },
         {
-          q: "Can I also follow therapy in English?",
+          q: "Can I have therapy in English?",
           a: "Yes, therapy is available in Dutch and English. Some conversations simply flow more easily in English, that works just as well here.",
           linkLabel: "",
           linkHref: "",
           items: [],
         },
         {
-          q: "Can I come here with questions about sexuality, gender or identity?",
+          q: "Can I come here with questions about sexual orientation, gender or identity?",
           a: "Yes. What you bring doesn't need to be recognisable or manageable from the start. Questions about who you are, who you love, how your body feels, belong here just as much, even without a name for it yet.",
           linkLabel: "",
           linkHref: "",
