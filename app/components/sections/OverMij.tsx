@@ -38,12 +38,12 @@ export function OverMij({ c }: { c: Content }) {
               marginLeft: "auto",
             }}
           >
-            {/* Geen fade/vignet meer: op deze foto (lichtgrijze studio-achtergrond
-                tegen de bijna-zwarte site) las elke uitdoof-poging als een silhouet
-                — ovaal (doodsprentje) of rechthoekig kadertje. Gewoon de foto,
-                rechte rand. */}
+            {/* Geen fade/vignet: op een lichte foto (nu een warme, lichte muur i.p.v.
+                een studio-achtergrond) tegen de bijna-zwarte site las elke
+                uitdoof-poging als een silhouet — ovaal (doodsprentje) of rechthoekig
+                kadertje. Gewoon de foto, rechte rand. */}
             <Image
-              src="/images/portret-v8.jpg"
+              src="/images/portret-v9.jpg"
               alt={o.badge}
               fill
               sizes="(max-width: 820px) 100vw, 40vw"

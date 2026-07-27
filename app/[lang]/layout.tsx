@@ -41,7 +41,7 @@ export async function generateMetadata({
   if (!hasLocale(lang)) return {};
   const c = getContent(lang);
   return {
-    metadataBase: new URL("https://lucasborghys-psycholoog.be"),
+    metadataBase: new URL("https://lucasborghys.be"),
     title: c.meta.title,
     description: c.meta.description,
     alternates: {
@@ -79,7 +79,7 @@ export default async function LangLayout({ children, params }: LayoutProps<"/[la
   // praktijk (exacte pin, niet gegokt/geocodeerd). `openingHours`/`priceRange`
   // blijven bewust weg: de praktijk werkt op afspraak zonder vaste uren of
   // vaste prijs, dat verzinnen zou onjuiste info in de zoekresultaten zetten.
-  const baseUrl = `https://lucasborghys-psycholoog.be/${lang}`;
+  const baseUrl = `https://lucasborghys.be/${lang}`;
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -88,7 +88,7 @@ export default async function LangLayout({ children, params }: LayoutProps<"/[la
         "@id": `${baseUrl}#praktijk`,
         name: c.site.name,
         url: baseUrl,
-        image: "https://lucasborghys-psycholoog.be/images/portret-v8.jpg",
+        image: "https://lucasborghys.be/images/portret-v9.jpg",
         telephone: "+32493020543",
         address: {
           "@type": "PostalAddress",
