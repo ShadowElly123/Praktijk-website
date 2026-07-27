@@ -9,6 +9,10 @@
 
 [build]
   command = "npm run build"
+  # Moet expliciet ".next" zijn. Laat je publish leeg, dan neemt Netlify de
+  # repo-root en faalt @netlify/plugin-nextjs met "Your publish directory cannot
+  # be the same as the base directory of your site".
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "22"

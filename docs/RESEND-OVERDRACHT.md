@@ -4,8 +4,12 @@ Doel van dit document: samen met Lucas het versturen van de contactformulier-mai
 op zijn eigen account zetten. Volg dit van boven naar beneden. Reken op 30 minuten,
 plus wachttijd voor DNS.
 
-Status vandaag: de code werkt en is getest via een tijdelijk Resend-account op
-Lievens persoonlijke mail. Die tijdelijke sleutel moet aan het einde weg.
+**Status 27 juli 2026 · stappen 1 t/m 6 zijn uitgevoerd.** Het Resend-account staat
+op Lucas' mail, `send.lucasborghys.be` is geverifieerd, de DNS-records staan bij
+Combell, en er is een testinzending vanaf het echte afzenderdomein verstuurd die
+Resend als `delivered` markeerde. Wat nog open staat: de env vars in Netlify
+(stap 7) en het opruimen (stap 9). Het document blijft staan als naslag en als
+handleiding mocht dit ooit opnieuw opgezet moeten worden.
 
 ---
 
@@ -41,15 +45,17 @@ Dat is de hele uitleg. Als Lucas dit begrijpt, hoeft hij de rest niet te begrijp
 
 ## 2. Voor je begint: drie dingen nodig
 
-- [ ] **Lucas' e-mailadres** waarop hij de aanvragen wil krijgen.
-- [ ] **Login bij Combell**, waar `lucasborghys.be` gekocht is. Nodig om de
-      nameservers eenmalig naar Netlify te zetten.
-- [ ] **Login bij Netlify**, waar de site draait. Daar komen de DNS-records en de
-      env vars.
+- [x] **Lucas' e-mailadres** waarop hij de aanvragen wil krijgen.
+- [x] **Login bij Combell**, waar `lucasborghys.be` gekocht is en waar de DNS
+      beheerd wordt.
+- [x] **Login bij Netlify**, waar de site draait. Daar komen enkel de env vars.
 
-Aanbevolen aanpak: zet bij Combell de nameservers naar Netlify. Dan beheer je alle
-DNS-records op één plek, in Netlify, en hoeft niemand daarna nog bij Combell te zijn
-behalve om de jaarlijkse factuur te betalen.
+De DNS blijft bij Combell staan. Overwogen alternatief was de nameservers naar
+Netlify verhuizen om alles op één plek te beheren, maar dan kan je pas aan DNS
+werken zodra de Netlify-site bestaat, en moet je deze records later opnieuw
+aanmaken. Netlify wordt straks gewoon aangewezen met twee records bij Combell.
+Het enige nadeel: bij externe DNS profiteert het hoofddomein niet van Netlify's
+snelste routering, wat bij dit bezoekersaantal verwaarloosbaar is.
 
 ---
 
@@ -93,32 +99,46 @@ je openstaan.
 
 ## 5. De DNS-records zetten
 
-Deze records zet je in **Netlify** (Domain management → DNS records), niet bij
-Combell. Voorwaarde is dat de nameservers bij Combell al naar Netlify staan, zie
-stap 2. Staat dat nog niet, doe dat eerst en wacht tot Netlify het domein als actief
-toont.
+Deze records zet je bij **Combell**: Mijn producten → Domeinnamen →
+`lucasborghys.be` → DNS & forwarding. Per type is er een eigen toevoegknop.
 
-Je gaat de drie records uit Resend één voor één overtypen of kopiëren.
+Wat er uiteindelijk moet staan, met de namen zoals Resend ze toont (die zijn al
+relatief ten opzichte van `lucasborghys.be`, dus letterlijk overtypen):
 
-Dit is het lastigste onderdeel, dus twee valkuilen vooraf:
+| Type | Naam | Waarde | Extra |
+|------|------|--------|-------|
+| TXT | `resend._domainkey.send` | de lange `p=MIGf…`-sleutel uit Resend | dit is DKIM, de belangrijkste |
+| MX | `send.send` | `feedback-smtp.eu-west-1.amazonses.com` | prioriteit `10` |
+| TXT | `send.send` | `v=spf1 include:amazonses.com ~all` | |
 
-**Valkuil 1: de domeinnaam dubbel.** Netlify vult zelf het domein aan. Vraagt Resend
-een record op `send.lucasborghys.be`, dan typ je in het naamveld enkel `send`. Zie je
-na het opslaan `send.lucasborghys.be.lucasborghys.be` staan, dan is dit wat er misging.
+Dat dubbele `send.send` is geen typfout. Resend zet altijd zijn eigen `send`-laag
+voor het bounce-adres, en omdat het domein hier al `send.lucasborghys.be` is, wordt
+dat `send.send.lucasborghys.be`.
 
-**Valkuil 2: de waarde afkappen.** De DKIM-TXT-waarde is een heel lange sliert
-tekens. Kopieer die volledig, met de kopieerknop in Resend, niet met de muis
-selecteren. Eén ontbrekend teken en het werkt niet.
+Twee valkuilen:
 
-Voeg daarna nog een vierde record toe dat Resend je niet geeft, maar dat je wel wil
-hebben voor bezorging bij Outlook en Gmail:
+**Valkuil 1: de domeinnaam dubbel.** Combell vult zelf `.lucasborghys.be` aan achter
+het naamveld. Zie je na het opslaan `…lucasborghys.be.lucasborghys.be` staan, dan
+heeft het paneel dat niet gedaan en moet het domein uit het naamveld.
 
-| Type | Naam | Waarde |
-|------|------|--------|
-| TXT | `_dmarc` | `v=DMARC1; p=none; rua=mailto:<Lucas' mailadres>` |
+**Valkuil 2: de waarde afkappen.** De DKIM-waarde is ruim 200 tekens. Kopieer die met
+de kopieerknop in Resend, niet met de muis. Controleer na het opslaan of de waarde
+eindigt op `IwIDAQAB`. Weigert Combell de waarde, zet er dan `v=DKIM1; k=rsa; ` voor;
+dat is even geldig.
 
-Bestaat er al een `_dmarc`-record, laat het dan staan en verander niks. Dan is het
-al geregeld.
+**DMARC** stond hier al klaar: Combell zet standaard een `_dmarc`-record met
+`v=DMARC1;p=none;` op het hoofddomein. Dat geldt automatisch ook voor `send.` en is
+voldoende. Het mist enkel een rapporteeradres; wil je overzichten van wie er mail
+namens het domein verstuurt, maak de waarde dan
+`v=DMARC1; p=none; rua=mailto:<Lucas' mailadres>`. Nice-to-have, geen vereiste.
+
+Controleren of het wereldwijd zichtbaar is, kan zonder in Resend te klikken:
+
+```bash
+dig +short TXT resend._domainkey.send.lucasborghys.be @1.1.1.1
+dig +short MX  send.send.lucasborghys.be @1.1.1.1
+dig +short TXT send.send.lucasborghys.be @1.1.1.1
+```
 
 Terug in Resend: klik **Verify DNS Records**. Vaak staat het binnen enkele minuten
 op groen. Soms duurt het tot 24 uur voor het overal doorgedrongen is. Staat het na
