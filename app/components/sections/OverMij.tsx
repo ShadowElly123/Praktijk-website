@@ -64,7 +64,9 @@ export function OverMij({ c }: { c: Content }) {
               maxWidth: 520,
               fontFamily: "var(--font-serif), serif",
               fontWeight: 300,
-              fontSize: "clamp(19px,1.9vw,23px)",
+              // Zelfde maat als de alinea in Werkwijze — die twee secties staan
+              // naast elkaar in de leesbeleving en moeten dus gelijk wegen.
+              fontSize: "clamp(22px,2.3vw,28px)",
               lineHeight: 1.75,
               color: "var(--text)",
               whiteSpace: "pre-line",

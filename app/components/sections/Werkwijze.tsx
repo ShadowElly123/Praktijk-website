@@ -51,26 +51,34 @@ export function Werkwijze({ c }: { c: Content }) {
               <Editable path="werkwijze.title">{w.title}</Editable>
             </h2>
           )}
-          <p
-            style={{
-              margin: "0 0 22px",
-              maxWidth: 520,
-              fontFamily: "var(--font-serif), serif",
-              fontWeight: 300,
-              fontSize: "clamp(19px,1.9vw,23px)",
-              lineHeight: 1.75,
-              color: "var(--muted)",
-            }}
-          >
-            <Editable path="werkwijze.body">{w.body}</Editable>
-          </p>
+          {w.body && (
+            <p
+              style={{
+                margin: "0 0 22px",
+                maxWidth: 520,
+                fontFamily: "var(--font-serif), serif",
+                fontWeight: 300,
+                fontSize: "clamp(22px,2.3vw,28px)",
+                lineHeight: 1.75,
+                color: "var(--muted)",
+              }}
+            >
+              <Editable path="werkwijze.body">{w.body}</Editable>
+            </p>
+          )}
+          {/* Groter gezet dan de standaard bodytekst: dit is sinds het schrappen
+              van titel en intro de enige alinea in de sectie. Dat leest als een
+              bewuste lead (zelfde register als Verwelkoming) én het houdt de
+              tekstkolom hoog genoeg — de mediakolom ernaast rekt mee met deze
+              hoogte, dus kortere tekst zou de praktijkfoto verder wegsnijden.
+              Over mij volgt dezelfde maat, zodat de twee secties consequent zijn. */}
           <p
             style={{
               margin: 0,
               maxWidth: 520,
               fontFamily: "var(--font-serif), serif",
               fontWeight: 300,
-              fontSize: "clamp(19px,1.9vw,23px)",
+              fontSize: "clamp(22px,2.3vw,28px)",
               lineHeight: 1.75,
               color: "var(--muted)",
               whiteSpace: "pre-line",

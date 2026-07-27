@@ -43,9 +43,11 @@ export const content = {
     },
     werkwijze: {
       label: "Werkwijze",
-      // Update 2026-07-27: titel/themesTitle/themes leeggemaakt door Lucas via preview-edit.
+      // Update 2026-07-27: titel/body/themesTitle/themes leeggemaakt door Lucas.
+      // Leeg i.p.v. verwijderd, zodat de velden via preview-edit weer te vullen
+      // zijn; de componenten renderen ze enkel als er tekst in staat.
       title: "",
-      body: "De gesprekken vertrekken vanuit een psychoanalytische houding: traag, associatief, aandachtig en zonder vooropgesteld protocol. Er is geen checklist die bepaalt wat belangrijk is. Dat ontdekken we samen, in het spreken zelf.",
+      body: "",
       accent:
         "Binnen de therapie staat het vrij associëren centraal: de uitnodiging om gedachten, gevoelens en fantasieën zonder censuur uit te spreken. Dit bijzondere spreken helpt om uw levensgeschiedenis beter te begrijpen en patronen te ontrafelen die aan de basis liggen van uw psychisch lijden. Door woorden te geven aan wat er in u leeft, krijgt u dieper inzicht en verliest de problematiek haar dwingende greep. Dit proces opent de weg naar verwerking, nieuwe keuzes en een vrijere manier van leven. Deze methodiek pas ik toe via psychotherapie of via psychoanalyse.",
       themesTitle: "",
