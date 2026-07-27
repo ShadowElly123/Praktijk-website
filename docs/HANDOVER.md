@@ -61,7 +61,7 @@ per taal. De Nederlandse kernteksten van Lucas staan daar **letterlijk** bewaard
    Registratie staat in Over mij + footer: visum 374462, erkenning
    991135455, KBO 0790.741.228.
 4. **E-mailverzending formulier** — zie hieronder.
-5. **Domein** — bv. `lucasborghys-psycholoog.be` (aankopen + koppelen).
+5. **Domein** — bv. `lucasborghys.be` (aankopen + koppelen).
 6. **Privacybeleid** — de footer/formulier linken naar `#privacy`; er moet nog
    een echte privacyverklaring-tekst komen (verplicht i.v.m. gezondheidsdata).
 
@@ -72,7 +72,7 @@ Verzending is provider-agnostisch via env-variabelen:
 ```
 CONTACT_TO=praktijkadres-staat-in-env
 RESEND_API_KEY=...        # indien via Resend
-CONTACT_FROM="Website <no-reply@lucasborghys-psycholoog.be>"
+CONTACT_FROM="Website <no-reply@lucasborghys.be>"
 ```
 
 Zonder provider werkt de UI (toont succes) maar wordt de mail **niet** verzonden

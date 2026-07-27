@@ -1,0 +1,14 @@
+# Netlify-configuratie voor de site van Lucas Borghys.
+#
+# Netlify herkent Next.js zelf en installeert de Next.js-runtime (de
+# OpenNext-adapter) automatisch bij de build. Er hoeft dus geen publish-map of
+# plugin opgegeven te worden; dat regelt de runtime.
+#
+# NODE_VERSION staat vast op dezelfde versie als lokaal, zodat een wijziging in
+# Netlify's standaardversie de build niet stil kan breken.
+
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "22"
