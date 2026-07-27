@@ -154,14 +154,20 @@ a {
   position: relative;
 }
 /* Absoluut in de cel, dus zonder eigen hoogte: de alinea ernaast bepaalt de
-   rijhoogte en de foto vult die volledig. Rechts dezelfde optische marge als de
-   tekstkolom, zodat er geen kloof tussen beeld en tekst valt. */
+   rijhoogte, terwijl de foto met zijn bovenlijn op de eerste tekstregel begint.
+   Rechts dezelfde optische marge als de tekstkolom, zodat er geen kloof tussen
+   beeld en tekst valt.
+
+   Bewust de eigen 4/5-verhouding van het bestand i.p.v. tot onderaan uitrekken:
+   uitrekken maakte de cel smaller dan de foto en sneed dan links en rechts weg.
+   De breedte gaat daarom tot bijna de volle kolom, waardoor de foto groot is en
+   zijn onderlijn dicht bij het einde van de alinea uitkomt, zonder te snijden. */
 .about__photo {
   position: absolute;
   top: 0;
-  bottom: 0;
   right: 6vw;
-  width: min(400px, calc(100% - 12vw));
+  width: min(520px, calc(100% - 12vw));
+  aspect-ratio: 4 / 5;
 }
 .split__media {
   position: relative;

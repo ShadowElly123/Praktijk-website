@@ -11,8 +11,11 @@ import { Editable } from "../review/Editable";
  * hele truc: de sectiekop staat alleen in rij 1, de alinea en de foto delen
  * rij 2. Een grid-rij is zo hoog als zijn hoogste item, en de foto zit
  * absoluut gepositioneerd in zijn cel (dus zonder eigen hoogte) — daardoor
- * bepaalt de alinea de rijhoogte en loopt de foto er exact mee gelijk, boven-
- * en onderaan, zonder de kop mee te rekenen. Zie `.about__*` in globals.css.
+ * bepaalt de alinea de rijhoogte en begint de foto op de eerste tekstregel,
+ * zonder de kop mee te rekenen. De foto houdt wel zijn eigen 4/5-verhouding
+ * (niet uitgerekt tot onderaan, want dat sneed de zijkanten weg) en is zo breed
+ * als de kolom toelaat, zodat de onderlijn dicht bij het einde van de alinea
+ * valt. Zie `.about__*` in globals.css.
  *
  * De foto heeft bewust geen fade of vignet: op een lichte foto (warme, lichte
  * muur) tegen de bijna-zwarte site las elke uitdoof-poging als een silhouet —
@@ -38,13 +41,10 @@ export function OverMij({ c }: { c: Content }) {
             src="/images/portret-v10.jpg"
             alt={o.badge}
             fill
-            sizes="(max-width: 820px) 100vw, 30vw"
-            // De cel is hoger dan de 4/5 van het bestand (hij volgt de alinea),
-            // dus `cover` snijdt links en rechts iets weg. De uitsnede schuift
-            // daarom naar rechts: zo blijven zowel zijn gezicht als de volledige
-            // sunburst-spiegel binnen beeld, en verdwijnt enkel wat donkere zetel
-            // aan de linkerrand.
-            style={{ objectFit: "cover", objectPosition: "65% 50%" }}
+            sizes="(max-width: 820px) 100vw, 40vw"
+            // Kader en bestand hebben dezelfde 4/5-verhouding, dus `cover`
+            // snijdt hier niets weg: de foto is volledig te zien.
+            style={{ objectFit: "cover" }}
           />
         </div>
       </Reveal>
