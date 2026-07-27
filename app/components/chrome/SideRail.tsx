@@ -25,7 +25,7 @@ export function SideRail({ text }: { text: string }) {
         height: "100vh",
         marginBottom: "-100vh",
         zIndex: 90,
-        pointerEvents: enabled ? "auto" : "none",
+        pointerEvents: "none",
         alignItems: "center",
       }}
     >
@@ -40,6 +40,7 @@ export function SideRail({ text }: { text: string }) {
           color: "var(--mono-3)",
           textShadow: "0 1px 6px rgba(0,0,0,0.6)",
           whiteSpace: "nowrap",
+          pointerEvents: enabled ? "auto" : "none",
         }}
       >
         <Editable path="site.rail">{text}</Editable>
