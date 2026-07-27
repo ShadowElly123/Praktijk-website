@@ -26,6 +26,7 @@ export const content = {
       name: "Lucas Borghys",
       role: "Klinisch psycholoog · Gent",
       rail: "Klinisch psycholoog · psychoanalytische praktijk",
+      contactCta: "Contact",
     },
     hero: {
       titel: "Wees welkom,",
@@ -250,6 +251,7 @@ export const content = {
       name: "Lucas Borghys",
       role: "Clinical psychologist · Ghent",
       rail: "Clinical psychologist · psychoanalytic practice",
+      contactCta: "Contact",
     },
     hero: {
       titel: "Be welcome,",

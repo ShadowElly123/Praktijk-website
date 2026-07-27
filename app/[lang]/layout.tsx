@@ -132,7 +132,7 @@ export default async function LangLayout({ children, params }: LayoutProps<"/[la
           <div style={{ position: "relative", background: "var(--bg)" }}>
             <GrainOverlay />
             <SideRail text={c.site.rail} />
-            <TopChrome name={c.site.name} />
+            <TopChrome name={c.site.name} contactLabel={c.site.contactCta} />
             {children}
           </div>
         </EditModeRouteProvider>

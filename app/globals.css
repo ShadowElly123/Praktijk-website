@@ -445,12 +445,79 @@ a {
 .top-chrome {
   padding: 26px 40px;
 }
+.top-chrome__name {
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text);
+  pointer-events: auto;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+  /* Nooit over twee regels: dat maakte de balk op 320px hoger en oogde gebroken. */
+  white-space: nowrap;
+}
+.top-chrome__actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  pointer-events: auto;
+}
+/* Contactknop: zelfde glazen pil-idioom als de taalschakelaar ernaast, maar in
+   omtreklijn i.p.v. gevuld — de gevulde brass is al in gebruik voor de actieve
+   taal. Vult zich pas bij hover/focus. */
+.contact-cta {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 7px 14px;
+  border: 1px solid var(--brass);
+  border-radius: 999px;
+  color: var(--brass);
+  background: rgba(20, 18, 16, 0.55);
+  backdrop-filter: blur(6px);
+  transition:
+    background 0.4s,
+    color 0.4s;
+}
+.contact-cta:hover,
+.contact-cta:focus-visible {
+  background: var(--brass);
+  color: var(--bg);
+}
 @media (max-width: 560px) {
   .top-chrome {
     padding: 18px 20px;
   }
   .top-chrome__region {
     display: none;
+  }
+  /* Krap op smalle toestellen: naam, contactknop én taalpil moeten samen op één
+     regel blijven passen, dus alles een maat compacter. Getest tot 320px. */
+  .top-chrome__name {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+  .top-chrome__actions {
+    gap: 10px;
+  }
+  .contact-cta {
+    padding: 6px 11px;
+    letter-spacing: 0.06em;
+  }
+}
+/* Allerkleinste toestellen (iPhone SE-formaat): naam nog een maat kleiner, zodat
+   de drie elementen met wat lucht op één regel blijven. */
+@media (max-width: 360px) {
+  .top-chrome__name {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+  .contact-cta {
+    padding: 6px 9px;
   }
 }
 

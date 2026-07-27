@@ -6,10 +6,15 @@ import { Editable } from "../review/Editable";
 /**
  * Contact — eigen, rustige sectie met titel, korte intro en het formulier.
  * Losgekoppeld van Praktisch zodat die sectie kalmer oogt.
+ *
+ * `id="contact"` is het doel van de contactknop in de topbalk. De 12vh
+ * bovenpadding is ruimer dan de sticky topbalk hoog is, dus de titel komt na
+ * het springen vrij te staan; een scroll-margin is daarvoor niet nodig.
  */
 export function Contact({ c }: { c: Content }) {
   return (
     <section
+      id="contact"
       aria-label={c.contact.title}
       data-section="contact"
       className="sec-x"

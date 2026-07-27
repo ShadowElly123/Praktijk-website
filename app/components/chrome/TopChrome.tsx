@@ -6,15 +6,23 @@ import { LOCALES, type Locale } from "../../lib/locale";
 import { Editable } from "../review/Editable";
 
 /**
- * Sticky topbalk: links de naam, rechts de NL/EN-taalpil. De pil is een
- * paar `<Link>`s die de huidige subroute behouden en enkel de locale wisselen.
- * Stijl exact uit de goedgekeurde Claude Design (glazen pil, brass-fill actief).
+ * Sticky topbalk: links de naam, rechts een contactknop en de NL/EN-taalpil.
+ * De pil is een paar `<Link>`s die de huidige subroute behouden en enkel de
+ * locale wisselen. Stijl exact uit de goedgekeurde Claude Design (glazen pil,
+ * brass-fill actief); de contactknop is diens broertje in omtreklijn, zodat
+ * twee brass-vlakken niet naast elkaar om aandacht vechten.
  */
-export function TopChrome({ name }: { name: string }) {
+export function TopChrome({ name, contactLabel }: { name: string; contactLabel: string }) {
   const pathname = usePathname();
   // Strip de leidende locale zodat de subroute (bv. /privacy) behouden blijft.
   const rest = pathname.replace(/^\/(nl|en)(?=\/|$)/, "");
   const current = (pathname.match(/^\/(nl|en)(?=\/|$)/)?.[1] ?? "nl") as Locale;
+
+  // Op de homepage volstaat een fragment-link: het scrollen zelf komt van
+  // `scroll-behavior: smooth` op <html>, dat bij reduced-motion automatisch
+  // uitvalt. Elders (bv. /privacy) bestaat #contact niet, dus verwijst de knop
+  // naar de homepage mét fragment i.p.v. niets te doen.
+  const contactHref = rest === "" ? "#contact" : `/${current}#contact`;
 
   return (
     <div
@@ -30,22 +38,17 @@ export function TopChrome({ name }: { name: string }) {
         pointerEvents: "none",
       }}
     >
-      <div
-        style={{
-          fontFamily: "var(--font-sans), sans-serif",
-          fontWeight: 600,
-          fontSize: 14,
-          letterSpacing: "0.16em",
-          textTransform: "uppercase",
-          color: "var(--text)",
-          pointerEvents: "auto",
-          textShadow: "0 1px 8px rgba(0,0,0,0.7)",
-        }}
-      >
+      <div className="top-chrome__name">
         <Editable path="site.name">{name}</Editable>
       </div>
 
-      <div style={{ display: "flex", alignItems: "center", gap: 18, pointerEvents: "auto" }}>
+      <div className="top-chrome__actions">
+        <a href={contactHref} className="contact-cta">
+          <Editable path="site.contactCta" stopClickPropagation>
+            {contactLabel}
+          </Editable>
+        </a>
+
         <nav
           aria-label="Taal / Language"
           style={{
