@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Content, Locale } from "../../lib/locale";
+import { Editable } from "../review/Editable";
 
 /**
  * Footer — naam + rol, en daaronder een rij met de privacy-link en de
@@ -37,7 +38,7 @@ export function SiteFooter({ c, lang }: { c: Content; lang: Locale }) {
               marginBottom: 8,
             }}
           >
-            {c.site.name}
+            <Editable path="site.name">{c.site.name}</Editable>
           </div>
           <div
             style={{
@@ -47,7 +48,7 @@ export function SiteFooter({ c, lang }: { c: Content; lang: Locale }) {
               color: "var(--mono-3)",
             }}
           >
-            {c.site.role}
+            <Editable path="site.role">{c.site.role}</Editable>
           </div>
         </div>
       </div>
@@ -73,7 +74,9 @@ export function SiteFooter({ c, lang }: { c: Content; lang: Locale }) {
             textDecoration: "none",
           }}
         >
-          {c.footer.privacy}
+          <Editable path="footer.privacy" stopClickPropagation>
+            {c.footer.privacy}
+          </Editable>
         </Link>
         <span
           style={{
@@ -83,7 +86,7 @@ export function SiteFooter({ c, lang }: { c: Content; lang: Locale }) {
             color: "var(--mono-3)",
           }}
         >
-          {c.footer.legal}
+          <Editable path="footer.legal">{c.footer.legal}</Editable>
         </span>
       </div>
     </footer>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Content } from "../../lib/locale";
+import { Editable } from "../review/Editable";
 
 /**
  * Hero — full-bleed beeld met clair-obscur-behandeling, drie overlay-gradients,
@@ -88,7 +89,7 @@ export function Hero({ c }: { c: Content }) {
             color: "var(--title)",
           }}
         >
-          {c.hero.titel}
+          <Editable path="hero.titel">{c.hero.titel}</Editable>
           <br />
           <span
             style={{
@@ -99,7 +100,7 @@ export function Hero({ c }: { c: Content }) {
               letterSpacing: 0,
             }}
           >
-            {c.hero.accent}
+            <Editable path="hero.accent">{c.hero.accent}</Editable>
           </span>
         </h1>
         <p
@@ -113,7 +114,7 @@ export function Hero({ c }: { c: Content }) {
             color: "var(--muted)",
           }}
         >
-          {c.hero.sub}
+          <Editable path="hero.sub">{c.hero.sub}</Editable>
         </p>
       </div>
 
@@ -139,7 +140,7 @@ export function Hero({ c }: { c: Content }) {
             color: "var(--mono-2)",
           }}
         >
-          {c.hero.scroll}
+          <Editable path="hero.scroll">{c.hero.scroll}</Editable>
         </span>
         <div style={{ width: 1, height: 40, overflow: "hidden" }}>
           <div

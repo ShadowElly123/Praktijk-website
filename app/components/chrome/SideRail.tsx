@@ -1,12 +1,23 @@
+"use client";
+
+import { useEditMode } from "../review/EditMode";
+import { Editable } from "../review/Editable";
+
 /**
  * Verticale zijrail met de praktijk-omschrijving. Sticky over de hele hoogte,
- * verticaal gezet (writing-mode). Decoratief-informatief; klikt niet.
- * Exact uit de goedgekeurde Claude Design. Server component.
+ * verticaal gezet (writing-mode). Decoratief-informatief; klikt niet op de
+ * echte site (`aria-hidden` + `pointerEvents: none`).
+ *
+ * In bewerk-modus (`useEditMode().enabled`) wordt de rail wél klikbaar/
+ * focusbaar zodat de tekst te bewerken is — buiten bewerk-modus (dus overal
+ * op de echte site, waar nooit een EditModeProvider gemonteerd wordt) blijft
+ * het gedrag exact zoals voorheen.
  */
 export function SideRail({ text }: { text: string }) {
+  const { enabled } = useEditMode();
   return (
     <div
-      aria-hidden
+      aria-hidden={!enabled}
       className="side-rail"
       style={{
         position: "sticky",
@@ -14,7 +25,7 @@ export function SideRail({ text }: { text: string }) {
         height: "100vh",
         marginBottom: "-100vh",
         zIndex: 90,
-        pointerEvents: "none",
+        pointerEvents: enabled ? "auto" : "none",
         alignItems: "center",
       }}
     >
@@ -31,7 +42,7 @@ export function SideRail({ text }: { text: string }) {
           whiteSpace: "nowrap",
         }}
       >
-        {text}
+        <Editable path="site.rail">{text}</Editable>
       </div>
     </div>
   );

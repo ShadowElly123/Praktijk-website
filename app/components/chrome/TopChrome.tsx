@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LOCALES, type Locale } from "../../lib/locale";
+import { Editable } from "../review/Editable";
 
 /**
  * Sticky topbalk: links de naam, rechts de NL/EN-taalpil. De pil is een
@@ -41,7 +42,7 @@ export function TopChrome({ name }: { name: string }) {
           textShadow: "0 1px 8px rgba(0,0,0,0.7)",
         }}
       >
-        {name}
+        <Editable path="site.name">{name}</Editable>
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: 18, pointerEvents: "auto" }}>

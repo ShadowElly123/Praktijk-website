@@ -1,6 +1,7 @@
 import type { Content } from "../../lib/locale";
 import { Reveal } from "../Reveal";
 import { ContactForm } from "../ContactForm";
+import { Editable } from "../review/Editable";
 
 /**
  * Contact — eigen, rustige sectie met titel, korte intro en het formulier.
@@ -30,7 +31,7 @@ export function Contact({ c }: { c: Content }) {
               color: "var(--title)",
             }}
           >
-            {c.contact.title}
+            <Editable path="contact.title">{c.contact.title}</Editable>
           </h2>
           <p
             style={{
@@ -43,7 +44,7 @@ export function Contact({ c }: { c: Content }) {
               color: "var(--muted)",
             }}
           >
-            {c.contact.intro}
+            <Editable path="contact.intro">{c.contact.intro}</Editable>
           </p>
         </Reveal>
         <Reveal delay={0.1}>

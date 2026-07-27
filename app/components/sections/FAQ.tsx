@@ -3,6 +3,7 @@ import { safeJsonLd } from "../../lib/jsonld";
 import { Reveal } from "../Reveal";
 import { SectionKicker } from "../SectionKicker";
 import { FaqItem } from "../FaqItem";
+import { Editable } from "../review/Editable";
 
 /**
  * Veelgestelde vragen — een rustige, gestapelde lijst van native `<details>`-
@@ -54,13 +55,19 @@ export function FAQ({ c }: { c: Content }) {
       />
       <div style={{ position: "relative", zIndex: 1, maxWidth: 720, margin: "0 auto" }}>
         <Reveal style={{ marginBottom: 48 }}>
-          <SectionKicker as="h2" label={f.label} />
+          <SectionKicker as="h2" label={<Editable path="faq.label">{f.label}</Editable>} />
         </Reveal>
 
         <Reveal delay={0.08}>
           <div>
-            {f.items.map((item) => (
-              <FaqItem key={item.q} q={item.q} a={item.a} />
+            {f.items.map((item, i) => (
+              <FaqItem
+                key={item.q}
+                q={item.q}
+                a={item.a}
+                qPath={`faq.items[${i}].q`}
+                aPath={`faq.items[${i}].a`}
+              />
             ))}
           </div>
         </Reveal>

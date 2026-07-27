@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { Content } from "../../lib/locale";
 import { Reveal } from "../Reveal";
 import { SectionKicker } from "../SectionKicker";
+import { Editable } from "../review/Editable";
 
 /**
  * Over mij — 2-koloms: links een sticky foto (aspect 4/5) van Lucas, rechte
@@ -54,7 +55,7 @@ export function OverMij({ c }: { c: Content }) {
 
       <div className="split__text split__text--about">
         <Reveal style={{ marginBottom: 28 }}>
-          <SectionKicker as="h2" label={o.label} />
+          <SectionKicker as="h2" label={<Editable path="overMij.label">{o.label}</Editable>} />
         </Reveal>
         <Reveal delay={0.08}>
           <p
@@ -68,7 +69,7 @@ export function OverMij({ c }: { c: Content }) {
               color: "var(--text)",
             }}
           >
-            {o.body}
+            <Editable path="overMij.body">{o.body}</Editable>
           </p>
           <p
             style={{
@@ -81,7 +82,7 @@ export function OverMij({ c }: { c: Content }) {
               color: "var(--mono-1)",
             }}
           >
-            {o.ervaring}
+            <Editable path="overMij.ervaring">{o.ervaring}</Editable>
           </p>
         </Reveal>
         <Reveal delay={0.16}>
@@ -105,7 +106,7 @@ export function OverMij({ c }: { c: Content }) {
                 color: "var(--mono-2)",
               }}
             >
-              {o.titelsLabel}
+              <Editable path="overMij.titelsLabel">{o.titelsLabel}</Editable>
             </p>
             <div style={{ display: "flex", gap: 12, alignItems: "baseline" }}>
               <span
@@ -123,8 +124,10 @@ export function OverMij({ c }: { c: Content }) {
                   color: "var(--title)",
                 }}
               >
-                {o.titel1}{" "}
-                <span style={{ color: "var(--mono-1)" }}>{o.titel1sub}</span>
+                <Editable path="overMij.titel1">{o.titel1}</Editable>{" "}
+                <span style={{ color: "var(--mono-1)" }}>
+                  <Editable path="overMij.titel1sub">{o.titel1sub}</Editable>
+                </span>
               </div>
             </div>
             <div style={{ display: "flex", gap: 12, alignItems: "baseline" }}>
@@ -143,7 +146,7 @@ export function OverMij({ c }: { c: Content }) {
                   color: "var(--title)",
                 }}
               >
-                {o.titel2}
+                <Editable path="overMij.titel2">{o.titel2}</Editable>
               </div>
             </div>
           </div>
@@ -168,10 +171,10 @@ export function OverMij({ c }: { c: Content }) {
                 color: "var(--mono-2)",
               }}
             >
-              {o.registratieLabel}
+              <Editable path="overMij.registratieLabel">{o.registratieLabel}</Editable>
             </p>
             <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-              {o.registratie.map((r) => (
+              {o.registratie.map((r, i) => (
                 <li
                   key={r}
                   style={{
@@ -182,7 +185,7 @@ export function OverMij({ c }: { c: Content }) {
                     fontVariantNumeric: "tabular-nums",
                   }}
                 >
-                  {r}
+                  <Editable path={`overMij.registratie[${i}]`}>{r}</Editable>
                 </li>
               ))}
             </ul>

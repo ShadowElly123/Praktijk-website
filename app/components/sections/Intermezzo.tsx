@@ -1,5 +1,6 @@
 import type { Content } from "../../lib/locale";
 import { Reveal } from "../Reveal";
+import { Editable } from "../review/Editable";
 
 /**
  * Een rustpunt tussen Verwelkoming en Werkwijze: een gecentreerd citaat, groot
@@ -72,7 +73,7 @@ export function Intermezzo({ c }: { c: Content }) {
               textWrap: "balance",
             }}
           >
-            {i.quote}
+            <Editable path="intermezzo.quote">{i.quote}</Editable>
           </blockquote>
         </Reveal>
       </div>

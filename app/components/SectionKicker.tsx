@@ -14,7 +14,7 @@ export function SectionKicker({
   style,
   as = "span",
 }: {
-  label: string;
+  label: React.ReactNode;
   style?: React.CSSProperties;
   as?: "span" | "h2";
 }) {

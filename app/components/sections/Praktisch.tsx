@@ -2,6 +2,7 @@ import type { Content } from "../../lib/locale";
 import { Reveal } from "../Reveal";
 import { SectionKicker } from "../SectionKicker";
 import { PraktijkKaart } from "../map/PraktijkKaart";
+import { Editable } from "../review/Editable";
 
 /**
  * Praktisch & contact — rustig opgebouwd: kop, dan de kaart (volle breedte) met
@@ -16,13 +17,41 @@ export function Praktisch({ c }: { c: Content }) {
   const crisis = c.crisis;
   const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.adres)}`;
 
-  const rows: { label: string; value: string; note?: string; tabular?: boolean }[] = [
-    { label: l.praktijkLabel, value: l.adres, note: l.caption },
-    { label: p.talenLabel, value: p.talenValue },
-    { label: p.vormLabel, value: p.vormValue },
-    { label: p.tariefLabel, value: p.tariefValue },
-    { label: p.terugbetalingLabel, value: p.terugbetalingValue },
-    { label: p.betalingLabel, value: p.betalingValue, note: p.betalingNote, tabular: true },
+  const rows: {
+    label: string;
+    labelPath: string;
+    value: string;
+    valuePath: string;
+    note?: string;
+    notePath?: string;
+    tabular?: boolean;
+  }[] = [
+    {
+      label: l.praktijkLabel,
+      labelPath: "locatie.praktijkLabel",
+      value: l.adres,
+      valuePath: "locatie.adres",
+      note: l.caption,
+      notePath: "locatie.caption",
+    },
+    { label: p.talenLabel, labelPath: "praktisch.talenLabel", value: p.talenValue, valuePath: "praktisch.talenValue" },
+    { label: p.vormLabel, labelPath: "praktisch.vormLabel", value: p.vormValue, valuePath: "praktisch.vormValue" },
+    { label: p.tariefLabel, labelPath: "praktisch.tariefLabel", value: p.tariefValue, valuePath: "praktisch.tariefValue" },
+    {
+      label: p.terugbetalingLabel,
+      labelPath: "praktisch.terugbetalingLabel",
+      value: p.terugbetalingValue,
+      valuePath: "praktisch.terugbetalingValue",
+    },
+    {
+      label: p.betalingLabel,
+      labelPath: "praktisch.betalingLabel",
+      value: p.betalingValue,
+      valuePath: "praktisch.betalingValue",
+      note: p.betalingNote,
+      notePath: "praktisch.betalingNote",
+      tabular: true,
+    },
   ];
 
   return (
@@ -51,7 +80,7 @@ export function Praktisch({ c }: { c: Content }) {
       />
 
       <Reveal style={{ marginBottom: 48, position: "relative", zIndex: 1 }}>
-        <SectionKicker as="h2" label={p.label} />
+        <SectionKicker as="h2" label={<Editable path="praktisch.label">{p.label}</Editable>} />
       </Reveal>
 
       {/* Kaart — volle breedte, bovenaan, gecentreerd */}
@@ -93,7 +122,7 @@ export function Praktisch({ c }: { c: Content }) {
               textDecoration: "none",
             }}
           >
-            {l.routeLabel}
+            <Editable path="locatie.routeLabel">{l.routeLabel}</Editable>
             {/* U+FE0E dwingt tekst-weergave af — iOS rendert ↗ anders als emoji */}
             <span aria-hidden>{"↗︎"}</span>
           </a>
@@ -105,7 +134,7 @@ export function Praktisch({ c }: { c: Content }) {
               color: "var(--mono-1)",
             }}
           >
-            {l.routeNote}
+            <Editable path="locatie.routeNote">{l.routeNote}</Editable>
           </span>
         </div>
       </Reveal>
@@ -116,7 +145,9 @@ export function Praktisch({ c }: { c: Content }) {
           <dl style={{ display: "flex", flexDirection: "column", margin: 0 }}>
             {/* GSM als eerste rij met tel-link + microcopy als note */}
             <div className="info-row">
-              <dt className="info-label">{p.gsmLabel}</dt>
+              <dt className="info-label">
+                <Editable path="praktisch.gsmLabel">{p.gsmLabel}</Editable>
+              </dt>
               <dd style={{ margin: 0 }}>
                 <a
                   href={p.gsmHref}
@@ -129,7 +160,7 @@ export function Praktisch({ c }: { c: Content }) {
                     fontVariantNumeric: "tabular-nums",
                   }}
                 >
-                  {p.gsm}
+                  <Editable path="praktisch.gsm">{p.gsm}</Editable>
                 </a>
                 <span
                   style={{
@@ -141,14 +172,16 @@ export function Praktisch({ c }: { c: Content }) {
                     color: "var(--mono-1)",
                   }}
                 >
-                  {p.microcopy}
+                  <Editable path="praktisch.microcopy">{p.microcopy}</Editable>
                 </span>
               </dd>
             </div>
 
             {rows.map((row) => (
               <div key={row.label} className="info-row">
-                <dt className="info-label">{row.label}</dt>
+                <dt className="info-label">
+                  <Editable path={row.labelPath}>{row.label}</Editable>
+                </dt>
                 <dd style={{ margin: 0 }}>
                   <span
                     style={{
@@ -158,7 +191,7 @@ export function Praktisch({ c }: { c: Content }) {
                       color: "var(--text)",
                     }}
                   >
-                    {row.value}
+                    <Editable path={row.valuePath}>{row.value}</Editable>
                   </span>
                   {row.note && (
                     <span
@@ -172,7 +205,7 @@ export function Praktisch({ c }: { c: Content }) {
                         fontVariantNumeric: row.tabular ? "tabular-nums" : undefined,
                       }}
                     >
-                      {row.note}
+                      <Editable path={row.notePath!}>{row.note}</Editable>
                     </span>
                   )}
                 </dd>
@@ -194,7 +227,7 @@ export function Praktisch({ c }: { c: Content }) {
                 color: "var(--brass)",
               }}
             >
-              {crisis.title}
+              <Editable path="crisis.title">{crisis.title}</Editable>
             </p>
             <p
               style={{
@@ -205,13 +238,13 @@ export function Praktisch({ c }: { c: Content }) {
                 color: "var(--muted)",
               }}
             >
-              {crisis.intro}
+              <Editable path="crisis.intro">{crisis.intro}</Editable>
             </p>
             <ul style={{ listStyle: "none", margin: "18px 0 0", padding: 0, display: "flex", flexDirection: "column", gap: 10 }}>
-              {crisis.items.map((item) => (
+              {crisis.items.map((item, i) => (
                 <li key={item.label} style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16 }}>
                   <span style={{ fontFamily: "var(--font-serif), serif", fontSize: 15, color: "var(--text)" }}>
-                    {item.label}
+                    <Editable path={`crisis.items[${i}].label`}>{item.label}</Editable>
                   </span>
                   <a
                     href={item.href}
@@ -223,7 +256,7 @@ export function Praktisch({ c }: { c: Content }) {
                       textDecoration: "none",
                     }}
                   >
-                    {item.value}
+                    <Editable path={`crisis.items[${i}].value`}>{item.value}</Editable>
                   </a>
                 </li>
               ))}

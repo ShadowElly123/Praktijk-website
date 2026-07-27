@@ -8,6 +8,7 @@ import { GrainOverlay } from "../components/chrome/GrainOverlay";
 import { SideRail } from "../components/chrome/SideRail";
 import { TopChrome } from "../components/chrome/TopChrome";
 import { Analytics } from "../components/Analytics";
+import { EditModeRouteProvider } from "../components/review/EditModeRouteProvider";
 
 // Tussentitel-font: Bricolage Grotesque (overgenomen uit de eerdere "partituur"-versie).
 const sans = Bricolage_Grotesque({
@@ -127,12 +128,14 @@ export default async function LangLayout({ children, params }: LayoutProps<"/[la
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
         />
-        <div style={{ position: "relative", background: "var(--bg)" }}>
-          <GrainOverlay />
-          <SideRail text={c.site.rail} />
-          <TopChrome name={c.site.name} />
-          {children}
-        </div>
+        <EditModeRouteProvider>
+          <div style={{ position: "relative", background: "var(--bg)" }}>
+            <GrainOverlay />
+            <SideRail text={c.site.rail} />
+            <TopChrome name={c.site.name} />
+            {children}
+          </div>
+        </EditModeRouteProvider>
       </body>
     </html>
   );

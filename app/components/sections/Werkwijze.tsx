@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { Content } from "../../lib/locale";
 import { Reveal } from "../Reveal";
 import { SectionKicker } from "../SectionKicker";
+import { Editable } from "../review/Editable";
 
 /**
  * Werkwijze — 2-koloms: links de tekst (kop, titel, body, brass-accent, en een
@@ -33,7 +34,7 @@ export function Werkwijze({ c }: { c: Content }) {
         <div aria-hidden className="spotlight" style={{ width: 420, height: 420, left: -80, top: -120 }} />
 
         <Reveal style={{ marginBottom: 20, position: "relative", zIndex: 1 }}>
-          <SectionKicker label={w.label} />
+          <SectionKicker label={<Editable path="werkwijze.label">{w.label}</Editable>} />
         </Reveal>
         <Reveal delay={0.1} style={{ position: "relative", zIndex: 1 }}>
           <h2
@@ -47,7 +48,7 @@ export function Werkwijze({ c }: { c: Content }) {
               color: "var(--title)",
             }}
           >
-            {w.title}
+            <Editable path="werkwijze.title">{w.title}</Editable>
           </h2>
           <p
             style={{
@@ -60,7 +61,7 @@ export function Werkwijze({ c }: { c: Content }) {
               color: "var(--muted)",
             }}
           >
-            {w.body}
+            <Editable path="werkwijze.body">{w.body}</Editable>
           </p>
           <p
             style={{
@@ -73,7 +74,7 @@ export function Werkwijze({ c }: { c: Content }) {
               color: "var(--muted)",
             }}
           >
-            {w.accent}
+            <Editable path="werkwijze.accent">{w.accent}</Editable>
           </p>
         </Reveal>
 
@@ -87,7 +88,7 @@ export function Werkwijze({ c }: { c: Content }) {
               color: "var(--brass)",
             }}
           >
-            {w.themesTitle}
+            <Editable path="werkwijze.themesTitle">{w.themesTitle}</Editable>
           </p>
           <ul style={{ listStyle: "none", margin: 0, padding: 0, maxWidth: 520 }}>
             {w.themes.map((theme, i) => (
@@ -112,7 +113,7 @@ export function Werkwijze({ c }: { c: Content }) {
                 >
                   0{i + 1}
                 </span>
-                {theme}
+                <Editable path={`werkwijze.themes[${i}]`}>{theme}</Editable>
               </li>
             ))}
           </ul>

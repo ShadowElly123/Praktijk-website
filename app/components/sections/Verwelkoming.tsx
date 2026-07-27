@@ -1,6 +1,7 @@
 import type { Content } from "../../lib/locale";
 import { Reveal } from "../Reveal";
 import { SectionKicker } from "../SectionKicker";
+import { Editable } from "../review/Editable";
 
 /**
  * Verwelkoming — de letterlijke kerntekst van Lucas, groot gezet in Spectral,
@@ -29,7 +30,7 @@ export function Verwelkoming({ c }: { c: Content }) {
     >
       <div style={{ position: "relative", maxWidth: 760 }}>
         <Reveal style={{ marginBottom: 40 }}>
-          <SectionKicker as="h2" label={v.label} />
+          <SectionKicker as="h2" label={<Editable path="verwelkoming.label">{v.label}</Editable>} />
         </Reveal>
         <Reveal delay={0.1}>
           <p
@@ -43,8 +44,10 @@ export function Verwelkoming({ c }: { c: Content }) {
               textWrap: "pretty",
             }}
           >
-            {v.body}
-            <span style={{ color: "var(--brass)" }}>{v.accent}</span>
+            <Editable path="verwelkoming.body">{v.body}</Editable>
+            <span style={{ color: "var(--brass)" }}>
+              <Editable path="verwelkoming.accent">{v.accent}</Editable>
+            </span>
           </p>
         </Reveal>
       </div>

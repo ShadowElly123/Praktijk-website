@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { Editable } from "./review/Editable";
 
 /**
  * Eén FAQ-accordion-item.
@@ -18,7 +19,17 @@ import { useEffect, useRef } from "react";
  * afgelopen — anders verdwijnt de inhoud meteen uit de toegankelijkheidsboom
  * (native <details>-gedrag), nog vóór de animatie kan spelen.
  */
-export function FaqItem({ q, a }: { q: string; a: string }) {
+export function FaqItem({
+  q,
+  a,
+  qPath,
+  aPath,
+}: {
+  q: string;
+  a: string;
+  qPath?: string;
+  aPath?: string;
+}) {
   const detailsRef = useRef<HTMLDetailsElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
 
@@ -77,11 +88,27 @@ export function FaqItem({ q, a }: { q: string; a: string }) {
   return (
     <details ref={detailsRef} className="faq-item">
       <summary className="faq-question" onClick={handleSummaryClick}>
-        <span>{q}</span>
+        <span>
+          {qPath ? (
+            <Editable path={qPath} stopClickPropagation>
+              {q}
+            </Editable>
+          ) : (
+            q
+          )}
+        </span>
         <span aria-hidden className="faq-toggle" />
       </summary>
       <div ref={wrapRef} className="faq-answer-wrap">
-        <p className="faq-answer">{a}</p>
+        <p className="faq-answer">
+          {aPath ? (
+            <Editable path={aPath} stopClickPropagation>
+              {a}
+            </Editable>
+          ) : (
+            a
+          )}
+        </p>
       </div>
     </details>
   );

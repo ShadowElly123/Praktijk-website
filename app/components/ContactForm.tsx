@@ -3,6 +3,7 @@
 import { useState } from "react";
 import posthog from "posthog-js";
 import type { Content } from "../lib/locale";
+import { Editable } from "./review/Editable";
 
 type Status = "idle" | "sending" | "success" | "error";
 type Field = "onderwerp" | "toelichting" | "email";
@@ -100,7 +101,7 @@ export function ContactForm({ c }: { c: Content }) {
           color: "var(--brass)",
         }}
       >
-        {f.success}
+        <Editable path="form.success">{f.success}</Editable>
       </p>
     );
   }
@@ -130,7 +131,9 @@ export function ContactForm({ c }: { c: Content }) {
 
       <div>
         <label htmlFor="cf-onderwerp" style={labelStyle}>
-          {f.onderwerp}
+          <Editable path="form.onderwerp" stopClickPropagation>
+            {f.onderwerp}
+          </Editable>
         </label>
         <input
           id="cf-onderwerp"
@@ -150,7 +153,9 @@ export function ContactForm({ c }: { c: Content }) {
 
       <div>
         <label htmlFor="cf-toelichting" style={labelStyle}>
-          {f.toelichting}
+          <Editable path="form.toelichting" stopClickPropagation>
+            {f.toelichting}
+          </Editable>
         </label>
         <textarea
           id="cf-toelichting"
@@ -169,7 +174,7 @@ export function ContactForm({ c }: { c: Content }) {
           </p>
         ) : (
           <p id="cf-toelichting-hint" style={hintStyle}>
-            {f.toelichtingHint}
+            <Editable path="form.toelichtingHint">{f.toelichtingHint}</Editable>
           </p>
         )}
       </div>
@@ -177,7 +182,9 @@ export function ContactForm({ c }: { c: Content }) {
       <div className="field-2col">
         <div>
           <label htmlFor="cf-email" style={labelStyle}>
-            {f.emailLabel}
+            <Editable path="form.emailLabel" stopClickPropagation>
+              {f.emailLabel}
+            </Editable>
           </label>
           <input
             id="cf-email"
@@ -198,7 +205,9 @@ export function ContactForm({ c }: { c: Content }) {
         </div>
         <div>
           <label htmlFor="cf-telefoon" style={labelStyle}>
-            {f.telefoonLabel}
+            <Editable path="form.telefoonLabel" stopClickPropagation>
+              {f.telefoonLabel}
+            </Editable>
           </label>
           <input
             id="cf-telefoon"
@@ -214,7 +223,9 @@ export function ContactForm({ c }: { c: Content }) {
 
       <div>
         <label htmlFor="cf-beschikbaarheid" style={labelStyle}>
-          {f.beschikbaarheid}
+          <Editable path="form.beschikbaarheid" stopClickPropagation>
+            {f.beschikbaarheid}
+          </Editable>
         </label>
         <input
           id="cf-beschikbaarheid"
@@ -225,7 +236,7 @@ export function ContactForm({ c }: { c: Content }) {
           aria-describedby="cf-beschikbaarheid-hint"
         />
         <p id="cf-beschikbaarheid-hint" style={hintStyle}>
-          {f.beschikbaarheidHint}
+          <Editable path="form.beschikbaarheidHint">{f.beschikbaarheidHint}</Editable>
         </p>
       </div>
 
@@ -247,12 +258,20 @@ export function ContactForm({ c }: { c: Content }) {
           opacity: status === "sending" ? 0.7 : 1,
         }}
       >
-        {status === "sending" ? f.sending : f.verstuur}
+        {status === "sending" ? (
+          <Editable path="form.sending" stopClickPropagation>
+            {f.sending}
+          </Editable>
+        ) : (
+          <Editable path="form.verstuur" stopClickPropagation>
+            {f.verstuur}
+          </Editable>
+        )}
       </button>
 
       {status === "error" && (
         <p role="alert" style={{ ...errStyle, marginTop: 0 }}>
-          {f.error}{" "}
+          <Editable path="form.error">{f.error}</Editable>{" "}
           <a href={c.praktisch.gsmHref} style={{ color: "var(--brass)" }}>
             {c.praktisch.gsm}
           </a>
