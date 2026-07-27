@@ -67,6 +67,9 @@ export function FAQ({ c }: { c: Content }) {
                 a={item.a}
                 qPath={`faq.items[${i}].q`}
                 aPath={`faq.items[${i}].a`}
+                linkLabel={item.linkLabel}
+                linkHref={item.linkHref}
+                linkPath={`faq.items[${i}].linkLabel`}
               />
             ))}
           </div>

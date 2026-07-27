@@ -1,7 +1,6 @@
 import type { Content, Locale } from "../lib/locale";
 import { Hero } from "./sections/Hero";
 import { Verwelkoming } from "./sections/Verwelkoming";
-import { Intermezzo } from "./sections/Intermezzo";
 import { Werkwijze } from "./sections/Werkwijze";
 import { OverMij } from "./sections/OverMij";
 import { Praktisch } from "./sections/Praktisch";
@@ -20,12 +19,10 @@ export function HomeSections({ c, lang }: { c: Content; lang: Locale }) {
     <>
       <Hero c={c} />
       {/* Gedeelde achtergrond-laag: zie toelichting in de oorspronkelijke
-          page.tsx voor waarom Verwelkoming/Intermezzo/Werkwijze samen in
-          één transparante wrapper zitten (intermezzo-spotlight loopt over
-          sectiegrenzen heen). */}
+          page.tsx voor waarom Verwelkoming/Werkwijze samen in één
+          transparante wrapper zitten. */}
       <div style={{ position: "relative", zIndex: 0, background: "var(--bg)" }}>
         <Verwelkoming c={c} />
-        <Intermezzo c={c} />
         <Werkwijze c={c} />
       </div>
       <OverMij c={c} />

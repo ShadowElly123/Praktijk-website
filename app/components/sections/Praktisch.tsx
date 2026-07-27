@@ -34,15 +34,13 @@ export function Praktisch({ c }: { c: Content }) {
       note: l.caption,
       notePath: "locatie.caption",
     },
-    { label: p.talenLabel, labelPath: "praktisch.talenLabel", value: p.talenValue, valuePath: "praktisch.talenValue" },
-    { label: p.vormLabel, labelPath: "praktisch.vormLabel", value: p.vormValue, valuePath: "praktisch.vormValue" },
-    { label: p.tariefLabel, labelPath: "praktisch.tariefLabel", value: p.tariefValue, valuePath: "praktisch.tariefValue" },
     {
-      label: p.terugbetalingLabel,
-      labelPath: "praktisch.terugbetalingLabel",
-      value: p.terugbetalingValue,
-      valuePath: "praktisch.terugbetalingValue",
+      label: p.parkerenLabel,
+      labelPath: "praktisch.parkerenLabel",
+      value: p.parkerenValue,
+      valuePath: "praktisch.parkerenValue",
     },
+    { label: p.tariefLabel, labelPath: "praktisch.tariefLabel", value: p.tariefValue, valuePath: "praktisch.tariefValue" },
     {
       label: p.betalingLabel,
       labelPath: "praktisch.betalingLabel",
@@ -174,6 +172,61 @@ export function Praktisch({ c }: { c: Content }) {
                 >
                   <Editable path="praktisch.microcopy">{p.microcopy}</Editable>
                 </span>
+              </dd>
+            </div>
+
+            <div className="info-row">
+              <dt className="info-label">
+                <Editable path="praktisch.emailLabel">{p.emailLabel}</Editable>
+              </dt>
+              <dd style={{ margin: 0 }}>
+                <a
+                  href={p.emailHref}
+                  style={{
+                    fontFamily: "var(--font-serif), serif",
+                    fontSize: 17,
+                    lineHeight: 1.6,
+                    color: "var(--text)",
+                    textDecoration: "none",
+                  }}
+                >
+                  <Editable path="praktisch.email">{p.email}</Editable>
+                </a>
+              </dd>
+            </div>
+
+            <div className="info-row">
+              <dt className="info-label">
+                <Editable path="praktisch.terugbetalingLabel">{p.terugbetalingLabel}</Editable>
+              </dt>
+              <dd style={{ margin: 0 }}>
+                <span
+                  style={{
+                    fontFamily: "var(--font-serif), serif",
+                    fontSize: 17,
+                    lineHeight: 1.6,
+                    color: "var(--text)",
+                  }}
+                >
+                  <Editable path="praktisch.terugbetalingValue">{p.terugbetalingValue}</Editable>
+                </span>
+                <a
+                  href={p.terugbetalingLinkHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "block",
+                    marginTop: 4,
+                    fontFamily: "var(--font-serif), serif",
+                    fontStyle: "italic",
+                    fontSize: 14,
+                    color: "var(--brass)",
+                  }}
+                >
+                  <Editable path="praktisch.terugbetalingLinkLabel" stopClickPropagation>
+                    {p.terugbetalingLinkLabel}
+                  </Editable>
+                </a>
               </dd>
             </div>
 

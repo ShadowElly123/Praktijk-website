@@ -23,8 +23,7 @@ export function Verwelkoming({ c }: { c: Content }) {
         justifyContent: "center",
         paddingTop: "16vh",
         paddingBottom: "16vh",
-        // Transparant: de gedeelde achtergrond-wrapper (page.tsx) levert de kleur,
-        // zodat de intermezzo-gloed hier ongestoord in kan doorlopen.
+        // Transparant: de gedeelde achtergrond-wrapper (page.tsx) levert de kleur.
         background: "transparent",
       }}
     >
@@ -35,6 +34,19 @@ export function Verwelkoming({ c }: { c: Content }) {
         <Reveal delay={0.1}>
           <p
             style={{
+              margin: "0 0 24px",
+              fontFamily: "var(--font-serif), serif",
+              fontWeight: 300,
+              fontSize: "clamp(22px,2.5vw,30px)",
+              lineHeight: 1.65,
+              color: "var(--text)",
+              textWrap: "pretty",
+            }}
+          >
+            <Editable path="verwelkoming.body">{v.body}</Editable>
+          </p>
+          <p
+            style={{
               margin: 0,
               fontFamily: "var(--font-serif), serif",
               fontWeight: 300,
@@ -42,10 +54,9 @@ export function Verwelkoming({ c }: { c: Content }) {
               lineHeight: 1.65,
               color: "var(--text)",
               textWrap: "pretty",
-              whiteSpace: "pre-line",
             }}
           >
-            <Editable path="verwelkoming.body">{v.body}</Editable>
+            <Editable path="verwelkoming.body2">{v.body2}</Editable>{" "}
             <span style={{ color: "var(--brass)" }}>
               <Editable path="verwelkoming.accent">{v.accent}</Editable>
             </span>

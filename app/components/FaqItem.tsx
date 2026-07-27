@@ -24,11 +24,17 @@ export function FaqItem({
   a,
   qPath,
   aPath,
+  linkLabel,
+  linkHref,
+  linkPath,
 }: {
   q: string;
   a: string;
   qPath?: string;
   aPath?: string;
+  linkLabel?: string;
+  linkHref?: string;
+  linkPath?: string;
 }) {
   const detailsRef = useRef<HTMLDetailsElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -100,15 +106,37 @@ export function FaqItem({
         <span aria-hidden className="faq-toggle" />
       </summary>
       <div ref={wrapRef} className="faq-answer-wrap">
-        <p className="faq-answer">
-          {aPath ? (
-            <Editable path={aPath} stopClickPropagation>
-              {a}
-            </Editable>
-          ) : (
-            a
+        {/* Eén kind in de grid-wrapper (nodig voor de 0fr/1fr-collapse-truc
+            hierboven) — tekst én eventuele link zitten daarom samen in deze
+            ene div i.p.v. als losse siblings. */}
+        <div className="faq-answer">
+          <p style={{ margin: 0 }}>
+            {aPath ? (
+              <Editable path={aPath} stopClickPropagation>
+                {a}
+              </Editable>
+            ) : (
+              a
+            )}
+          </p>
+          {linkLabel && linkHref && (
+            <a
+              href={linkHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="faq-answer-link"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {linkPath ? (
+                <Editable path={linkPath} stopClickPropagation>
+                  {linkLabel}
+                </Editable>
+              ) : (
+                linkLabel
+              )}
+            </a>
           )}
-        </p>
+        </div>
       </div>
     </details>
   );

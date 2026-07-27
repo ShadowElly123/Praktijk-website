@@ -21,11 +21,10 @@ export function Werkwijze({ c }: { c: Content }) {
       style={{
         position: "relative",
         // Géén overflow:hidden: de brass-spotlight achter de kop steekt boven de
-        // sectie uit en moet over de grens met het intermezzo kunnen doorvloeien —
+        // sectie uit en moet over de grens met Verwelkoming kunnen doorvloeien —
         // een sectie-clip zou 'm daar hard afsnijden. Het beeld heeft geen harde
         // rand nodig: het feather-masker op .werkwijze-foto lost de randen op.
-        // Transparant: de gedeelde achtergrond-wrapper (page.tsx) levert de kleur,
-        // zodat de intermezzo-gloed hier ongestoord in kan doorlopen.
+        // Transparant: de gedeelde achtergrond-wrapper (page.tsx) levert de kleur.
         background: "transparent",
       }}
     >

@@ -165,7 +165,9 @@ export function ContactForm({ c }: { c: Content }) {
           value={values.toelichting}
           onChange={(e) => update("toelichting", e.target.value)}
           aria-invalid={errors.toelichting ? "true" : undefined}
-          aria-describedby={errors.toelichting ? "cf-toelichting-err" : "cf-toelichting-hint"}
+          aria-describedby={
+            errors.toelichting ? "cf-toelichting-err" : f.toelichtingHint ? "cf-toelichting-hint" : undefined
+          }
           style={{ resize: "none" }}
         />
         {errors.toelichting ? (
@@ -173,9 +175,11 @@ export function ContactForm({ c }: { c: Content }) {
             {errors.toelichting}
           </p>
         ) : (
-          <p id="cf-toelichting-hint" style={hintStyle}>
-            <Editable path="form.toelichtingHint">{f.toelichtingHint}</Editable>
-          </p>
+          f.toelichtingHint && (
+            <p id="cf-toelichting-hint" style={hintStyle}>
+              <Editable path="form.toelichtingHint">{f.toelichtingHint}</Editable>
+            </p>
+          )
         )}
       </div>
 

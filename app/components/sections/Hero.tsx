@@ -91,15 +91,7 @@ export function Hero({ c }: { c: Content }) {
         >
           <Editable path="hero.titel">{c.hero.titel}</Editable>
           <br />
-          <span
-            style={{
-              fontFamily: "var(--font-serif), serif",
-              fontWeight: 300,
-              fontStyle: "italic",
-              color: "var(--brass)",
-              letterSpacing: 0,
-            }}
-          >
+          <span style={{ color: "var(--brass)" }}>
             <Editable path="hero.accent">{c.hero.accent}</Editable>
           </span>
         </h1>

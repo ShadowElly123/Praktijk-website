@@ -36,11 +36,10 @@ export const content = {
     verwelkoming: {
       label: "Verwelkoming",
       // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg. Update 2026-07-27: herschreven door Lucas via preview-edit.
-      body: "Wees welkom, en vertel. Dat is het vertrekpunt. Vroeg\nof laat botsen we allemaal op een worsteling waardoor het leven niet meer\nbehapbaar voelt. Dit is vaak het moment om de stap naar gesprekstherapie te\nzetten.\n\nVia het spreken zoeken we samen naar woorden voor wat nu nog\nonduidelijk is. Ik nodig u uit om stil te staan bij uw verhaal en te ontdekken\nhoe deze moeilijkheden verweven zijn met uw leven. ",
+      body: "Wees welkom, en vertel. Dat is het vertrekpunt. Vroeg of laat botsen we allemaal op een worsteling waardoor het leven niet meer behapbaar voelt. Dit is vaak het moment om de stap naar gesprekstherapie te zetten.",
+      body2:
+        "Via het spreken zoeken we samen naar woorden voor wat nu nog onduidelijk is. Ik nodig u uit om stil te staan bij uw verhaal en te ontdekken hoe deze moeilijkheden verweven zijn met uw leven.",
       accent: "Elk verhaal, elke moeilijkheid is welkom.",
-    },
-    intermezzo: {
-      quote: "We zijn allemaal vreemden voor onszelf, en pas wanneer we tot een ander spreken, wordt deze vreemdheid een thuis.",
     },
     werkwijze: {
       label: "Werkwijze",
@@ -48,7 +47,7 @@ export const content = {
       title: "",
       body: "De gesprekken vertrekken vanuit een psychoanalytische houding: traag, associatief, aandachtig en zonder vooropgesteld protocol. Er is geen checklist die bepaalt wat belangrijk is. Dat ontdekken we samen, in het spreken zelf.",
       accent:
-        "Binnen de therapie staat het vrij associëren\ncentraal: de uitnodiging om gedachten, gevoelens en fantasieën zonder censuur\nuit te spreken. Dit bijzondere spreken helpt om uw levensgeschiedenis\nbeter te begrijpen en patronen te ontrafelen die aan de basis liggen van uw\npsychisch lijden. Door woorden te geven aan wat er in u leeft, krijgt u dieper\ninzicht en verliest de problematiek haar dwingende greep. Dit proces opent de\nweg naar verwerking, nieuwe keuzes en een vrijere manier van leven. Deze\nmethodiek pas ik toe via psychotherapie of via psychoanalyse.",
+        "Binnen de therapie staat het vrij associëren centraal: de uitnodiging om gedachten, gevoelens en fantasieën zonder censuur uit te spreken. Dit bijzondere spreken helpt om uw levensgeschiedenis beter te begrijpen en patronen te ontrafelen die aan de basis liggen van uw psychisch lijden. Door woorden te geven aan wat er in u leeft, krijgt u dieper inzicht en verliest de problematiek haar dwingende greep. Dit proces opent de weg naar verwerking, nieuwe keuzes en een vrijere manier van leven. Deze methodiek pas ik toe via psychotherapie of via psychoanalyse.",
       themesTitle: "",
       themes: ["", "", ""],
       imageCaption:
@@ -57,34 +56,22 @@ export const content = {
     overMij: {
       label: "Over mij",
       // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg. Update 2026-07-27: herschreven door Lucas via preview-edit.
-      body: "Na mijn afstuderen als Master in de klinische psychologie\n(UGent, 2022) ben ik mij blijven specialiseren in de psychoanalytische\npsychotherapie. Naast een postgraduaat aan de UGent volg ik continu seminaries\nen opleidingsdagen.\nMijn klinische vorming kreeg écht vorm in de praktijk: via mijn werk bij CGG\nAndante, groepspraktijken Tondel, Anker en de Huiskamer, en PVT De Wadi. Om de\nkwaliteit van mijn psychologische begeleiding te waarborgen, zet ik daarnaast\nsteevast in op supervisie, intervisie en een eigen leeranalyse.",
+      body: "Na mijn afstuderen als Master in de klinische psychologie (UGent, 2022) ben ik mij blijven specialiseren in de psychoanalytische psychotherapie. Naast een postgraduaat aan de UGent volg ik continu seminaries en opleidingsdagen. Mijn klinische vorming kreeg écht vorm in de praktijk: via mijn werk bij CGG Andante, groepspraktijken Tondel, Anker en de Huiskamer, en PVT De Wadi. Om de kwaliteit van mijn psychologische begeleiding te waarborgen, zet ik daarnaast steevast in op supervisie, intervisie en een eigen leeranalyse.",
       // Update 2026-07-27: leeggemaakt door Lucas via preview-edit.
       ervaring: "",
-      titelsLabel: "Titels & erkenning",
-      titel1: "Klinisch psycholoog",
-      titel1sub: "(Erkend door de Psychologencommissie, met visum).",
-      titel2: "In opleiding tot psychoanalytisch therapeut.",
       badge: "Lucas Borghys · Gent",
-      registratieLabel: "Registratie",
-      registratie: [
-        "Visumnummer 374462",
-        "Erkenningsnummer 991135455",
-        "Ondernemingsnummer 0790.741.228",
-      ],
     },
     praktisch: {
       label: "Praktisch & contact",
-      talenLabel: "Talen",
-      talenValue: "Nederlands & Engels",
-      vormLabel: "Vorm",
-      vormValue: "Op gesprek, of via video en telefoon",
       tariefLabel: "Tarief",
       tariefValue:
-        "Richtprijs en richtduur worden toegelicht tijdens het intakegesprek. Definitieve afspraken horen bij die eerste kennismaking.",
+        "Een sessie duurt ongeveer 45 minuten en de richtprijs is 70 euro, dit kan variëren. Kan u niet naar een afspraak komen, verwittig mij dan minstens 24 uur op voorhand.",
       terugbetalingLabel: "Terugbetaling",
-      // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg.
+      // LETTERLIJKE KERNTEKST — niet wijzigen zonder overleg. Update 2026-07-27: ingekort door Lucas.
       terugbetalingValue:
-        "Niet-geconventioneerd. Gedeeltelijke terugbetaling van het ziekenfonds is mogelijk. U mag uw formulier meebrengen naar de sessie.",
+        "Niet-geconventioneerd. Gedeeltelijke terugbetaling van het ziekenfonds is mogelijk. U mag een formulier meebrengen.",
+      terugbetalingLinkLabel: "Overzicht van terugbetalingsformulieren per ziekenfonds",
+      terugbetalingLinkHref: "https://www.vind-een-psycholoog.be/info/terugbetaling-psychotherapie.html",
       betalingLabel: "Betaling",
       betalingValue: "Bancontact app (Payconiq) of overschrijving",
       betalingNote: "IBAN BE53 3632 2546 8153",
@@ -94,60 +81,76 @@ export const content = {
       gsmLabel: "GSM",
       gsm: "0493 02 05 43",
       gsmHref: "tel:+32493020543",
+      emailLabel: "E-mail",
+      email: "praktijkadres-staat-in-env",
+      emailHref: "mailto:praktijkadres-staat-in-env",
+      parkerenLabel: "Parkeren",
+      parkerenValue: "Sint-Pietersplein parking of de omliggende straten",
     },
     faq: {
       label: "Veelgestelde vragen",
       items: [
         {
           q: "Wordt een sessie terugbetaald door het ziekenfonds?",
-          a: "Deze praktijk werkt niet binnen de RIZIV-conventie, daarom ligt er geen vast tarief per zitting vast. De meeste ziekenfondsen betalen desondanks een deel terug. Uw mutualiteit kan dat voor u nakijken, breng het formulier gerust mee.",
+          a: "Deze praktijk werkt niet binnen de RIZIV-conventie. De meeste ziekenfondsen betalen desondanks een deel terug. Uw mutualiteit kan dat voor u nakijken.",
+          linkLabel: "Overzicht van terugbetalingsformulieren per ziekenfonds",
+          linkHref: "https://www.vind-een-psycholoog.be/info/terugbetaling-psychotherapie.html",
         },
         {
           q: "Wat kost een sessie?",
-          a: "Een bedrag vindt u hier niet vermeld. Bij het eerste gesprek bekijken we samen wat haalbaar is, zowel qua tempo als budget.",
+          a: "Een sessie duurt ongeveer 45 minuten, aan een richtprijs van 70 euro; dit kan variëren. Kan u niet naar een afspraak komen, verwittig mij dan minstens 24 uur op voorhand.",
+          linkLabel: "",
+          linkHref: "",
         },
         {
           q: "Wat is het verschil tussen een psycholoog en een psychotherapeut?",
           a: "Een psycholoog draagt een wettelijk beschermde titel, verkregen na een universitaire opleiding. Een psychotherapeut volgt daarnaast een langdurige, specifieke opleiding in een bepaalde gespreksmethode, bij mij de psychoanalyse. Het eerste is afgerond, het tweede nog in opleiding.",
+          linkLabel: "",
+          linkHref: "",
         },
         {
-          q: "Kan de eerste sessie via video of telefoon?",
-          a: "Ja. Sommige mensen starten liever van thuis uit, dat kan hier net zo goed als een gesprek op de praktijk zelf.",
+          q: "Kan online begeleiding ook?",
+          a: "Ja, sessies kunnen ook via video of telefonisch doorgaan. Voor het eerste, kennismakingsgesprek gaat de voorkeur uit naar een ontmoeting ter plaatse, maar dat is geen verplichting.",
+          linkLabel: "",
+          linkHref: "",
         },
         {
           q: "Hoeveel sessies heb ik nodig?",
-          a: "Dat vooraf vastleggen zou ingaan tegen hoe deze gesprekken werken. De duur groeit mee met wat nodig blijkt, niet omgekeerd.",
+          a: "Dat staat niet op voorhand vast. De duur groeit mee met wat nodig blijkt, niet omgekeerd.",
+          linkLabel: "",
+          linkHref: "",
         },
         {
           q: "Waar bevindt de praktijk zich?",
-          a: "Centraal in Gent, op wandelafstand van het Zuid. Parkeren kan aan de achterkant van het gebouw, u rijdt gewoon de doorrit onder het gebouw door.",
+          a: "Centraal in Gent, op wandelafstand van het Zuid. Parkeren kan op de Sint-Pietersplein parking of in de omliggende straten.",
+          linkLabel: "",
+          linkHref: "",
         },
         {
-          q: "Kan ik in het Engels terecht?",
-          a: "Ja, sommige gesprekken lopen nu eenmaal makkelijker in het Engels, dat kan hier evengoed.",
+          q: "Kan ik in het Engels ook therapie volgen?",
+          a: "Ja, therapie is mogelijk in het Nederlands en het Engels. Sommige gesprekken lopen nu eenmaal makkelijker in het Engels, dat kan hier evengoed.",
+          linkLabel: "",
+          linkHref: "",
         },
         {
-          q: "Is dit een veilige plek voor vragen rond gender, geaardheid of identiteit?",
+          q: "Kan ik hier terecht met vragen over geaardheid, gender of identiteit?",
           a: "Ja. Wat u meebrengt hoeft niet eerst herkenbaar of behapbaar te zijn. Vragen over wie u bent, van wie u houdt, hoe uw lichaam aanvoelt, horen hier evengoed thuis, ook als het nog geen naam heeft.",
-        },
-        {
-          q: "Werkt u ook met kunstenaars of mensen met een onconventionele levensstijl?",
-          a: "Zeker. Een leven dat niet in de gewone mal past, een keuze waar u zich voor verantwoordt, iets waar u zich stilletjes voor schaamt, een gewoonte die u liever verzwijgt: voor dat alles is hier plaats.",
+          linkLabel: "",
+          linkHref: "",
         },
       ],
     },
     contact: {
       title: "Neem contact op",
-      intro:
-        "Laat kort iets weten en ik neem contact met u op. Wat u hier deelt, blijft vertrouwelijk.",
+      intro: "Laat iets weten en ik neem contact met u op. Wat u hier deelt, blijft vertrouwelijk.",
     },
     form: {
       onderwerp: "Onderwerp",
       toelichting: "Toelichting",
-      toelichtingHint: "Kort volstaat. U hoeft nu nog niets uit te leggen.",
+      toelichtingHint: "",
       emailLabel: "E-mailadres",
       telefoonLabel: "Telefoonnummer",
-      beschikbaarheid: "Weekbeschikbaarheden",
+      beschikbaarheid: "Wanneer bent u in de week beschikbaar?",
       beschikbaarheidHint: "Bijv. weekdagen na 17u, of woensdagvoormiddag.",
       verstuur: "Versturen",
       sending: "Versturen…",
@@ -182,7 +185,8 @@ export const content = {
     footer: {
       privacy: "Privacybeleid",
       rights: "Alle rechten voorbehouden.",
-      legal: "Visum 374462 · Erkenning 991135455 · KBO 0790.741.228",
+      legal:
+        "Klinisch psycholoog (Erkend door de Psychologencommissie, met visum) · In opleiding tot psychoanalytisch therapeut · Visum 374462 · Erkenning 991135455 · KBO 0790.741.228",
     },
     privacy: {
       title: "Privacybeleid",
@@ -238,11 +242,10 @@ export const content = {
     },
     verwelkoming: {
       label: "Welcome",
-      body: "Be welcome, and speak. That is the ground we set out from and keep returning to. Sooner or later every person meets a struggle; life no longer feels predictable or manageable, and for many this is the moment to take the step toward talking therapy. Through speaking we try to get a hold on that struggle, to find words for what has no clarity yet, no story. I invite you to come and speak together about what you are up against, and how far these difficulties are meaningful within your broader life story. ",
+      body: "Be welcome, and speak. That is the ground we set out from and keep returning to. Sooner or later every person meets a struggle; life no longer feels predictable or manageable, and for many this is the moment to take the step toward talking therapy.",
+      body2:
+        "Through speaking we try to get a hold on that struggle, to find words for what has no clarity yet, no story. I invite you to come and speak together about what you are up against, and how far these difficulties are meaningful within your broader life story.",
       accent: "Every story, every difficulty is welcome.",
-    },
-    intermezzo: {
-      quote: "The place where I fit will not exist until I make it myself.",
     },
     werkwijze: {
       label: "Approach",
@@ -264,31 +267,18 @@ export const content = {
       body: "I am a clinical psychologist with a passion for and experience in talking therapy. I keep refining my work as a therapist by taking part in a psychoanalytic training programme and by attending lectures and study days.",
       ervaring:
         "Earlier experience at group practice Tondel, house for psychotherapy Anker and de Huiskamer, and volunteer work in PVT De Wadi at de Driesprong.",
-      titelsLabel: "Titles & recognition",
-      // Officiële titels bewust in het Nederlands — deontologisch exact.
-      titel1: "Klinisch psycholoog",
-      titel1sub: "(Erkend door de Psychologencommissie, met visum).",
-      titel2: "In opleiding tot psychoanalytisch therapeut.",
       badge: "Lucas Borghys · Ghent",
-      registratieLabel: "Registration",
-      registratie: [
-        "Visa number 374462",
-        "Recognition number 991135455",
-        "Company number 0790.741.228",
-      ],
     },
     praktisch: {
       label: "Practical & contact",
-      talenLabel: "Languages",
-      talenValue: "Dutch & English",
-      vormLabel: "Format",
-      vormValue: "In person, or by video and phone",
       tariefLabel: "Fee",
       tariefValue:
-        "Indicative rate and session length are explained during the intake conversation. Definitive arrangements belong to that first meeting.",
+        "A session lasts around 45 minutes, at an indicative rate of 70 euros, which may vary. If you cannot make an appointment, please let me know at least 24 hours in advance.",
       terugbetalingLabel: "Reimbursement",
       terugbetalingValue:
-        "Non-conventioned practice. Partial reimbursement from your health insurance fund may be possible; you may bring your form to the session.",
+        "Non-conventioned practice. Partial reimbursement from your health insurance fund may be possible. You may bring a form.",
+      terugbetalingLinkLabel: "Overview of reimbursement forms per health fund",
+      terugbetalingLinkHref: "https://www.vind-een-psycholoog.be/info/terugbetaling-psychotherapie.html",
       betalingLabel: "Payment",
       betalingValue: "Bancontact app (Payconiq) or bank transfer",
       betalingNote: "IBAN BE53 3632 2546 8153",
@@ -297,60 +287,76 @@ export const content = {
       gsmLabel: "Mobile",
       gsm: "0493 02 05 43",
       gsmHref: "tel:+32493020543",
+      emailLabel: "Email",
+      email: "praktijkadres-staat-in-env",
+      emailHref: "mailto:praktijkadres-staat-in-env",
+      parkerenLabel: "Parking",
+      parkerenValue: "Sint-Pietersplein car park or the surrounding streets",
     },
     faq: {
       label: "Frequently asked questions",
       items: [
         {
           q: "Is a session reimbursed by health insurance?",
-          a: "This practice does not work within the RIZIV convention system, so there is no fixed fee per session. Most health funds still reimburse a portion. Your mutuality can check this for you, feel free to bring the form.",
+          a: "This practice does not work within the RIZIV convention system. Most health funds still reimburse a portion. Your mutuality can check this for you.",
+          linkLabel: "Overview of reimbursement forms per health fund",
+          linkHref: "https://www.vind-een-psycholoog.be/info/terugbetaling-psychotherapie.html",
         },
         {
           q: "What does a session cost?",
-          a: "No fixed amount is listed here. At the first conversation we look together at what fits, both in pace and in budget.",
+          a: "A session lasts around 45 minutes, at an indicative rate of 70 euros, which may vary. If you cannot make an appointment, please let me know at least 24 hours in advance.",
+          linkLabel: "",
+          linkHref: "",
         },
         {
           q: "What is the difference between a psychologist and a psychotherapist?",
           a: "A psychologist holds a legally protected title, earned through a university degree. A psychotherapist also completes a long, specific training in a particular method of conversation, in my case psychoanalysis. One is finished, the other still underway.",
+          linkLabel: "",
+          linkHref: "",
         },
         {
-          q: "Can the first session be by video or phone?",
-          a: "Yes. Some people prefer to start from home, that works just as well as meeting in person.",
+          q: "Is online guidance also possible?",
+          a: "Yes, sessions can also take place by video or phone. For the first, get-acquainted conversation, an in-person meeting is preferred, but it isn't a requirement.",
+          linkLabel: "",
+          linkHref: "",
         },
         {
           q: "How many sessions will I need?",
-          a: "Fixing that in advance would work against how these conversations unfold. Length follows what turns out to be needed, not the other way round.",
+          a: "That isn't fixed in advance. Length follows what turns out to be needed, not the other way round.",
+          linkLabel: "",
+          linkHref: "",
         },
         {
           q: "Where is the practice located?",
-          a: "Central in Ghent, within walking distance of the Zuid area. Parking is available at the back of the building, you simply drive through the passage beneath it.",
+          a: "Central in Ghent, within walking distance of the Zuid area. Parking is available at the Sint-Pietersplein car park or in the surrounding streets.",
+          linkLabel: "",
+          linkHref: "",
         },
         {
-          q: "Can I have sessions in English?",
-          a: "Yes, some conversations simply flow more easily in English, that works just as well here.",
+          q: "Can I also follow therapy in English?",
+          a: "Yes, therapy is available in Dutch and English. Some conversations simply flow more easily in English, that works just as well here.",
+          linkLabel: "",
+          linkHref: "",
         },
         {
-          q: "Is this a safe space for questions around gender, sexuality, or identity?",
+          q: "Can I come here with questions about sexuality, gender or identity?",
           a: "Yes. What you bring doesn't need to be recognisable or manageable from the start. Questions about who you are, who you love, how your body feels, belong here just as much, even without a name for it yet.",
-        },
-        {
-          q: "Do you also work with artists or people living unconventional lives?",
-          a: "Certainly. A life that doesn't fit the usual mould, a choice you find yourself explaining, something you quietly feel ashamed of, a habit you'd rather keep to yourself: there's room for all of it here.",
+          linkLabel: "",
+          linkHref: "",
         },
       ],
     },
     contact: {
       title: "Get in touch",
-      intro:
-        "Leave a short note and I will get back to you. What you share here stays confidential.",
+      intro: "Leave a note and I will get back to you. What you share here stays confidential.",
     },
     form: {
       onderwerp: "Subject",
       toelichting: "Message",
-      toelichtingHint: "A few lines are enough. No need to explain everything now.",
+      toelichtingHint: "",
       emailLabel: "Email address",
       telefoonLabel: "Phone number",
-      beschikbaarheid: "Weekly availability",
+      beschikbaarheid: "When are you available during the week?",
       beschikbaarheidHint: "E.g. weekdays after 5pm, or Wednesday mornings.",
       verstuur: "Send",
       sending: "Sending…",
@@ -384,7 +390,9 @@ export const content = {
     footer: {
       privacy: "Privacy policy",
       rights: "All rights reserved.",
-      legal: "Visa 374462 · Recognition 991135455 · Company no. 0790.741.228",
+      // Officiële titels bewust in het Nederlands — deontologisch exact.
+      legal:
+        "Klinisch psycholoog (Erkend door de Psychologencommissie, met visum) · In opleiding tot psychoanalytisch therapeut · Visa 374462 · Recognition 991135455 · Company no. 0790.741.228",
     },
     privacy: {
       title: "Privacy policy",
