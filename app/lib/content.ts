@@ -264,24 +264,19 @@ export const content = {
     },
     werkwijze: {
       label: "Approach",
-      title: "Time and room for your story.",
+      title: "",
       body: "The conversations begin from a psychoanalytic stance: slow, associative, attentive and without a preset protocol. There is no checklist that decides what matters. We discover that together, in the speaking itself.",
       accent:
-        "So room opens for what had no form yet: the other, and the ordered chaos of a story still to be written.",
-      themesTitle: "Where I make particular room",
-      themes: [
-        "Questions of sexuality, desire, gender and identity.",
-        "Artists and creative minds still finding their place.",
-        "Those caught in their own thinking — intrusive thoughts, or a psychotic or bipolar vulnerability.",
-      ],
+        "Free association is central to the therapy: the invitation to speak thoughts, feelings and fantasies without censorship. This particular way of speaking helps you understand your life story more deeply and unravel the patterns underlying your psychological suffering. By putting words to what lives inside you, you gain deeper insight and the problem loses its compelling grip. This process opens the way to working through, new choices and a freer way of living. I apply this method through psychotherapy or through psychoanalysis.",
+      themesTitle: "",
+      themes: ["", "", ""],
       imageCaption:
         "The practice: a historic townhouse near the Boekentoren, with high ceilings, a piano turned into a desk, abundant greenery and soft light.",
     },
     overMij: {
       label: "About",
-      body: "I am a clinical psychologist with a passion for and experience in talking therapy. I keep refining my work as a therapist by taking part in a psychoanalytic training programme and by attending lectures and study days.",
-      ervaring:
-        "Earlier experience at group practice Tondel, house for psychotherapy Anker and de Huiskamer, and volunteer work in PVT De Wadi at de Driesprong.",
+      body: "Since graduating with a Master's degree in Clinical Psychology (Ghent University, 2022), I have kept specialising in psychoanalytic psychotherapy. Alongside a postgraduate programme at Ghent University, I continue to attend seminars and training days. My clinical training truly took shape in practice: through my work at CGG Andante, group practices Tondel, Anker and de Huiskamer, and PVT De Wadi. To safeguard the quality of my psychological guidance, I also consistently invest in supervision, peer consultation and my own training analysis.",
+      ervaring: "",
       badge: "Lucas Borghys · Ghent",
     },
     praktisch: {
