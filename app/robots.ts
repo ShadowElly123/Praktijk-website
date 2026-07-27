@@ -4,7 +4,7 @@ const BASE = "https://lucasborghys-psycholoog.be";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: { userAgent: "*", allow: "/" },
+    rules: { userAgent: "*", allow: "/", disallow: ["/nl/review", "/en/review"] },
     sitemap: `${BASE}/sitemap.xml`,
   };
 }
