@@ -6,15 +6,14 @@ import { Editable } from "../review/Editable";
 
 /**
  * Praktisch & contact — rustig opgebouwd: kop, dan de kaart (volle breedte) met
- * een "Route"-knop, daaronder de praktische info als nette dl-lijst, en
- * daaronder het crisis-kader (gestapeld, niet ernaast — dat oogde te veel als
- * een gelijke keuze naast de rest). Het contactformulier staat in een aparte
- * sectie (Contact.tsx).
+ * een "Route"-knop, daaronder de praktische info als nette dl-lijst. Het
+ * crisis-kader staat niet langer hier apart, maar als FAQ-item (zie FAQ.tsx) —
+ * minder nadruk op een randgeval, dezelfde info blijft vindbaar. Het
+ * contactformulier staat in een aparte sectie (Contact.tsx).
  */
 export function Praktisch({ c }: { c: Content }) {
   const p = c.praktisch;
   const l = c.locatie;
-  const crisis = c.crisis;
   const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.adres)}`;
 
   const rows: {
@@ -265,56 +264,6 @@ export function Praktisch({ c }: { c: Content }) {
               </div>
             ))}
           </dl>
-        </Reveal>
-
-        {/* Crisis */}
-        <Reveal delay={0.1} style={{ marginTop: 40 }}>
-          <div style={{ border: "1px solid var(--line-3)", padding: 28 }}>
-            <p
-              style={{
-                margin: 0,
-                fontFamily: "var(--font-mono), monospace",
-                fontSize: 12,
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "var(--brass)",
-              }}
-            >
-              <Editable path="crisis.title">{crisis.title}</Editable>
-            </p>
-            <p
-              style={{
-                margin: "12px 0 0",
-                fontFamily: "var(--font-serif), serif",
-                fontSize: 15,
-                lineHeight: 1.6,
-                color: "var(--muted)",
-              }}
-            >
-              <Editable path="crisis.intro">{crisis.intro}</Editable>
-            </p>
-            <ul style={{ listStyle: "none", margin: "18px 0 0", padding: 0, display: "flex", flexDirection: "column", gap: 10 }}>
-              {crisis.items.map((item, i) => (
-                <li key={item.label} style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16 }}>
-                  <span style={{ fontFamily: "var(--font-serif), serif", fontSize: 15, color: "var(--text)" }}>
-                    <Editable path={`crisis.items[${i}].label`}>{item.label}</Editable>
-                  </span>
-                  <a
-                    href={item.href}
-                    style={{
-                      fontFamily: "var(--font-mono), monospace",
-                      fontSize: 15,
-                      letterSpacing: "0.04em",
-                      color: "var(--brass)",
-                      textDecoration: "none",
-                    }}
-                  >
-                    <Editable path={`crisis.items[${i}].value`}>{item.value}</Editable>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
         </Reveal>
       </div>
     </section>

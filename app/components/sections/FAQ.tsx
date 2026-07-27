@@ -24,7 +24,14 @@ export function FAQ({ c }: { c: Content }) {
     mainEntity: f.items.map((item) => ({
       "@type": "Question",
       name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
+      acceptedAnswer: {
+        "@type": "Answer",
+        // Nummers uit `items` (bv. de crisislijnen) horen bij het antwoord,
+        // dus mee in de schema-tekst i.p.v. enkel visueel in de lijst ernaast.
+        text: item.items.length
+          ? `${item.a} ${item.items.map((x) => `${x.label}: ${x.value}`).join(", ")}`
+          : item.a,
+      },
     })),
   };
 
@@ -70,6 +77,8 @@ export function FAQ({ c }: { c: Content }) {
                 linkLabel={item.linkLabel}
                 linkHref={item.linkHref}
                 linkPath={`faq.items[${i}].linkLabel`}
+                items={item.items}
+                itemsPath={`faq.items[${i}].items`}
               />
             ))}
           </div>

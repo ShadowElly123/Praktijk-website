@@ -237,11 +237,13 @@ export function ContactForm({ c }: { c: Content }) {
           className="contact-field"
           value={values.beschikbaarheid}
           onChange={(e) => update("beschikbaarheid", e.target.value)}
-          aria-describedby="cf-beschikbaarheid-hint"
+          aria-describedby={f.beschikbaarheidHint ? "cf-beschikbaarheid-hint" : undefined}
         />
-        <p id="cf-beschikbaarheid-hint" style={hintStyle}>
-          <Editable path="form.beschikbaarheidHint">{f.beschikbaarheidHint}</Editable>
-        </p>
+        {f.beschikbaarheidHint && (
+          <p id="cf-beschikbaarheid-hint" style={hintStyle}>
+            <Editable path="form.beschikbaarheidHint">{f.beschikbaarheidHint}</Editable>
+          </p>
+        )}
       </div>
 
       <button

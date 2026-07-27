@@ -57,8 +57,8 @@ export function Werkwijze({ c }: { c: Content }) {
               maxWidth: 520,
               fontFamily: "var(--font-serif), serif",
               fontWeight: 300,
-              fontSize: 19,
-              lineHeight: 1.8,
+              fontSize: "clamp(19px,1.9vw,23px)",
+              lineHeight: 1.75,
               color: "var(--muted)",
             }}
           >
@@ -70,8 +70,8 @@ export function Werkwijze({ c }: { c: Content }) {
               maxWidth: 520,
               fontFamily: "var(--font-serif), serif",
               fontWeight: 300,
-              fontSize: 19,
-              lineHeight: 1.8,
+              fontSize: "clamp(19px,1.9vw,23px)",
+              lineHeight: 1.75,
               color: "var(--muted)",
               whiteSpace: "pre-line",
             }}

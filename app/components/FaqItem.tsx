@@ -27,6 +27,8 @@ export function FaqItem({
   linkLabel,
   linkHref,
   linkPath,
+  items,
+  itemsPath,
 }: {
   q: string;
   a: string;
@@ -35,6 +37,8 @@ export function FaqItem({
   linkLabel?: string;
   linkHref?: string;
   linkPath?: string;
+  items?: readonly { label: string; value: string; href: string }[];
+  itemsPath?: string;
 }) {
   const detailsRef = useRef<HTMLDetailsElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -135,6 +139,32 @@ export function FaqItem({
                 linkLabel
               )}
             </a>
+          )}
+          {items && items.length > 0 && (
+            <ul className="faq-answer-items">
+              {items.map((item, i) => (
+                <li key={item.label}>
+                  <span>
+                    {itemsPath ? (
+                      <Editable path={`${itemsPath}[${i}].label`} stopClickPropagation>
+                        {item.label}
+                      </Editable>
+                    ) : (
+                      item.label
+                    )}
+                  </span>
+                  <a href={item.href} onClick={(e) => e.stopPropagation()}>
+                    {itemsPath ? (
+                      <Editable path={`${itemsPath}[${i}].value`} stopClickPropagation>
+                        {item.value}
+                      </Editable>
+                    ) : (
+                      item.value
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
           )}
         </div>
       </div>
