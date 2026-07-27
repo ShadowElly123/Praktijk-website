@@ -43,7 +43,7 @@ export function OverMij({ c }: { c: Content }) {
                 uitdoof-poging als een silhouet — ovaal (doodsprentje) of rechthoekig
                 kadertje. Gewoon de foto, rechte rand. */}
             <Image
-              src="/images/portret-v9.jpg"
+              src="/images/portret-v10.jpg"
               alt={o.badge}
               fill
               sizes="(max-width: 820px) 100vw, 40vw"

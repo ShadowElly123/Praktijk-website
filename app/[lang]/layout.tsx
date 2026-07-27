@@ -88,7 +88,7 @@ export default async function LangLayout({ children, params }: LayoutProps<"/[la
         "@id": `${baseUrl}#praktijk`,
         name: c.site.name,
         url: baseUrl,
-        image: "https://lucasborghys.be/images/portret-v9.jpg",
+        image: "https://lucasborghys.be/images/portret-v10.jpg",
         telephone: "+32493020543",
         address: {
           "@type": "PostalAddress",
