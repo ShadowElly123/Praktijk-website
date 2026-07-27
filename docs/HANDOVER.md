@@ -70,9 +70,9 @@ De API-route slaat **niets** op; ze stuurt de inzending enkel door als e-mail.
 Verzending is provider-agnostisch via env-variabelen:
 
 ```
-CONTACT_TO=praktijkadres-staat-in-env
+CONTACT_TO=naam@voorbeeld.be
 RESEND_API_KEY=...        # indien via Resend
-CONTACT_FROM="Website <no-reply@lucasborghys.be>"
+CONTACT_FROM="Website <no-reply@send.lucasborghys.be>"
 ```
 
 Zonder provider werkt de UI (toont succes) maar wordt de mail **niet** verzonden

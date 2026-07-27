@@ -9,7 +9,7 @@ export const runtime = "nodejs";
    wordt enkel doorgestuurd als e-mail naar Lucas en daarna vergeten.
 
    E-mailverzending is provider-agnostisch via env-variabelen.
-   - CONTACT_TO       : bestemmeling (default praktijkadres-staat-in-env)
+   - CONTACT_TO       : bestemmeling (verplicht, geen default)
    - RESEND_API_KEY   : indien gezet, wordt via de Resend-API verstuurd
    - CONTACT_FROM     : geverifieerd afzenderadres bij de provider
 
@@ -60,7 +60,16 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "invalid_email" }, { status: 422 });
   }
 
-  const to = process.env.CONTACT_TO ?? "praktijkadres-staat-in-env";
+  // Geen hardcoded bestemmeling: de repo is publiek en een adres in de broncode
+  // is voer voor spambots. Ontbreekt de variabele, dan is dit een configuratie-
+  // fout die de bezoeker moet zien, zodat die het GSM-nummer onder het formulier
+  // gebruikt in plaats van te denken dat zijn bericht aankwam.
+  const to = process.env.CONTACT_TO;
+  if (!to) {
+    console.error("[contact] CONTACT_TO ontbreekt — inzending niet verstuurd.");
+    return NextResponse.json({ ok: false, error: "not_configured" }, { status: 500 });
+  }
+
   const subject = `Website · nieuwe aanvraag: ${onderwerp}`;
   const lines = [
     `Onderwerp: ${onderwerp}`,

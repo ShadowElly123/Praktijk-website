@@ -46,3 +46,6 @@ next-env.d.ts
 
 # lokale downloadkopieën van site-afbeeldingen (geen bronbestand)
 /downloads/
+
+# lokale kopie van niet-publiek materiaal (research, design-brief, PRD)
+/archief/
