@@ -85,14 +85,17 @@ export async function POST(req: Request) {
     .map((l) => (l === "" ? "<br>" : `<p style="margin:0 0 6px">${escapeHtml(l)}</p>`))
     .join("")}</div>`;
 
+  // Een ontbrekende mailprovider is een configuratiefout, geen aanvaardbare
+  // toestand. Eerder antwoordde de route hier `ok: true` en zag de bezoeker de
+  // succesboodschap ("Ik lees dit met aandacht en laat binnen de dag iets
+  // weten") terwijl het bericht nergens naartoe ging. Iemand die net de moed
+  // vond om te schrijven mag niet in die stilte achterblijven: een 500 laat het
+  // formulier de foutboodschap met het GSM-nummer zien, en dat is de eerlijke
+  // terugvalweg.
   const resendKey = process.env.RESEND_API_KEY;
-
-  // Geen provider geconfigureerd → log server-side (dev/demo) en meld succes,
-  // zodat de UI werkt. In productie MOET een provider ingesteld zijn; anders
-  // is het GSM-nummer onder het formulier de betrouwbare terugvalweg.
   if (!resendKey) {
-    console.info("[contact] (geen mailprovider geconfigureerd) inzending:", text);
-    return NextResponse.json({ ok: true, delivered: false });
+    console.error("[contact] RESEND_API_KEY ontbreekt — inzending NIET verstuurd:", text);
+    return NextResponse.json({ ok: false, error: "not_configured" }, { status: 500 });
   }
 
   try {

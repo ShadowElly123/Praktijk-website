@@ -225,6 +225,10 @@ export const content = {
           p: "Het contactformulier bewaart niets op de server; uw bericht wordt enkel als e-mail doorgestuurd. Ontvangen e-mails worden niet langer bewaard dan nodig om uw vraag af te handelen.",
         },
         {
+          h: "Hoe uw bericht bezorgd wordt",
+          p: "Om uw bericht als e-mail af te leveren, wordt gebruikgemaakt van Resend, een verzenddienst met servers in de Verenigde Staten. Uw bericht passeert daar uitsluitend om bezorgd te worden en wordt niet voor andere doeleinden gebruikt. Voor die doorgifte buiten de Europese Unie zijn met die dienst de nodige contractuele waarborgen afgesproken. Wilt u die tussenstap liever vermijden, dan mag u ook rechtstreeks bellen of mailen; dan komt uw bericht enkel bij mij terecht.",
+        },
+        {
           h: "Analytics — zonder cookies",
           p: "Deze website gebruikt PostHog (EU-servers) om te zien hoe de site gebruikt wordt: welke pagina's en secties bekeken worden, hoe ver er gescrold wordt, waar geklikt wordt en of er technische fouten optreden. Hiervoor worden géén cookies geplaatst en wordt er niets op uw toestel opgeslagen — vandaar dat u geen cookiemelding ziet.",
         },
@@ -439,6 +443,10 @@ export const content = {
         {
           h: "Retention",
           p: "The contact form stores nothing on the server; your message is only forwarded as an email. Received emails are kept no longer than needed to handle your question.",
+        },
+        {
+          h: "How your message is delivered",
+          p: "To deliver your message as an email, this site uses Resend, a sending service with servers in the United States. Your message passes through it solely to be delivered, and is not used for any other purpose. The necessary contractual safeguards for that transfer outside the European Union have been agreed with the service. If you would rather avoid that intermediate step, you are welcome to call or email directly; your message then reaches no one but me.",
         },
         {
           h: "Analytics — without cookies",
