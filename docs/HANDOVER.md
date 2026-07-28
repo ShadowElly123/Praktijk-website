@@ -18,7 +18,9 @@ labels (te bevestigen met Lucas).
 ## Stack
 - **Next.js 16** (App Router, Turbopack) + **TypeScript** + **Tailwind v4**
 - Fonts zelf-gehost via `next/font`: **Bricolage Grotesque** (titels) + **Newsreader** (serif/quotes) — geen runtime-calls naar Google's servers
-- Bedoeld voor **Vercel** (EU-region)
+- Hosting: **Netlify** (zie `netlify.toml`). Was aanvankelijk Vercel, maar Vercel's
+  gratis plan verbiedt commercieel gebruik; Netlify's gratis plan laat dat
+  expliciet toe.
 
 ## Lokaal draaien
 ```bash
@@ -40,30 +42,35 @@ app/
   components/             Hero, Welkom, Werkwijze, OverMij, Praktisch,
                           ContactForm, SiteHeader, SiteFooter, ...
   api/contact/route.ts    formulier → e-mail (geen opslag op server)
-research/                 visuele research + screenshots van referentiesites
 ```
+
+`research/` (visuele research, screenshots van referentiesites, concurrentie-
+analyse) is bewust **niet** in de repo: de repo staat publiek en dat materiaal
+hoort niet publiek. Lokale kopie staat in `archief/` (gitignored) op Lievens
+machine.
 
 **Tekst aanpassen?** Alles staat in [`app/lib/content.ts`](app/lib/content.ts),
 per taal. De Nederlandse kernteksten van Lucas staan daar **letterlijk** bewaard
 (gemarkeerd met comments) — niet vertalen/herschrijven zonder overleg.
 
-## ⚠️ Nog te doen / te vervangen (placeholders)
+## Status — live sinds 28 juli 2026
 
-1. **Hero-quote** — nu staat er voorlopig *"Wees welkom, en vertel."* (Lucas' eigen
-   woorden). PRD-open vraag: Lucas kiest nog de definitieve poëtische/muzikale/
-   psychoanalytische quote. Aanpassen in `content.ts` → `hero.quote`.
-2. **Foto's** — alle beelden zijn nu donkere CSS-placeholders ("Foto volgt").
-   Nodig: low-key (donkere) foto's van Lucas én de praktijkruimte (piano-bureau,
-   hoge plafonds, groen, zacht licht). Daarna in Hero + OverMij plaatsen.
-3. ~~Telefoonnummer~~ — GSM 0493 02 05 43 staat erop (Praktisch + footer).
-   E-mailadres wordt bewust niet getoond (op vraag van Lucas: "zie
-   contactformulier"); het dient enkel als bestemming van het formulier.
-   Registratie staat in Over mij + footer: visum 374462, erkenning
-   991135455, KBO 0790.741.228.
-4. **E-mailverzending formulier** — zie hieronder.
-5. **Domein** — bv. `lucasborghys.be` (aankopen + koppelen).
-6. **Privacybeleid** — de footer/formulier linken naar `#privacy`; er moet nog
-   een echte privacyverklaring-tekst komen (verplicht i.v.m. gezondheidsdata).
+Alle placeholders uit de vorige versie van dit document zijn ingevuld: hero-quote,
+foto's, domein, e-mailverzending en privacybeleid staan er. Zie
+[EIGENDOM-EN-KOSTEN.md](EIGENDOM-EN-KOSTEN.md) voor wie wat beheert en
+[RESEND-OVERDRACHT.md](RESEND-OVERDRACHT.md) voor de mailopzet in detail.
+
+Nog open, geen van alle dringend:
+- website-adres invullen in Lucas' Google Business Profile, zie
+  [GOOGLE-BUSINESS-PROFIEL.md](GOOGLE-BUSINESS-PROFIEL.md)
+- site aanmelden bij Google Search Console
+- automatische verlenging + geldige betaalkaart bij Combell bevestigen
+- **gratis uptime-monitor instellen** (bv. [UptimeRobot](https://uptimerobot.com)
+  of [Better Stack](https://betterstack.com)): laat de site elke paar minuten
+  pingen en stuurt een mailtje bij downtime. Voor een praktijk waar het
+  contactformulier de aanmeldweg is, wil je dat weten vóór een patiënt het
+  merkt — niet erachter komen omdat Lucas zich afvraagt waarom het stil is.
+  Vijf minuten werk, en dekt precies het Netlify-schorsingsscenario hierboven af.
 
 ## Formulier & e-mail (privacy)
 De API-route slaat **niets** op; ze stuurt de inzending enkel door als e-mail.
@@ -114,10 +121,6 @@ Zonder provider werkt de UI (toont succes) maar wordt de mail **niet** verzonden
   dit onder "Analytics — zonder cookies" en "U blijft anoniem".
 
 ## Referentie-research
-Zie [`research/analyse.md`](research/analyse.md) — analyse van bressers.be,
-ritcs.be en de twee anti-patterns, met screenshots in `research/screenshots/`.
-Preview-screenshots van de gebouwde site: `research/screenshots/preview/`.
-
-
-
-
+Concurrentieanalyse (bressers.be, ritcs.be, twee anti-patterns) en preview-
+screenshots staan lokaal in `archief/research/` op Lievens machine, niet in de
+repo — zie hierboven waarom.
