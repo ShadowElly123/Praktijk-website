@@ -65,12 +65,22 @@ Nog open, geen van alle dringend:
   [GOOGLE-BUSINESS-PROFIEL.md](GOOGLE-BUSINESS-PROFIEL.md)
 - site aanmelden bij Google Search Console
 - automatische verlenging + geldige betaalkaart bij Combell bevestigen
-- **gratis uptime-monitor instellen** (bv. [UptimeRobot](https://uptimerobot.com)
-  of [Better Stack](https://betterstack.com)): laat de site elke paar minuten
-  pingen en stuurt een mailtje bij downtime. Voor een praktijk waar het
-  contactformulier de aanmeldweg is, wil je dat weten vóór een patiënt het
-  merkt — niet erachter komen omdat Lucas zich afvraagt waarom het stil is.
-  Vijf minuten werk, en dekt precies het Netlify-schorsingsscenario hierboven af.
+
+### Uptime-monitoring
+Er staat een gratis monitor op [UptimeRobot](https://uptimerobot.com) (account
+via Lucas' GitHub-login) die `https://lucasborghys.be` elke 5 minuten pingt en
+mailt bij downtime — bv. bij een Netlify-schorsing, zodat je het meteen weet in
+plaats van dat Lucas zich afvraagt waarom het stil is.
+
+Zelf een monitor toevoegen of nakijken:
+1. Inloggen op uptimerobot.com (via Lucas' GitHub-account).
+2. **+ Add New Monitor** → Type **HTTP(s)** → URL `https://lucasborghys.be` →
+   interval 5 min.
+3. Onder **Alert Contacts** het e-mailadres instellen waar meldingen naartoe
+   moeten (typisch hetzelfde als `CONTACT_TO` hieronder).
+
+Status vlak na aanmaken toont kort "Preparing" — dat is normaal, na de eerste
+check springt hij om naar "Up".
 
 ## Formulier & e-mail (privacy)
 De API-route slaat **niets** op; ze stuurt de inzending enkel door als e-mail.
