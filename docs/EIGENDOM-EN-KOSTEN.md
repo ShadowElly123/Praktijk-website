@@ -5,7 +5,8 @@ eigenaar van alles, Lieven beheert alles.** Hij moet nergens zelf in klikken, ma
 als de samenwerking ooit stopt of Lieven wegvalt, blijft de site van hem en kan
 iemand anders het overnemen.
 
-Peildatum: 27 juli 2026.
+Peildatum: 28 juli 2026. Bijgewerkt na livegang: domein, mail en hosting staan
+effectief live en getest.
 
 ---
 
@@ -14,11 +15,16 @@ Peildatum: 27 juli 2026.
 | Wat | Op wiens naam | Kost | Als je het verliest |
 |---|---|---|---|
 | Domeinnaam (Combell) | Lucas | 15-25 euro / jaar | **Onherstelbaar.** Iemand anders kan de naam nemen. |
-| Code (GitHub) | Lucas | gratis | **Onherstelbaar.** Site niet meer te wijzigen of te verhuizen. |
+| Code (GitHub) | Lucas, account `ShadowElly123` | gratis | **Onherstelbaar.** Site niet meer te wijzigen of te verhuizen. |
 | Hosting (Netlify) | Lucas | gratis | Lastig maar oplosbaar: opnieuw deployen vanaf GitHub, halve dag. |
 | Mailverzending (Resend) | Lucas | gratis | Twintig minuten: nieuw account, domein opnieuw verifiëren, sleutel vervangen. |
 | Google Business Profile | Lucas | gratis | Zwaar: dit is je grootste bron van vindbaarheid. Terugclaimen kan weken duren. |
-| Bezoekersstatistieken (PostHog) | Lucas of Lieven | gratis | Niks. Alleen historische cijfers weg. |
+| Bezoekersstatistieken (PostHog) | Lieven, EU-regio | gratis | Niks. Alleen historische cijfers weg. |
+
+**Waarom `ShadowElly123` en niet zijn eigen naam:** de GitHub-repo staat publiek
+(zie hieronder waarom), en de account- en repo-naam zijn daarom bewust
+geanonimiseerd. Wie "Lucas Borghys" googlet, stuit zo niet toevallig op de broncode
+van zijn website. De repo zelf heet `Praktijk-website`.
 
 **Totale vaste kost: 15 tot 25 euro per jaar.** Dat is de domeinnaam en niets anders.
 
@@ -44,9 +50,26 @@ Dat lost het in één keer op voor Combell, Netlify, Resend en Google. En het is
 tegelijk het antwoord op de vraag "wat als Lieven wegvalt": de kluis is de
 overdracht.
 
-Eén uitzondering, ten goede: **GitHub geeft wél gratis onbeperkt medewerkers**, ook
-op privérepo's. Daar kan je het dus netjes doen, met een eigen account per persoon
-en Lucas als eigenaar.
+**Bij GitHub is dat anders gelopen dan bij de rest.** GitHub geeft wél gratis
+onbeperkt medewerkers, maar enkel op privérepo's met rollen zoals Admin — en die
+rollen bestaan alleen bij organisatie-accounts, niet bij een repo op een persoonlijk
+account zoals Lucas s'n. Daarnaast bleek Netlify's gratis plan op een privérepo maar
+één "Git contributor" toe te staan, gemeten aan wie er daadwerkelijk pusht, niet aan
+wie er in de commit als auteur staat. Met twee actieve personen (Lucas als
+eigenaar, Lieven die het werk doet) liep elke deploy vast op "unrecognized Git
+contributor".
+
+**De oplossing die het werkend kreeg: de repo staat publiek.** Er zitten geen
+sleutels of wachtwoorden in (`.env*`-bestanden zijn uitgesloten van git), en de
+interne concurrentieanalyse en designbriefing zijn er bewust uitgehaald voor de
+repo openging. Om te vermijden dat iemand die "Lucas Borghys" googlet toevallig op
+zijn broncode stuit, zijn zowel de GitHub-account­naam als de repo-naam
+geanonimiseerd naar respectievelijk `ShadowElly123` en `Praktijk-website`. Lucas
+gebruikt dit account voor niets anders en hoeft de naam nooit te onthouden — hij
+staat in de kluis.
+
+Alternatief voor later, mocht het ongemak toch zwaarder wegen: Netlify Pro
+(~19 dollar/maand) heft de contributorlimiet op en laat de repo alsnog privé staan.
 
 ---
 
@@ -66,16 +89,17 @@ kaart, automatische verlenging aan. Login in de kluis.
 ### 3. Accounts aanmaken (20 min, Lucas typt, Lieven kijkt mee)
 - Netlify, op zijn mailadres
 - Resend, op zijn mailadres, zie [RESEND-OVERDRACHT.md](RESEND-OVERDRACHT.md)
-- GitHub, op zijn mailadres, en Lieven als medewerker toevoegen
+- GitHub, op zijn mailadres — anoniem gekozen gebruikersnaam, zie hierboven waarom
 
 Alle logins in de kluis. Daarna hoeft hij hier nooit meer te zijn.
 
-### 4. Overzetten en live zetten (Lieven alleen)
-- repo overzetten naar Lucas' GitHub
-- site deployen op Netlify
-- DNS bij Combell naar Netlify
-- domein verifiëren in Resend, sleutel en env vars zetten
-- testen met een echte inzending
+### 4. Overzetten en live zetten (Lieven alleen) — **afgerond**
+- repo overzetten naar Lucas' GitHub ✓
+- site deployen op Netlify ✓
+- DNS bij Combell rechtstreeks naar Netlify's load balancer (nameservers zijn niet
+  verhuisd, enkel de A- en CNAME-records) ✓
+- domein verifiëren in Resend, sleutel en env vars gezet ✓
+- getest met een echte inzending, bevestigd bezorgd in Lucas' inbox ✓
 
 ---
 
