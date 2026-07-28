@@ -117,3 +117,4 @@ Zonder provider werkt de UI (toont succes) maar wordt de mail **niet** verzonden
 Zie [`research/analyse.md`](research/analyse.md) — analyse van bressers.be,
 ritcs.be en de twee anti-patterns, met screenshots in `research/screenshots/`.
 Preview-screenshots van de gebouwde site: `research/screenshots/preview/`.
+
