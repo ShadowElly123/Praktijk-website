@@ -58,12 +58,12 @@ function escapeHtml(s: string) {
 const RATE_LIMIT_MAX = 3;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 
-async function isRateLimited(req: Request): Promise<boolean> {
+async function isRateLimited(req: Request): Promise<{ limited: boolean; debug: string }> {
   const ip =
     req.headers.get("x-nf-client-connection-ip") ??
     req.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
 
-  if (!ip) return false;
+  if (!ip) return { limited: false, debug: "geen-ip-gevonden" };
 
   try {
     const store = getStore("contact-rate-limit");
@@ -77,16 +77,20 @@ async function isRateLimited(req: Request): Promise<boolean> {
 
     if (!record || now - record.windowStart > RATE_LIMIT_WINDOW_MS) {
       await store.setJSON(key, { count: 1, windowStart: now });
-      return false;
+      return { limited: false, debug: `nieuw-venster:ip=${ip}` };
     }
 
-    if (record.count >= RATE_LIMIT_MAX) return true;
+    if (record.count >= RATE_LIMIT_MAX) {
+      return { limited: true, debug: `geblokkeerd:count=${record.count}` };
+    }
 
     await store.setJSON(key, { count: record.count + 1, windowStart: record.windowStart });
-    return false;
+    return { limited: false, debug: `count=${record.count + 1}:ip=${ip}` };
   } catch (err) {
-    console.error("[contact] rate-limit check mislukt, niet geblokkeerd:", err);
-    return false;
+    return {
+      limited: false,
+      debug: `error:${err instanceof Error ? err.message : String(err)}`,
+    };
   }
 }
 
@@ -103,8 +107,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, delivered: false });
   }
 
-  if (await isRateLimited(req)) {
-    return NextResponse.json({ ok: false, error: "rate_limited" }, { status: 429 });
+  const rl = await isRateLimited(req);
+  if (rl.limited) {
+    return NextResponse.json(
+      { ok: false, error: "rate_limited" },
+      { status: 429, headers: { "x-debug-rl": rl.debug } },
+    );
   }
 
   const onderwerp = (data.onderwerp ?? "").trim();
@@ -114,7 +122,10 @@ export async function POST(req: Request) {
   const beschikbaarheid = (data.beschikbaarheid ?? "").trim();
 
   if (!onderwerp || !toelichting || !email) {
-    return NextResponse.json({ ok: false, error: "missing_fields" }, { status: 422 });
+    return NextResponse.json(
+      { ok: false, error: "missing_fields" },
+      { status: 422, headers: { "x-debug-rl": rl.debug } },
+    );
   }
   if (!EMAIL_RE.test(email)) {
     return NextResponse.json({ ok: false, error: "invalid_email" }, { status: 422 });
@@ -181,7 +192,10 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
     }
 
-    return NextResponse.json({ ok: true, delivered: true });
+    return NextResponse.json(
+      { ok: true, delivered: true },
+      { headers: { "x-debug-rl": rl.debug } },
+    );
   } catch (err) {
     console.error("[contact] onverwachte fout:", err);
     return NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
