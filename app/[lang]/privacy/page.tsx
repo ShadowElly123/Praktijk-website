@@ -35,19 +35,6 @@ export default async function PrivacyPage({ params }: PageProps<"/[lang]/privacy
       }}
     >
       <div style={{ maxWidth: 720 }}>
-        <div
-          style={{
-            fontFamily: "var(--font-mono), monospace",
-            fontSize: 12,
-            letterSpacing: "0.3em",
-            textTransform: "uppercase",
-            color: "var(--brass)",
-            marginBottom: 20,
-          }}
-        >
-          {p.draftNote}
-        </div>
-
         <h1
           style={{
             margin: "0 0 28px",

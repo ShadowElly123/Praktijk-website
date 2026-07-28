@@ -208,7 +208,6 @@ export const content = {
     },
     privacy: {
       title: "Privacybeleid",
-      draftNote: "Concept — juridisch na te kijken vóór livegang.",
       intro:
         "Deze praktijk gaat zorgvuldig om met uw gegevens. Hieronder leest u welke gegevens worden verwerkt en waarom.",
       sections: [
@@ -428,7 +427,6 @@ export const content = {
     },
     privacy: {
       title: "Privacy policy",
-      draftNote: "Draft — to be reviewed legally before going live.",
       intro:
         "This practice handles your data with care. Below you can read which data is processed and why.",
       sections: [

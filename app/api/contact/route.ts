@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { createHash } from "node:crypto";
+import { getStore } from "@netlify/blobs";
 
 export const runtime = "nodejs";
 
@@ -34,6 +36,60 @@ function escapeHtml(s: string) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
+/* ------------------------------------------------------------------
+   Rate limiting via Netlify Blobs.
+
+   Het endpoint is publiek bereikbaar buiten het formulier om (bv. rechtstreeks
+   met curl), en de honeypot houdt enkel domme bots tegen die het onzichtbare
+   veld invullen. Zonder limiet kan iemand Lucas' inbox vullen en het gratis
+   Resend-quotum (100 mails/dag) opsouperen, waardoor echte aanmeldingen die
+   dag niet meer doorkomen.
+
+   Max 3 inzendingen per uur per bezoeker. Er wordt een SHA-256-hash van het
+   IP-adres bewaard, nooit het ruwe adres — consistent met de cookieloze,
+   anonieme aanpak elders op de site (zie Analytics.tsx). De hash dient enkel
+   om te tellen, niet om iemand te herkennen.
+
+   Faalt de Blobs-opslag (bv. lokale dev zonder Netlify-link, of een storing),
+   dan wordt NIET geblokkeerd: een gemist ratelimiet is minder erg dan een
+   contactformulier dat voor een echte bezoeker onterecht dichtklapt.
+------------------------------------------------------------------- */
+
+const RATE_LIMIT_MAX = 3;
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
+
+async function isRateLimited(req: Request): Promise<boolean> {
+  const ip =
+    req.headers.get("x-nf-client-connection-ip") ??
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+
+  if (!ip) return false;
+
+  try {
+    const store = getStore("contact-rate-limit");
+    const key = createHash("sha256").update(ip).digest("hex");
+    const now = Date.now();
+
+    const record = (await store.get(key, { type: "json" })) as {
+      count: number;
+      windowStart: number;
+    } | null;
+
+    if (!record || now - record.windowStart > RATE_LIMIT_WINDOW_MS) {
+      await store.setJSON(key, { count: 1, windowStart: now });
+      return false;
+    }
+
+    if (record.count >= RATE_LIMIT_MAX) return true;
+
+    await store.setJSON(key, { count: record.count + 1, windowStart: record.windowStart });
+    return false;
+  } catch (err) {
+    console.error("[contact] rate-limit check mislukt, niet geblokkeerd:", err);
+    return false;
+  }
+}
+
 export async function POST(req: Request) {
   let data: Payload;
   try {
@@ -45,6 +101,10 @@ export async function POST(req: Request) {
   // Honeypot: bots vullen dit onzichtbare veld in → stilzwijgend "ok".
   if (data.company && data.company.trim() !== "") {
     return NextResponse.json({ ok: true, delivered: false });
+  }
+
+  if (await isRateLimited(req)) {
+    return NextResponse.json({ ok: false, error: "rate_limited" }, { status: 429 });
   }
 
   const onderwerp = (data.onderwerp ?? "").trim();
