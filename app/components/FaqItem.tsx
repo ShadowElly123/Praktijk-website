@@ -49,8 +49,28 @@ export function FaqItem({
   // de browser heeft dit element nog nooit echt hoeven te layouten. Eén
   // read-only reflow-forcering bij mount (offsetHeight lezen) is genoeg om
   // de eerste échte open-transitie er hetzelfde uit te laten zien als de rest.
+  //
+  // Daarnaast wordt hier de JS-modus pas áángezet. Zolang die uit staat stuurt
+  // het native `open`-attribuut de weergave (zie globals.css), zodat een klik
+  // die vóór de hydratatie binnenkomt gewoon werkt.
+  //
+  // Voorheen hing de zichtbare staat volledig aan de `.is-open`-klasse die
+  // enkel deze component zet. Een klik vóór hydratatie zette daardoor wél het
+  // native `open`-attribuut, maar liet het antwoord dichtgeklapt staan — er
+  // gebeurde zichtbaar niets, en een tweede klik sloot het weer. Dat is de
+  // meest waarschijnlijke verklaring voor wat de metingen tonen: dead clicks
+  // op de FAQ-vragen in élke browser (Chrome op desktop net zo goed als op
+  // iOS) plus rageclicks op twee ervan. Het treft trage toestellen het hardst,
+  // want daar duurt het hydratatievenster het langst — en het is onzichtbaar
+  // bij eigen tests op een snelle machine.
   useEffect(() => {
+    const details = detailsRef.current;
+    if (!details) return;
     void wrapRef.current?.offsetHeight;
+    // Al opengeklikt vóór de hydratatie? Klasse bijtrekken, anders raken het
+    // attribuut en de zichtbare staat meteen uit sync.
+    if (details.open) details.classList.add("is-open");
+    details.classList.add("js-faq");
   }, []);
 
   function handleSummaryClick(e: React.MouseEvent<HTMLElement>) {
@@ -61,7 +81,13 @@ export function FaqItem({
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (!details.open) {
+    // Ook openen wanneer `open` al aanstaat maar de klasse ontbreekt: dan is
+    // het item wel technisch open, maar staat het antwoord dichtgeklapt. Zo'n
+    // desync ontstaat als iets buiten deze handler het attribuut zet — de
+    // zoeken-op-pagina-functie klapt een <details> vanzelf open. Zonder deze
+    // zelfcorrectie zou de klik in de sluit-tak belanden en 700 ms lang niets
+    // zichtbaars doen.
+    if (!details.open || !details.classList.contains("is-open")) {
       // Openen: attribuut meteen zetten (toegankelijkheid, crawlers), de
       // klasse stuurt de zichtbare animatie aan.
       details.open = true;

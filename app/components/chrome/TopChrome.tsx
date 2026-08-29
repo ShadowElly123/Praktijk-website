@@ -38,9 +38,29 @@ export function TopChrome({ name, contactLabel }: { name: string; contactLabel: 
         pointerEvents: "none",
       }}
     >
-      <div className="top-chrome__name">
-        <Editable path="site.name">{name}</Editable>
-      </div>
+      {/* De naam is een link naar de eigen homepage. Bezoekers klikken erop
+          (terug te zien in de metingen als een dead click op dit element) —
+          een sitenaam linksboven leest nu eenmaal als "terug naar start".
+          Vanaf /privacy navigeert de link echt.
+
+          Op de homepage zelf is een link naar de route waar je al bent een
+          no-op: Next navigeert dan niet en scrollt ook niet. Daar dus zelf
+          naar boven scrollen. Het scrollen komt van `scroll-behavior: smooth`
+          op <html> (valt bij reduced-motion automatisch weg) — zelfde
+          werkwijze als de contactknop hiernaast. */}
+      <Link
+        href={`/${current}`}
+        className="top-chrome__name"
+        onClick={(e) => {
+          if (rest !== "") return;
+          e.preventDefault();
+          window.scrollTo({ top: 0 });
+        }}
+      >
+        <Editable path="site.name" stopClickPropagation>
+          {name}
+        </Editable>
+      </Link>
 
       <div className="top-chrome__actions">
         <a href={contactHref} className="contact-cta">
