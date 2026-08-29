@@ -10,17 +10,27 @@ import { TopChrome } from "../components/chrome/TopChrome";
 import { Analytics } from "../components/Analytics";
 import { EditModeRouteProvider } from "../components/review/EditModeRouteProvider";
 
-// Tussentitel-font: Bricolage Grotesque (overgenomen uit de eerdere "partituur"-versie).
+/* Elk gewicht hieronder is een apart woff2-bestand dat Next met een
+   `<link rel="preload">` op hoge prioriteit opvraagt — dus gelijktijdig met, en
+   concurrerend om dezelfde bandbreedte als, de hero-afbeelding die de LCP
+   bepaalt. Gemeten stonden er acht van die bestanden (samen ~170 kB) in de
+   startrij, en zat de LCP op mobiel op 4,1 s gemiddeld (p75 4,6 s), ruim boven
+   de 2,5 s-drempel. Vandaar: enkel gewichten die de site echt gebruikt.
+
+   Nagetrokken vóór het schrappen — sans staat op 500 (koppen, incl. de h1) en
+   600 (naam in de topbalk), plus 400 als erfwaarde van `body`; serif staat op
+   300 (lopende tekst) en 400 (FAQ-vraag), met italic voor de bijschriften.
+   Sans 300 en serif 500 kwamen nergens voor. */
 const sans = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-sans",
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 const serif = Spectral({
   subsets: ["latin"],
   variable: "--font-serif",
-  weight: ["300", "400", "500"],
+  weight: ["300", "400"],
   style: ["normal", "italic"],
   display: "swap",
 });

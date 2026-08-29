@@ -458,6 +458,9 @@ a {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text);
+  /* Het is sinds kort een <a> (zie TopChrome.tsx) — maar het blijft er
+     uitzien als de naam, niet als een link. */
+  text-decoration: none;
   pointer-events: auto;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
   /* Nooit over twee regels: dat maakte de balk op 320px hoger en oogde gebroken. */
@@ -621,7 +624,12 @@ a {
 ------------------------------------------------------------------- */
 .faq-item {
   border-top: 1px solid var(--line-2);
-  padding: 22px 0;
+  /* De bovenmarge staat bewust op de <summary> zelf (zie .faq-question) en
+     niet hier: zo hoort die ruimte tot het aanraakgebied van de vraag i.p.v.
+     tot de dode zone eromheen. Onderaan blijft ze wél hier staan — daar hangt
+     bij een open item het antwoord onder, dat niet mee mag togglen. De
+     totale rijhoogte blijft daardoor exact gelijk aan voorheen. */
+  padding: 0 0 22px;
 }
 .faq-item:last-child {
   border-bottom: 1px solid var(--line-2);
@@ -633,6 +641,10 @@ a {
   gap: 24px;
   cursor: pointer;
   list-style: none;
+  /* Samen met de regelhoogte van de vraag (18px × 1.5) komt het aanraakgebied
+     hiermee op ~49px, boven de 44px-richtlijn voor vingers. Voorheen was enkel
+     de tekstregel zelf (~27px) aanklikbaar. */
+  padding-top: 22px;
   font-family: var(--font-serif), serif;
   font-weight: 400;
   font-size: 18px;
@@ -718,6 +730,24 @@ a {
     margin-top 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .faq-item.is-open .faq-answer {
+  margin-top: 14px;
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Vangnet zolang de JS-modus niet aanstaat — dus vóór de hydratatie, en bij
+   een bezoeker zonder JavaScript. Dan stuurt het native `open`-attribuut de
+   weergave: het antwoord verschijnt meteen, zonder animatie, maar het wérkt.
+   FaqItem.tsx zet `.js-faq` pas bij mount, en neemt vanaf dan met `.is-open`
+   de geanimeerde weergave over.
+
+   Zonder dit vangnet klapte een klik vóór de hydratatie alleen het attribuut
+   om terwijl het antwoord dichtgeklapt bleef staan: zichtbaar gebeurde er
+   niets. Dat is precies wat de metingen lieten zien — dead clicks op de
+   FAQ-vragen in elke browser, en rageclicks op twee ervan. */
+.faq-item[open]:not(.js-faq) .faq-answer-wrap {
+  grid-template-rows: 1fr;
+}
+.faq-item[open]:not(.js-faq) .faq-answer {
   margin-top: 14px;
   opacity: 1;
   transform: translateY(0);
