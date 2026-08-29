@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import posthog from "posthog-js";
 import type { Content } from "../lib/locale";
 import { Editable } from "./review/Editable";
@@ -53,6 +53,30 @@ export function ContactForm({ c }: { c: Content }) {
   });
   const [errors, setErrors] = useState<Partial<Record<Field, string>>>({});
   const [status, setStatus] = useState<Status>("idle");
+  const startedRef = useRef(false);
+
+  /**
+   * Vuurt één keer per paginabezoek zodra iemand het eerste veld aanraakt.
+   *
+   * Dit dicht een blinde vlek in de meting. We zagen tot nu toe alleen wie de
+   * contactsectie in beeld kreeg (`section_viewed`) en wie verzond
+   * (`contact_form_submitted`), met niets ertussen. In de eerste vier weken
+   * echt verkeer bereikten 18 mensen die sectie en verstuurde niemand iets —
+   * maar of ze het formulier nooit aanraakten, of eraan begonnen en afhaakten,
+   * viel niet te zien. Dat onderscheid bepaalt of de drempel bij het formulier
+   * zelf ligt of ervóór.
+   *
+   * Sessieopnames zouden dit ook tonen, maar die staan hier bewust uit: iemand
+   * die een hulpvraag typt hoort niet opgenomen te worden. Dit event is het
+   * alternatief — alleen het feit dát er begonnen is, geen enkel veld, geen
+   * inhoud, geen volgorde. Consistent met `data-ph-no-autocapture` hieronder.
+   */
+  function onFirstFocus() {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    if (!process.env.NEXT_PUBLIC_POSTHOG_KEY) return;
+    posthog.capture("contact_form_started");
+  }
 
   function validate() {
     const next: Partial<Record<Field, string>> = {};
@@ -110,6 +134,8 @@ export function ContactForm({ c }: { c: Content }) {
     <form
       onSubmit={onSubmit}
       noValidate
+      // Focus-events bubbelen in React, dus deze ene handler dekt elk veld.
+      onFocus={onFirstFocus}
       // Schermt het hele formulier af van PostHog's autocapture: hier typen
       // mensen hun hulpvraag, dus er mag niets uit deze velden worden
       // vastgelegd — ook niet de labels of aangeklikte elementen. Enkel het
