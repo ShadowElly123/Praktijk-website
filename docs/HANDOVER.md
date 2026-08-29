@@ -60,11 +60,30 @@ foto's, domein, e-mailverzending en privacybeleid staan er. Zie
 [EIGENDOM-EN-KOSTEN.md](EIGENDOM-EN-KOSTEN.md) voor wie wat beheert en
 [RESEND-OVERDRACHT.md](RESEND-OVERDRACHT.md) voor de mailopzet in detail.
 
-Nog open, geen van alle dringend:
-- website-adres invullen in Lucas' Google Business Profile, zie
-  [GOOGLE-BUSINESS-PROFIEL.md](GOOGLE-BUSINESS-PROFIEL.md)
-- site aanmelden bij Google Search Console
-- automatische verlenging + geldige betaalkaart bij Combell bevestigen
+Nog open:
+
+- **Website-adres invullen in Lucas' Google Business Profile** — zie
+  [GOOGLE-BUSINESS-PROFIEL.md](GOOGLE-BUSINESS-PROFIEL.md). Dit stond hier eerst
+  als "niet dringend"; dat label is op 29 augustus 2026 weggehaald. Bij een
+  halfvolle bezetting is dit vermoedelijk de grootste losse hefboom die er nog
+  ligt: voor een zoekopdracht als "psycholoog Gent" is het kaartblok bovenaan
+  wat mensen aanklikken, en zonder websitelink vinden ze het profiel wel maar de
+  site niet. Kost vijf minuten.
+- Automatische verlenging + geldige betaalkaart bij Combell bevestigen.
+
+Wél al geregeld, in tegenstelling tot wat hier eerder stond:
+
+- **Google Search Console** is opgezet. De verificatie loopt via een DNS
+  TXT-record (`google-site-verification=...` op lucasborghys.be), niet via een
+  meta-tag of een bestand in `public/` — daarom is er in de repo niets van te
+  zien en leek het lang open te staan. Nagetrokken met `dig +short TXT
+  lucasborghys.be` op 29 augustus 2026.
+
+  Daar staat inmiddels de data die PostHog níét kan geven: op welke
+  zoekopdrachten de site verschijnt. PostHog ziet dát iemand via Google kwam,
+  nooit waarop hij zocht. Kijk daar naar de zoekopdrachten (naam versus
+  generieke termen als "psycholoog gent"), naar termen met veel vertoningen en
+  weinig kliks, en of `/nl` én `/en` allebei geïndexeerd staan.
 
 ### Uptime-monitoring
 Er staat een gratis monitor op [UptimeRobot](https://uptimerobot.com) (account
