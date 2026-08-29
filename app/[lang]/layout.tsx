@@ -34,10 +34,24 @@ const serif = Spectral({
   style: ["normal", "italic"],
   display: "swap",
 });
+/* JetBrains Mono staat bewust NIET in de preload-rij. Het is één bestand van
+   ~40 kB — bijna een derde van alles wat er op het kritieke pad stond — terwijl
+   het uitsluitend kleine labels zet: de CONTACT-knop en de NL/EN-pil in de
+   topbalk, de SCROLL-aanduiding onder de hero, en verder alleen dingen onder de
+   vouw (sectiekopjes, zijrail, kaartlabels, footer). Die 40 kB hoeft dus niet
+   op hoge prioriteit te vechten met de hero-afbeelding, die de LCP bepaalt.
+
+   Het font laadt gewoon door, alleen later en op normale prioriteit: de browser
+   vraagt het pas op zodra hij bij de opmaak merkt dat er tekst in staat. Met
+   `display: swap` verschijnen die labels intussen in het systeem-monospace (de
+   `monospace`-fallback die overal achter `var(--font-mono)` staat) en wisselen
+   ze daarna. `adjustFontFallback` staat standaard aan, zodat Next die fallback
+   op maat schaalt en de balk bij het wisselen niet merkbaar verspringt. */
 const mono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
+  preload: false,
 });
 
 export function generateStaticParams() {
