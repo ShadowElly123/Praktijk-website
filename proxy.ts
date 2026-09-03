@@ -25,7 +25,16 @@ export function proxy(request: NextRequest) {
   if (hasLocale) return;
 
   request.nextUrl.pathname = `/${DEFAULT_LOCALE}${pathname === "/" ? "" : pathname}`;
-  return NextResponse.redirect(request.nextUrl);
+  // 308 en niet de standaard 307: deze omleiding is permanent. `/` is de URL
+  // die op visitekaartjes staat, in het Google Business Profile komt en die
+  // mensen intikken — met een 307 zegt Google's crawler tegen zichzelf "dit is
+  // voorlopig", houdt hij `/` als de te indexeren URL aan en verplaatst hij de
+  // linkwaarde niet naar `/nl`. 308 i.p.v. 301 omdat 308 de methode behoudt,
+  // net als de 307 die het verving; voor Google zijn 301 en 308 hetzelfde
+  // permanente signaal. Bijkomend: browsers mogen een permanente omleiding
+  // cachen, dus een terugkerende bezoeker verliest de extra round trip vóór de
+  // hero (de LCP) begint te laden.
+  return NextResponse.redirect(request.nextUrl, 308);
 }
 
 export const config = {
