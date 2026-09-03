@@ -140,7 +140,14 @@ export function ContactForm({ c }: { c: Content }) {
       // mensen hun hulpvraag, dus er mag niets uit deze velden worden
       // vastgelegd — ook niet de labels of aangeklikte elementen. Enkel het
       // expliciete `contact_form_submitted`-event (zonder inhoud) wordt gestuurd.
+      //
+      // data-ph-no-autocapture dekt dat, maar niet dead-click-detectie — die
+      // heeft een eigen, hardgecodeerde uitsluitlijst (.ph-no-deadclick/
+      // .ph-no-rageclick) en negeert data-ph-no-autocapture volledig. Zonder
+      // dit telt een tweede klik in een al-gefocust veld (cursor verplaatsen)
+      // als "dead click".
       data-ph-no-autocapture
+      className="ph-no-deadclick ph-no-rageclick"
       style={{ display: "flex", flexDirection: "column", gap: 28 }}
     >
       {/* Honeypot: verborgen voor mensen, verleidelijk voor bots. */}
